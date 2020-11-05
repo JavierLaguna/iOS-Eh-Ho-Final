@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// ViewController representando un formulario de entrada para crear un topic
 class AddTopicViewController: UIViewController {
     
     // MARK: IBOutlets
