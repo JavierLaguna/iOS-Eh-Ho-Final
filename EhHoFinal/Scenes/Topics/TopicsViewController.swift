@@ -156,6 +156,7 @@ class TopicsViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDataSource
 extension TopicsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -187,6 +188,7 @@ extension TopicsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension TopicsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -206,6 +208,7 @@ extension TopicsViewController: UITableViewDelegate {
     }
 }
 
+// MARK: TopicsViewDelegate
 extension TopicsViewController: TopicsViewDelegate {
     
     func topicsFetched() {
