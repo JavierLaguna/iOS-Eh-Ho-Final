@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  EhHoFinal
+
+  Created by Javier Laguna on 05/11/2020.
+  Copyright © 2020 Roberto Garrido. All rights reserved.
+*/
+
+// Add Topic
+"addTopic.title" = "Create New Topic";
+"addTopic.cancel" = "Cancel";
+"addTopic.create" = "Create";
+"addTopic.title.label" = "Topic title";
+"addTopic.title.placeholder" = "Insert topic title";
+"addTopic.body.label" = "Topic body";

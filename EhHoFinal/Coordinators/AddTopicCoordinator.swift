@@ -27,8 +27,6 @@ class AddTopicCoordinator: Coordinator {
 
         let addTopicViewController = AddTopicViewController(viewModel: addTopicViewModel)
         addTopicViewModel.viewDelegate = addTopicViewController
-        addTopicViewController.isModalInPresentation = true
-        addTopicViewController.title = "Add topic"
 
         let navigationController = UINavigationController(rootViewController: addTopicViewController)
         self.addTopicNavigationController = navigationController

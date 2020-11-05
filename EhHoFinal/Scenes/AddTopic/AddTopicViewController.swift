@@ -1,100 +1,91 @@
 //
 //  AddTopicViewController.swift
-//  DiscourseClient
+//  EhHoFinal
 //
-//  Created by Roberto Garrido on 08/02/2020.
+//  Created by Javier Laguna on 03/11/2020.
 //  Copyright © 2020 Roberto Garrido. All rights reserved.
 //
 
 import UIKit
 
-/// ViewController representando un formulario de entrada para crear un topic
 class AddTopicViewController: UIViewController {
-    lazy var titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .line
-        textField.placeholder = NSLocalizedString("Insert topic title and tap Submit", comment: "")
-
-        return textField
-    }()
     
-    lazy var bodyTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.layer.borderWidth = 1
-        textView.text = "New topic default body text"
-        textView.font = UIFont.systemFont(ofSize: 16)
-        
-        return textView
-    }()
-
-    let viewModel: AddTopicViewModel
-
+    // MARK: IBOutlets
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var titleTextField: UITextField!
+    @IBOutlet weak private var bodyLabel: UILabel!
+    @IBOutlet weak private var bodyTextView: UITextView!
+    
+    // MARK: Constants
+    private let viewModel: AddTopicViewModel
+    
+    // MARK: Lifecycle
     init(viewModel: AddTopicViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
-
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = .white
-
-        view.addSubview(titleTextField)
-        NSLayoutConstraint.activate([
-            titleTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
-        ])
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        view.addSubview(bodyTextView)
-        NSLayoutConstraint.activate([
-            bodyTextView.leftAnchor.constraint(equalTo: titleTextField.leftAnchor, constant: 0),
-            bodyTextView.rightAnchor.constraint(equalTo: titleTextField.rightAnchor, constant: 0),
-            bodyTextView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 8),
-            bodyTextView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-
-        let submitButton = UIButton(type: .system)
-        submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.setTitle(NSLocalizedString("Submit", comment: ""), for: .normal)
-        submitButton.backgroundColor = .cyan
-        submitButton.setTitleColor(.white, for: .normal)
-        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
-
-        view.addSubview(submitButton)
-        NSLayoutConstraint.activate([
-            submitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            submitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            submitButton.topAnchor.constraint(equalTo: bodyTextView.bottomAnchor, constant: 8)
-        ])
-
-        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(cancelButtonTapped))
-        rightBarButtonItem.tintColor = .black
+        configureUI()
+        configureNavigationBar()
+    }
+    
+    // MARK: Private Functions
+    private func configureUI() {
+        titleLabel.font = .title
+        titleLabel.text = "addTopic.title.label".localized()
+        
+        titleTextField.font = .paragraph2
+        titleTextField.placeholder = "addTopic.title.placeholder".localized()
+        titleTextField.layer.borderWidth = 1
+        titleTextField.layer.cornerRadius = 8
+        titleTextField.layer.borderColor = UIColor.orangeKCPumpkin.cgColor
+        
+        bodyLabel.font = .title
+        bodyLabel.text = "addTopic.body.label".localized()
+        
+        bodyTextView.font = .paragraph2
+        bodyTextView.layer.borderWidth = 1
+        bodyTextView.layer.cornerRadius = 8
+        bodyTextView.layer.borderColor = UIColor.orangeKCPumpkin.cgColor
+    }
+    
+    private func configureNavigationBar() {
+        title = "addTopic.title".localized()
+        
+        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(title: "addTopic.cancel".localized(), style: .plain, target: self, action: #selector(cancelButtonTapped))
+        leftBarButtonItem.tintColor = .orangeKCPumpkin
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem(title: "addTopic.create".localized(), style: .done, target: self, action: #selector(submitButtonTapped))
+        rightBarButtonItem.tintColor = .orangeKCPumpkin
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
-
-    @objc fileprivate func cancelButtonTapped() {
-        viewModel.cancelButtonTapped()
-    }
-
-    @objc fileprivate func submitButtonTapped() {
-        guard let title = titleTextField.text, !title.isEmpty,
-            let body = bodyTextView.text, !body.isEmpty else { return }
-        
-        viewModel.submitButtonTapped(title: title, body: body)
-    }
-
-    fileprivate func showErrorAddingTopicAlert() {
+    
+    private func showErrorAddingTopicAlert() {
         let message = NSLocalizedString("Error adding topic\nPlease try again later", comment: "")
         showAlert(message)
     }
+    
+    @objc private func cancelButtonTapped() {
+        viewModel.cancelButtonTapped()
+    }
+    
+    @objc private func submitButtonTapped() {
+        guard let title = titleTextField.text, !title.isEmpty,
+              let body = bodyTextView.text, !body.isEmpty else { return }
+        
+        viewModel.submitButtonTapped(title: title, body: body)
+    }
 }
 
+// MARK: AddTopicViewDelegate
 extension AddTopicViewController: AddTopicViewDelegate {
     func errorAddingTopic() {
         showErrorAddingTopicAlert()
