@@ -13,3 +13,4 @@
 "addTopic.title.label" = "Topic title";
 "addTopic.title.placeholder" = "Insert topic title";
 "addTopic.body.label" = "Topic body";
+"addTopic.defaultError" = "Error adding topic\nPlease try again later";

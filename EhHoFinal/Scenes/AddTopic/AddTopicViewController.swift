@@ -68,9 +68,8 @@ class AddTopicViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    private func showErrorAddingTopicAlert() {
-        let message = NSLocalizedString("Error adding topic\nPlease try again later", comment: "")
-        showAlert(message)
+    private func showErrorAddingTopicAlert(text: String?) {
+        showAlert(text ?? "addTopic.defaultError".localized())
     }
     
     @objc private func cancelButtonTapped() {
@@ -87,7 +86,7 @@ class AddTopicViewController: UIViewController {
 
 // MARK: AddTopicViewDelegate
 extension AddTopicViewController: AddTopicViewDelegate {
-    func errorAddingTopic() {
-        showErrorAddingTopicAlert()
+    func errorAddingTopic(text: String?) {
+        showErrorAddingTopicAlert(text: text)
     }
 }
