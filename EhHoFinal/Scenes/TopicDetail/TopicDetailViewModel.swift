@@ -33,7 +33,8 @@ class TopicDetailViewModel {
     var topic: Topic?
     var posts: Posts?
     var canDeleteTopic = false
-    
+    var allPostIds: [Int] = []
+    var chunkSize: Int?
     
     // MARK: Lifecycle
     init(topicID: Int, topicDetailDataManager: TopicDetailDataManager) {
@@ -46,6 +47,19 @@ class TopicDetailViewModel {
     }
     
     // MARK: Public Functions
+    func fetchMorePosts() {
+        guard let currentPostCount = posts?.count,
+              currentPostCount < allPostIds.count,
+              let chunkSize = chunkSize else {
+            return
+        }
+        
+        let from = currentPostCount
+        let to = currentPostCount + chunkSize < allPostIds.count ? currentPostCount + chunkSize : allPostIds.count
+        let nextPostIds = allPostIds[from..<to]
+
+    }
+    
     func deleteTopic() {
         topicDetailDataManager.deleteTopic(id: topicID) { [weak self] result in
             guard let self = self else { return}
@@ -71,9 +85,13 @@ class TopicDetailViewModel {
             
             switch result {
             case .success(let topicResp):
-                self.topic = topicResp?.topic
-                self.posts = topicResp?.posts
-                self.canDeleteTopic = topicResp?.details.canDelete ?? false
+                guard let topicResp = topicResp else { return }
+                
+                self.topic = topicResp.topic
+                self.posts = topicResp.posts
+                self.canDeleteTopic = topicResp.details.canDelete ?? false
+                self.chunkSize = topicResp.topic.chunkSize
+                self.allPostIds = topicResp.allPostIds
                 
                 self.viewDelegate?.topicDetailFetched()
                 

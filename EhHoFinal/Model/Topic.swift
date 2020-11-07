@@ -32,6 +32,7 @@ struct Topic: Codable {
     let categoryId: Int
     let pinnedGlobally: Bool
     let posters: [Poster]?
+    let chunkSize: Int?
     
     enum CodingKeys: String, CodingKey {
         
@@ -46,6 +47,7 @@ struct Topic: Codable {
         case lastPosterUsername = "last_poster_username"
         case categoryId = "category_id"
         case pinnedGlobally = "pinned_globally"
+        case chunkSize = "chunk_size"
     }
         
     func encode(to encoder: Encoder) throws {

@@ -6,11 +6,13 @@ struct SingleTopicResponse: Decodable {
     let topic: Topic
     let details: TopicDetails
     let posts: Posts
+    let allPostIds: [Int]
     
     enum CodingKeys: String, CodingKey {
         
         case topic, details, posts
         case postStream = "post_stream"
+        case allPostIds = "stream"
     }
 
     init(from decoder: Decoder) throws {
@@ -22,5 +24,6 @@ struct SingleTopicResponse: Decodable {
         
         let postStreamContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .postStream)
         posts = try postStreamContainer.decode(Posts.self, forKey: .posts)
+        allPostIds = try postStreamContainer.decode([Int].self, forKey: .allPostIds)
     }
 }
