@@ -33,35 +33,8 @@ final class TopicDetailViewController: UIViewController {
         viewModel.viewDidLoad()
         
         configureTable()
+        configureNavigationBar()
     }
-    
-    //    override func loadView() {
-    //        view = UIView()
-    //        view.backgroundColor = .white
-    //
-    //        view.addSubview(topicIDStackView)
-    //        NSLayoutConstraint.activate([
-    //            topicIDStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-    //            topicIDStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
-    //        ])
-    //
-    //        view.addSubview(topicNameStackView)
-    //        NSLayoutConstraint.activate([
-    //            topicNameStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-    //            topicNameStackView.topAnchor.constraint(equalTo: topicIDStackView.bottomAnchor, constant: 8)
-    //        ])
-    //
-    //        view.addSubview(postsNumberStackView)
-    //        NSLayoutConstraint.activate([
-    //            postsNumberStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-    //            postsNumberStackView.topAnchor.constraint(equalTo: topicNameStackView.bottomAnchor, constant: 8)
-    //        ])
-    //
-    //        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-    //        leftBarButtonItem.tintColor = .black
-    //        navigationItem.leftBarButtonItem = leftBarButtonItem
-    //    }
-    
     
     // MARK: Private functions
     private func configureTable() {
@@ -71,28 +44,36 @@ final class TopicDetailViewController: UIViewController {
         tableView.register(UINib(nibName: ParentPostCell.nibName, bundle: nil), forCellReuseIdentifier: ParentPostCell.defaultReuseIdentifier)
     }
     
-    private func updateUI() {
-        tableView.reloadData()
+    private func configureNavigationBar() {
+        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        leftBarButtonItem.tintColor = .orangeKCPumpkin
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    private func showErrorFetchingTopicDetailAlert() {
-        let alertMessage: String = NSLocalizedString("Error fetching topic detail\nPlease try again later", comment: "")
-        showAlert(alertMessage)
+    private func updateUI() {
+        tableView.reloadData()
+        
+        if viewModel.canDeleteTopic {
+            showDeleteOption()
+        }
     }
     
     private func showDeleteOption() {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTopic))
-        barButtonItem.tintColor = .red
+        barButtonItem.tintColor = .orangeKCPumpkin
         navigationItem.rightBarButtonItem = barButtonItem
     }
     
+    private func showErrorFetchingTopicDetailAlert() {
+        showAlert("topicDetail.fetchError".localized())
+    }
+    
     private func showErrorDeletingTopicDetailAlert() {
-        let alertMessage: String = NSLocalizedString("Error deleting topic\nPlease try again later", comment: "")
-        showAlert(alertMessage)
+        showAlert("topicDetail.deleteError".localized())
     }
     
     @objc private func deleteTopic() {
-        showDeleteAlert(title: "Delete Topic") { [weak self] in
+        showDeleteAlert(title: "topicDetail.delete.title".localized()) { [weak self] in
             self?.viewModel.deleteTopic()
         }
     }
