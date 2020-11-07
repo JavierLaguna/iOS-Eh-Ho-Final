@@ -22,35 +22,56 @@ protocol TopicDetailViewDelegate: class {
 }
 
 class TopicDetailViewModel {
-    var labelTopicIDText: String?
-    var labelTopicNameText: String?
-    var postsNumber: String?
-    var canDeleteTopic = false
-
+    
+    // MARK: Properties
+    private let topicDetailDataManager: TopicDetailDataManager
+    private let topicID: Int
+    
     weak var viewDelegate: TopicDetailViewDelegate?
     weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
-    let topicDetailDataManager: TopicDetailDataManager
-    let topicID: Int
-
+    
+    private var chunkSize: Int?
+    private var isGettingMorePosts = false
+    var topic: Topic?
+    var posts: Posts?
+    var canDeleteTopic = false
+    var allPostIds: [Int] = []
+    
+    // MARK: Lifecycle
     init(topicID: Int, topicDetailDataManager: TopicDetailDataManager) {
         self.topicID = topicID
         self.topicDetailDataManager = topicDetailDataManager
     }
-
+    
     func viewDidLoad() {
-        topicDetailDataManager.fetchTopic(id: topicID) { [weak self] result in
-            guard let self = self else { return}
-            
+        fetchTopicDetail()
+    }
+    
+    // MARK: Public Functions
+    func fetchMorePosts() {
+        guard !isGettingMorePosts,
+              let currentPostCount = posts?.count,
+              currentPostCount < allPostIds.count,
+              let chunkSize = chunkSize else {
+            return
+        }
+        
+        isGettingMorePosts = true
+        
+        let from = currentPostCount
+        let to = currentPostCount + chunkSize < allPostIds.count ? currentPostCount + chunkSize : allPostIds.count
+        let nextPostIds = Array(allPostIds[from..<to])
+        
+        topicDetailDataManager.fetchSpecificPosts(of: topicID, postIds: nextPostIds) { [weak self] result in
+            guard let self = self else { return }
+                    
             switch result {
-            case .success(let topicResp):
-                guard let topic = topicResp?.topic, let details = topicResp?.details else { return }
+            case .success(let postsResp):
+                guard let newPosts = postsResp?.posts else {
+                    return
+                }
                 
-                self.labelTopicIDText = "\(topic.id)"
-                self.labelTopicNameText = topic.title
-                self.postsNumber = "\(topic.postsCount)"
-                
-                self.canDeleteTopic = details.canDelete ?? false
-                
+                self.posts?.append(contentsOf: newPosts)
                 self.viewDelegate?.topicDetailFetched()
                 
             case .failure(let error):
@@ -58,6 +79,7 @@ class TopicDetailViewModel {
                 self.viewDelegate?.errorFetchingTopicDetail()
             }
             
+            self.isGettingMorePosts = false
         }
     }
     
@@ -74,8 +96,32 @@ class TopicDetailViewModel {
             }
         }
     }
-
+    
     func backButtonTapped() {
         coordinatorDelegate?.topicDetailBackButtonTapped()
+    }
+    
+    // MARK: Private Functions
+    private func fetchTopicDetail() {
+        topicDetailDataManager.fetchTopic(id: topicID) { [weak self] result in
+            guard let self = self else { return}
+            
+            switch result {
+            case .success(let topicResp):
+                guard let topicResp = topicResp else { return }
+                
+                self.topic = topicResp.topic
+                self.posts = topicResp.posts
+                self.canDeleteTopic = topicResp.details.canDelete ?? false
+                self.chunkSize = topicResp.topic.chunkSize
+                self.allPostIds = topicResp.allPostIds
+                
+                self.viewDelegate?.topicDetailFetched()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorFetchingTopicDetail()
+            }
+        }
     }
 }

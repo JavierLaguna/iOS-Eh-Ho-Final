@@ -15,6 +15,7 @@ enum SessionAPIError: Error {
 final class SessionAPI {
     lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.default
+        
         let session = URLSession(configuration: configuration)
         return session
     }()

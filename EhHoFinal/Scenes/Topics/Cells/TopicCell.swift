@@ -48,11 +48,11 @@ class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
     // MARK: Private Functions
     private func configureUI() {
         lastPosterImage.asCircle()
-        postTitleLabel.font = UIFont.title
+        postTitleLabel.font = .title
         
-        postCountLabel.font = UIFont.cellDetail
-        posterCountLabel.font = UIFont.cellDetail
-        lastPostLabel.font = UIFont.cellDetailBold
+        postCountLabel.font = .cellDetail
+        posterCountLabel.font = .cellDetail
+        lastPostLabel.font = .cellDetailBold
     }
     
     private func showImage(_ image: UIImage?) {

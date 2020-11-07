@@ -31,6 +31,13 @@ class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
         }
     }
     
+    func fetchSpecificPosts(of topicId: Int, postIds: [Int], completion: @escaping (Result<SpecificPostsResponse?, Error>) -> ()) {
+        let request = SpecificPostsRequest(topicId: topicId, postIds: postIds)
+        session.send(request: request) { result in
+            completion(result)
+        }
+    }
+    
     func addTopic(title: String, raw: String, createdAt: String, completion: @escaping (Result<AddNewTopicResponse?, Error>) -> ()) {
         let request = CreateTopicRequest(title: title, raw: raw, createdAt: createdAt)
         session.send(request: request) { result in

@@ -11,6 +11,6 @@ import Foundation
 /// DataManager con las operaciones necesarias de este módulo
 protocol TopicDetailDataManager: class {
     func fetchTopic(id: Int, completion: @escaping (Result<SingleTopicResponse?, Error>) -> ())
-    
+    func fetchSpecificPosts(of topicId: Int, postIds: [Int], completion: @escaping (Result<SpecificPostsResponse?, Error>) -> ())
     func deleteTopic(id: Int, completion: @escaping (Result<DeleteTopicResponse?, Error>) -> ())
 }
