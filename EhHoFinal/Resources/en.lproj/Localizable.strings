@@ -14,3 +14,13 @@
 "addTopic.title.placeholder" = "Insert topic title";
 "addTopic.body.label" = "Topic body";
 "addTopic.defaultError" = "Error adding topic\nPlease try again later";
+
+// User Detail
+"userDetail.topics_created" = "created";
+"userDetail.replies" = "replies";
+"userDetail.likes" = "gived";
+"userDetail.my_likes" = "received";
+"userDetail.badge.title" = "Badges";
+"userDetail.badge.mod" = "Moderator";
+"userDetail.badge.user" = "User";
+"userDetail.fetchError" = "Error fetching user detail\nPlease try again later";

@@ -9,7 +9,7 @@
 import UIKit
 
 /// ViewController representando un formulario de entrada para crear un topic
-class AddTopicViewController: UIViewController {
+final class AddTopicViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak private var titleLabel: UILabel!
@@ -34,27 +34,31 @@ class AddTopicViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        localize()
         configureNavigationBar()
     }
     
     // MARK: Private Functions
     private func configureUI() {
         titleLabel.font = .title
-        titleLabel.text = "addTopic.title.label".localized()
         
         titleTextField.font = .paragraph2
-        titleTextField.placeholder = "addTopic.title.placeholder".localized()
         titleTextField.layer.borderWidth = 1
         titleTextField.layer.cornerRadius = 8
         titleTextField.layer.borderColor = UIColor.orangeKCPumpkin.cgColor
         
         bodyLabel.font = .title
-        bodyLabel.text = "addTopic.body.label".localized()
         
         bodyTextView.font = .paragraph2
         bodyTextView.layer.borderWidth = 1
         bodyTextView.layer.cornerRadius = 8
         bodyTextView.layer.borderColor = UIColor.orangeKCPumpkin.cgColor
+    }
+    
+    private func localize() {
+        titleLabel.text = "addTopic.title.label".localized()
+        titleTextField.placeholder = "addTopic.title.placeholder".localized()
+        bodyLabel.text = "addTopic.body.label".localized()
     }
     
     private func configureNavigationBar() {

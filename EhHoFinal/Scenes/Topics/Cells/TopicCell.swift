@@ -47,7 +47,7 @@ class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
     
     // MARK: Private Functions
     private func configureUI() {
-        lastPosterImage.layer.cornerRadius = lastPosterImage.frame.height / 2
+        lastPosterImage.asCircle()
         postTitleLabel.font = UIFont.title
         
         postCountLabel.font = UIFont.cellDetail

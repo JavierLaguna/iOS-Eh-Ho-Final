@@ -41,7 +41,7 @@ extension UsersCoordinator: UsersCoordinatorDelegate {
         let userDetailViewController = UserDetailViewController(viewModel: userDetailViewModel)
         userDetailViewModel.coordinatorDelegate = self
         userDetailViewModel.viewDelegate = userDetailViewController
-        presenter.pushViewController(userDetailViewController, animated: true)
+        presenter.present(userDetailViewController, animated: true, completion: nil)
     }
 }
 
