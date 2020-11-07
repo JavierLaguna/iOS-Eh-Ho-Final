@@ -21,12 +21,11 @@ protocol TopicsViewDelegate: class {
 }
 
 /// ViewModel que representa un listado de topics
-class TopicsViewModel {
+final class TopicsViewModel {
     
-    // MARK: Constants
+    // MARK: Properties
     private let topicsDataManager: TopicsDataManager
     
-    // MARK: Variables
     weak var coordinatorDelegate: TopicsCoordinatorDelegate?
     weak var viewDelegate: TopicsViewDelegate?
     

@@ -12,6 +12,7 @@ import UIKit
 final class UserDetailViewController: UIViewController {
     
     // MARK: IBOutlets
+    @IBOutlet private weak var slideBarView: UIView!
     @IBOutlet private weak var avatarImage: UIImageView!
     @IBOutlet private weak var nickLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -55,12 +56,17 @@ final class UserDetailViewController: UIViewController {
     
     // MARK: Private Functions
     private func configureUI() {
+        slideBarView.layer.cornerRadius = 2
         
+        avatarImage.alpha = 0
         avatarImage.asCircle()
         
         nickLabel.font = .bigTitle
+        nickLabel.text = ""
         nameLabel.font = .paragraph
+        nameLabel.text = ""
         lastConnectionLabel.font = .cellDetail
+        lastConnectionLabel.text = ""
         
         numTopicsLabel.font = .title
         numTopicsLabel.text = "0"
@@ -78,6 +84,8 @@ final class UserDetailViewController: UIViewController {
         badgesLabel.font = .title
         modBadgeLabel.font = .paragraph4
         userBadgeLabel.font = .paragraph4
+        
+        modBadgeView.isHidden = true
     }
     
     private func localize() {
@@ -93,16 +101,27 @@ final class UserDetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        //        labelUserID.text = viewModel.labelUserIDText
-        //        labelUsername.text = viewModel.labelUserNameText
-        //        labelEmail.text = viewModel.labelEmailText
+        nickLabel.text = viewModel.labelNickText
+        nameLabel.text = viewModel.labelNameText
+        lastConnectionLabel.text = viewModel.labelLastConnectionText
         
+        numMyLikesLabel.text = viewModel.labelLikesReceivedText
+        
+        modBadgeView.isHidden = !viewModel.isMod
+    }
+    
+    private func updateAvatarUI() {
+        avatarImage.alpha = 0
+        avatarImage.image = viewModel.avatarImage
+
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.avatarImage.alpha = 1
+        }
     }
     
     private func showErrorFetchingUserDetailAlert() {
         showAlert("userDetail.fetchError".localized())
     }
-    
 }
 
 // MARK: UserDetailViewDelegate
@@ -111,15 +130,19 @@ extension UserDetailViewController: UserDetailViewDelegate {
         updateUI()
     }
     
+    func userImageFetched() {
+        updateAvatarUI()
+    }
+    
     func errorFetchingUserDetail() {
         showErrorFetchingUserDetailAlert()
     }
     
     func errorModifingUserDetail() {
-        //        showErrorModifingUserDetailAlert()
+        return
     }
     
     func successModifingUserDetail() {
-        //        successModification()
+        return
     }
 }
