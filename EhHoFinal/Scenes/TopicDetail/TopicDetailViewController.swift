@@ -40,8 +40,8 @@ final class TopicDetailViewController: UIViewController {
     // MARK: Private functions
     private func configureTable() {
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.tableFooterView = UIView()
+        
         tableView.register(UINib(nibName: ParentPostCell.nibName, bundle: nil), forCellReuseIdentifier: ParentPostCell.defaultReuseIdentifier)
         tableView.register(UINib(nibName: PostCell.nibName, bundle: nil), forCellReuseIdentifier: PostCell.defaultReuseIdentifier)
     }
@@ -50,9 +50,14 @@ final class TopicDetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.titleView = nil
         
-        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         leftBarButtonItem.tintColor = .orangeKCPumpkin
         navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.message"), style: .plain, target: self, action: #selector(replyButtonTapped))
+        rightBarButtonItem.tintColor = .orangeKCPumpkin
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     private func updateUI() {
@@ -64,9 +69,10 @@ final class TopicDetailViewController: UIViewController {
     }
     
     private func showDeleteOption() {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTopic))
-        barButtonItem.tintColor = .orangeKCPumpkin
-        navigationItem.rightBarButtonItem = barButtonItem
+        let deleteBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTopic))
+        deleteBarButtonItem.tintColor = .orangeKCPumpkin
+        
+        navigationItem.rightBarButtonItems?.append(deleteBarButtonItem)
     }
     
     private func showErrorFetchingTopicDetailAlert() {
@@ -75,6 +81,10 @@ final class TopicDetailViewController: UIViewController {
     
     private func showErrorDeletingTopicDetailAlert() {
         showAlert("topicDetail.deleteError".localized())
+    }
+    
+    @objc func replyButtonTapped() {
+        viewModel.replyTopic()
     }
     
     @objc private func deleteTopic() {
@@ -135,10 +145,5 @@ extension TopicDetailViewController: UITableViewDataSource {
         
         return UITableViewCell()
     }
-    
-}
-
-// MARK: UITableViewDelegate
-extension TopicDetailViewController: UITableViewDelegate {
     
 }

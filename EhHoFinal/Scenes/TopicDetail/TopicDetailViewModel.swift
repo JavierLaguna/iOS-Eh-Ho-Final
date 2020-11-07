@@ -83,6 +83,10 @@ class TopicDetailViewModel {
         }
     }
     
+    func replyTopic() {
+        // TODO: 
+    }
+    
     func deleteTopic() {
         topicDetailDataManager.deleteTopic(id: topicID) { [weak self] result in
             guard let self = self else { return}
