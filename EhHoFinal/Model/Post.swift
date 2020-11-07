@@ -16,6 +16,7 @@ struct Post: Codable {
     let author: String
     let content: String
     let topicId: Int
+    let updatedAt: String
     
     enum CodingKeys: String, CodingKey {
         
@@ -23,5 +24,6 @@ struct Post: Codable {
         case author = "username"
         case content = "cooked"
         case topicId = "topic_id"
+        case updatedAt = "updated_at"
     }
 }

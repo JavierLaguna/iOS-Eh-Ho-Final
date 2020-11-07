@@ -50,6 +50,9 @@
 		497C3D982556CC7600B330A7 /* ParentPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3D962556CC7600B330A7 /* ParentPostCell.xib */; };
 		497C3D9B2556F26900B330A7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D9A2556F26900B330A7 /* Post.swift */; };
 		497C3D9E2556F66500B330A7 /* ParentPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */; };
+		497C3DA22556FD9000B330A7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA02556FD9000B330A7 /* PostCell.swift */; };
+		497C3DA32556FD9000B330A7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3DA12556FD9000B330A7 /* PostCell.xib */; };
+		497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */; };
 		498E58EB247474DF0070A767 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498E58EA247474DF0070A767 /* Colors.xcassets */; };
 		498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EC2474759B0070A767 /* UIColor+Extensions.swift */; };
 		498E58EF24747DE80070A767 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EE24747DE80070A767 /* UIFont+Extensions.swift */; };
@@ -142,6 +145,9 @@
 		497C3D962556CC7600B330A7 /* ParentPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParentPostCell.xib; sourceTree = "<group>"; };
 		497C3D9A2556F26900B330A7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentPostCellViewModel.swift; sourceTree = "<group>"; };
+		497C3DA02556FD9000B330A7 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		497C3DA12556FD9000B330A7 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellViewModel.swift; sourceTree = "<group>"; };
 		498E58EA247474DF0070A767 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		498E58EC2474759B0070A767 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		498E58EE24747DE80070A767 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -276,6 +282,9 @@
 				497C3D952556CC7600B330A7 /* ParentPostCell.swift */,
 				497C3D962556CC7600B330A7 /* ParentPostCell.xib */,
 				497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */,
+				497C3DA02556FD9000B330A7 /* PostCell.swift */,
+				497C3DA12556FD9000B330A7 /* PostCell.xib */,
+				497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -546,6 +555,7 @@
 				627DC5B523E5F581006D8615 /* LaunchScreen.storyboard in Resources */,
 				497C3D872554820800B330A7 /* UserDetailViewController.xib in Resources */,
 				627DC5B223E5F581006D8615 /* Assets.xcassets in Resources */,
+				497C3DA32556FD9000B330A7 /* PostCell.xib in Resources */,
 				497C3D932556C9D200B330A7 /* TopicDetailViewController.xib in Resources */,
 				49FB13732551D362000ECD34 /* AddTopicViewController.xib in Resources */,
 				497C3D982556CC7600B330A7 /* ParentPostCell.xib in Resources */,
@@ -572,6 +582,7 @@
 				497C3D572554682A00B330A7 /* String+Extensions.swift in Sources */,
 				496A987A242BF15E007BE243 /* Log.swift in Sources */,
 				496E7FEF24350E6C00019B20 /* UsersCoordinator.swift in Sources */,
+				497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */,
 				627DC5C323E5FEE4006D8615 /* TopicsViewModel.swift in Sources */,
 				49EC1E17247729600017772A /* TopicCellViewModel.swift in Sources */,
 				496E800A243520A500019B20 /* UserDetailRequest.swift in Sources */,
@@ -607,6 +618,7 @@
 				4900D686247974FB00BD7ECE /* UIView+ReusableView.swift in Sources */,
 				497C3D922556C9D200B330A7 /* TopicDetailViewController.swift in Sources */,
 				62015CD223EF205100673EBB /* CreateTopicRequest.swift in Sources */,
+				497C3DA22556FD9000B330A7 /* PostCell.swift in Sources */,
 				496E800024351A8800019B20 /* UserCellViewModel.swift in Sources */,
 				49EC1E192477299F0017772A /* TopicPinnedCellViewModel.swift in Sources */,
 				497C3D9E2556F66500B330A7 /* ParentPostCellViewModel.swift in Sources */,

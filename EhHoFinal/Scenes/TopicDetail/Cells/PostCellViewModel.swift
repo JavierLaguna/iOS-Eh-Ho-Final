@@ -1,5 +1,5 @@
 //
-//  ParentPostCellViewModel.swift
+//  PostCellViewModel.swift
 //  EhHoFinal
 //
 //  Created by Javier Laguna on 07/11/2020.
@@ -8,35 +8,29 @@
 
 import Foundation
 
-final class ParentPostCellViewModel {
+final class PostCellViewModel {
     
     // MARK: Properties
-    let topic: Topic
     let post: Post
         
-    var titleLabelText: String?
     var bodyLabelText: String?
-    var postsCount: String?
-    var postersCount: String?
-    var createPostDate: String?
+    var postUpdatedAt: String?
+    var author: String?
   
-    init(topic: Topic, post: Post) {
-        self.topic = topic
+    init(post: Post) {
         self.post = post
         
-        self.titleLabelText = topic.title
+        self.author = post.author
         self.bodyLabelText = post.content
-        self.postsCount = "\(topic.postsCount)"
-        self.postersCount = "\(topic.posters?.count ?? 0)"
-        self.createPostDate = ""
+        self.postUpdatedAt = ""
         
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(abbreviation: "GMT")
         formatter.locale = Locale(identifier: "es_ES")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        if let lastPostDate = formatter.date(from: topic.createdAt) {
+        if let updatedAt = formatter.date(from: post.updatedAt) {
             formatter.dateFormat = "MMM d"
-            self.createPostDate = formatter.string(from: lastPostDate).capitalized
+            self.postUpdatedAt = formatter.string(from: updatedAt).capitalized
         }
         
        

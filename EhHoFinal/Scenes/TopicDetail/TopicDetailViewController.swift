@@ -42,9 +42,13 @@ final class TopicDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: ParentPostCell.nibName, bundle: nil), forCellReuseIdentifier: ParentPostCell.defaultReuseIdentifier)
+        tableView.register(UINib(nibName: PostCell.nibName, bundle: nil), forCellReuseIdentifier: PostCell.defaultReuseIdentifier)
     }
     
     private func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.titleView = nil
+        
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         leftBarButtonItem.tintColor = .orangeKCPumpkin
         navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -102,7 +106,7 @@ extension TopicDetailViewController: TopicDetailViewDelegate {
 extension TopicDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.posts?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,6 +118,11 @@ extension TopicDetailViewController: UITableViewDataSource {
         if indexPath.row == 0, let cell = tableView.dequeueReusableCell(withIdentifier: ParentPostCell.defaultReuseIdentifier, for: indexPath) as? ParentPostCell, let topic = viewModel.topic {
             
             let viewModelCell = ParentPostCellViewModel(topic: topic, post: post)
+            cell.viewModel = viewModelCell
+            return cell
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.defaultReuseIdentifier, for: indexPath) as? PostCell {
+            
+            let viewModelCell = PostCellViewModel(post: post)
             cell.viewModel = viewModelCell
             return cell
         }

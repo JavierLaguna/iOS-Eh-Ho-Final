@@ -17,6 +17,7 @@ final class ParentPostCell: UITableViewCell, NibLoadableView, ReusableView  {
     @IBOutlet weak private var createdPostLabel: UILabel!
     @IBOutlet weak private var bodyLabel: UILabel!
     
+    // MARK: Properties
     var viewModel: ParentPostCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
