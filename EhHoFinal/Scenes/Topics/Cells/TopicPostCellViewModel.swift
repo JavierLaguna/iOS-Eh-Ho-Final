@@ -13,7 +13,7 @@ protocol TopicPostCellViewModelDelegate: class {
 }
 
 /// ViewModel que representa un topic en la lista
-class TopicPostCellViewModel: TopicCellViewModel {
+final class TopicPostCellViewModel: TopicCellViewModel {
     
     // MARK: Constants
     static let imageSize = 100

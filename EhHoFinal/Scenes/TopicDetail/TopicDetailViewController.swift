@@ -72,13 +72,7 @@ final class TopicDetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        //        labelTopicID.text = viewModel.labelTopicIDText
-        //        labelTopicTitle.text = viewModel.labelTopicNameText
-        //        postsNumberValueLabel.text = viewModel.postsNumber
-        //
-        //        if viewModel.canDeleteTopic {
-        //            showDeleteOption()
-        //        }
+        tableView.reloadData()
     }
     
     private func showErrorFetchingTopicDetailAlert() {
@@ -131,8 +125,15 @@ extension TopicDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0, let cell = tableView.dequeueReusableCell(withIdentifier: ParentPostCell.defaultReuseIdentifier, for: indexPath) as? ParentPostCell {
+        guard let post = viewModel.posts?[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
+        
+        if indexPath.row == 0, let cell = tableView.dequeueReusableCell(withIdentifier: ParentPostCell.defaultReuseIdentifier, for: indexPath) as? ParentPostCell, let topic = viewModel.topic {
             
+            let viewModelCell = ParentPostCellViewModel(topic: topic, post: post)
+            cell.viewModel = viewModelCell
             return cell
         }
         

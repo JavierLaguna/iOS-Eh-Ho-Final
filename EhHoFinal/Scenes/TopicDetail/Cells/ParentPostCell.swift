@@ -17,19 +17,17 @@ final class ParentPostCell: UITableViewCell, NibLoadableView, ReusableView  {
     @IBOutlet weak private var createdPostLabel: UILabel!
     @IBOutlet weak private var bodyLabel: UILabel!
     
-    //    var viewModel: TopicPostCellViewModel? {
-    //        didSet {
-    //            guard let viewModel = viewModel else { return }
-    //
-    //            postTitleLabel.text = viewModel.textLabelText
-    //            postCountLabel.text = viewModel.postsCount
-    //            posterCountLabel.text = viewModel.postersCount
-    //            lastPostLabel.text = viewModel.lastPostDate
-    //            lastPosterImage.image = viewModel.lastPosterImage
-    //
-    //            viewModel.delegate = self
-    //        }
-    //    }
+    var viewModel: ParentPostCellViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            
+            titleLabel.text = viewModel.titleLabelText
+            postCountLabel.text = viewModel.postsCount
+            posterCountLabel.text = viewModel.postersCount
+            createdPostLabel.text = viewModel.createPostDate
+            bodyLabel.text = viewModel.bodyLabelText?.htmlToString
+        }
+    }
     
     // MARK: Lifecycle
     override func awakeFromNib() {
@@ -46,8 +44,5 @@ final class ParentPostCell: UITableViewCell, NibLoadableView, ReusableView  {
         posterCountLabel.font = .cellDetail
         createdPostLabel.font = .cellDetailBold
         bodyLabel.font = .paragraph
-        
-        titleLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-        bodyLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis felis eu ornare interdum. Donec a est vitae lectus imperdiet blandit. Duis commodo erat justo, ut sollicitudin nibh sagittis ut. Fusce interdum felis in congue tincidunt. "
     }
 }

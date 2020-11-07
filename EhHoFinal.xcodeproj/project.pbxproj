@@ -48,6 +48,8 @@
 		497C3D932556C9D200B330A7 /* TopicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3D912556C9D200B330A7 /* TopicDetailViewController.xib */; };
 		497C3D972556CC7600B330A7 /* ParentPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D952556CC7600B330A7 /* ParentPostCell.swift */; };
 		497C3D982556CC7600B330A7 /* ParentPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3D962556CC7600B330A7 /* ParentPostCell.xib */; };
+		497C3D9B2556F26900B330A7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D9A2556F26900B330A7 /* Post.swift */; };
+		497C3D9E2556F66500B330A7 /* ParentPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */; };
 		498E58EB247474DF0070A767 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498E58EA247474DF0070A767 /* Colors.xcassets */; };
 		498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EC2474759B0070A767 /* UIColor+Extensions.swift */; };
 		498E58EF24747DE80070A767 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EE24747DE80070A767 /* UIFont+Extensions.swift */; };
@@ -138,6 +140,8 @@
 		497C3D912556C9D200B330A7 /* TopicDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicDetailViewController.xib; sourceTree = "<group>"; };
 		497C3D952556CC7600B330A7 /* ParentPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentPostCell.swift; sourceTree = "<group>"; };
 		497C3D962556CC7600B330A7 /* ParentPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParentPostCell.xib; sourceTree = "<group>"; };
+		497C3D9A2556F26900B330A7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentPostCellViewModel.swift; sourceTree = "<group>"; };
 		498E58EA247474DF0070A767 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		498E58EC2474759B0070A767 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		498E58EE24747DE80070A767 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			children = (
 				497C3D952556CC7600B330A7 /* ParentPostCell.swift */,
 				497C3D962556CC7600B330A7 /* ParentPostCell.xib */,
+				497C3D9D2556F66500B330A7 /* ParentPostCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 				496E7FFD243519F200019B20 /* User.swift */,
 				491B4E0D243658F400103501 /* Period.swift */,
 				491B4E0F2436594600103501 /* Order.swift */,
+				497C3D9A2556F26900B330A7 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 				62015CC623EF161E00673EBB /* SingleTopicRequest.swift in Sources */,
 				62015CCE23EF1F5200673EBB /* AddTopicViewModel.swift in Sources */,
 				4978534224771B0D0014C5A8 /* TopicPinnedCell.swift in Sources */,
+				497C3D9B2556F26900B330A7 /* Post.swift in Sources */,
 				62015CDF23EF30E600673EBB /* CategoriesCoordinator.swift in Sources */,
 				496E7FFC2435195400019B20 /* UsersViewModel.swift in Sources */,
 				4900D686247974FB00BD7ECE /* UIView+ReusableView.swift in Sources */,
@@ -602,6 +609,7 @@
 				62015CD223EF205100673EBB /* CreateTopicRequest.swift in Sources */,
 				496E800024351A8800019B20 /* UserCellViewModel.swift in Sources */,
 				49EC1E192477299F0017772A /* TopicPinnedCellViewModel.swift in Sources */,
+				497C3D9E2556F66500B330A7 /* ParentPostCellViewModel.swift in Sources */,
 				49FB13722551D362000ECD34 /* AddTopicViewController.swift in Sources */,
 				496E7FF22435173F00019B20 /* UsersDataManager.swift in Sources */,
 				62015CDD23EF302900673EBB /* CategoriesViewController.swift in Sources */,

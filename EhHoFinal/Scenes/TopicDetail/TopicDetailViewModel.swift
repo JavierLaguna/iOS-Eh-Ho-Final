@@ -22,45 +22,30 @@ protocol TopicDetailViewDelegate: class {
 }
 
 class TopicDetailViewModel {
-    var labelTopicIDText: String?
-    var labelTopicNameText: String?
-    var postsNumber: String?
-    var canDeleteTopic = false
-
+    
+    // MARK: Properties
+    private let topicDetailDataManager: TopicDetailDataManager
+    private let topicID: Int
+    
     weak var viewDelegate: TopicDetailViewDelegate?
     weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
-    let topicDetailDataManager: TopicDetailDataManager
-    let topicID: Int
-
+    
+    var topic: Topic?
+    var posts: Posts?
+    var canDeleteTopic = false
+    
+    
+    // MARK: Lifecycle
     init(topicID: Int, topicDetailDataManager: TopicDetailDataManager) {
         self.topicID = topicID
         self.topicDetailDataManager = topicDetailDataManager
     }
-
+    
     func viewDidLoad() {
-        topicDetailDataManager.fetchTopic(id: topicID) { [weak self] result in
-            guard let self = self else { return}
-            
-            switch result {
-            case .success(let topicResp):
-                guard let topic = topicResp?.topic, let details = topicResp?.details else { return }
-                
-                self.labelTopicIDText = "\(topic.id)"
-                self.labelTopicNameText = topic.title
-                self.postsNumber = "\(topic.postsCount)"
-                
-                self.canDeleteTopic = details.canDelete ?? false
-                
-                self.viewDelegate?.topicDetailFetched()
-                
-            case .failure(let error):
-                Log.error(error)
-                self.viewDelegate?.errorFetchingTopicDetail()
-            }
-            
-        }
+        fetchTopicDetail()
     }
     
+    // MARK: Public Functions
     func deleteTopic() {
         topicDetailDataManager.deleteTopic(id: topicID) { [weak self] result in
             guard let self = self else { return}
@@ -74,8 +59,28 @@ class TopicDetailViewModel {
             }
         }
     }
-
+    
     func backButtonTapped() {
         coordinatorDelegate?.topicDetailBackButtonTapped()
+    }
+    
+    // MARK: Private Functions
+    private func fetchTopicDetail() {
+        topicDetailDataManager.fetchTopic(id: topicID) { [weak self] result in
+            guard let self = self else { return}
+            
+            switch result {
+            case .success(let topicResp):
+                self.topic = topicResp?.topic
+                self.posts = topicResp?.posts
+                self.canDeleteTopic = topicResp?.details.canDelete ?? false
+                
+                self.viewDelegate?.topicDetailFetched()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorFetchingTopicDetail()
+            }
+        }
     }
 }
