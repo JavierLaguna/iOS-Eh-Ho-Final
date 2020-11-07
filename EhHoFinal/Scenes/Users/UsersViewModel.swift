@@ -36,7 +36,7 @@ class UsersViewModel {
         guard let searchText = searchText, !searchText.isEmpty else { return usersViewModels }
         
         return usersViewModels.filter { user in
-            return user.textLabelText?.contains(searchText) ?? false
+            return user.textLabelText?.lowercased().contains(searchText.lowercased()) ?? false
         }
     }
     
