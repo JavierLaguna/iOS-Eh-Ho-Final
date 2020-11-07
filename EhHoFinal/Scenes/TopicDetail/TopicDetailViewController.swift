@@ -16,7 +16,7 @@ final class TopicDetailViewController: UIViewController {
     
     // MARK: Properties
     private let viewModel: TopicDetailViewModel
-    private let fetchNextPageOffset = 5
+    private let fetchNextPageOffset = 7
     
     // MARK: Lifecycle
     init(viewModel: TopicDetailViewModel) {
@@ -107,7 +107,6 @@ extension TopicDetailViewController: TopicDetailViewDelegate {
 extension TopicDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("POSTS \(viewModel.posts?.count)")
         return viewModel.posts?.count ?? 0
     }
     

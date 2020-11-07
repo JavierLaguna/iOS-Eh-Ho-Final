@@ -53,6 +53,8 @@
 		497C3DA22556FD9000B330A7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA02556FD9000B330A7 /* PostCell.swift */; };
 		497C3DA32556FD9000B330A7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3DA12556FD9000B330A7 /* PostCell.xib */; };
 		497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */; };
+		497C3DA92557166000B330A7 /* SpecificPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */; };
+		497C3DAC2557187500B330A7 /* SpecificPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */; };
 		498E58EB247474DF0070A767 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498E58EA247474DF0070A767 /* Colors.xcassets */; };
 		498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EC2474759B0070A767 /* UIColor+Extensions.swift */; };
 		498E58EF24747DE80070A767 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EE24747DE80070A767 /* UIFont+Extensions.swift */; };
@@ -148,6 +150,8 @@
 		497C3DA02556FD9000B330A7 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		497C3DA12556FD9000B330A7 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellViewModel.swift; sourceTree = "<group>"; };
+		497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostsResponse.swift; sourceTree = "<group>"; };
+		497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostsRequest.swift; sourceTree = "<group>"; };
 		498E58EA247474DF0070A767 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		498E58EC2474759B0070A767 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		498E58EE24747DE80070A767 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 				49AC830B243A663900A7F79C /* UpdateNameUserRequest.swift */,
 				496E8009243520A500019B20 /* UserDetailRequest.swift */,
 				496E80072435207B00019B20 /* UsersRequest.swift */,
+				497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				49AC830D243A66BF00A7F79C /* UpdateNameUserResponse.swift */,
 				496E7FF82435189000019B20 /* UserDetailResponse.swift */,
 				496E7FF32435177B00019B20 /* UsersResponse.swift */,
+				497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				4900D686247974FB00BD7ECE /* UIView+ReusableView.swift in Sources */,
 				497C3D922556C9D200B330A7 /* TopicDetailViewController.swift in Sources */,
 				62015CD223EF205100673EBB /* CreateTopicRequest.swift in Sources */,
+				497C3DAC2557187500B330A7 /* SpecificPostsRequest.swift in Sources */,
 				497C3DA22556FD9000B330A7 /* PostCell.swift in Sources */,
 				496E800024351A8800019B20 /* UserCellViewModel.swift in Sources */,
 				49EC1E192477299F0017772A /* TopicPinnedCellViewModel.swift in Sources */,
@@ -644,6 +651,7 @@
 				627DC5A923E5F580006D8615 /* AppDelegate.swift in Sources */,
 				496A9884242D3298007BE243 /* CategoryCellViewModel.swift in Sources */,
 				62015CB723EF04C200673EBB /* TopicPostCellViewModel.swift in Sources */,
+				497C3DA92557166000B330A7 /* SpecificPostsResponse.swift in Sources */,
 				627DC5D823E60727006D8615 /* SessionAPI.swift in Sources */,
 				627DC5D123E604E7006D8615 /* DiscourseClientLocalDataManager.swift in Sources */,
 				627DC5AB23E5F580006D8615 /* SceneDelegate.swift in Sources */,

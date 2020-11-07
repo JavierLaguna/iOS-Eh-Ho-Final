@@ -30,11 +30,12 @@ class TopicDetailViewModel {
     weak var viewDelegate: TopicDetailViewDelegate?
     weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
     
+    private var chunkSize: Int?
+    private var isGettingMorePosts = false
     var topic: Topic?
     var posts: Posts?
     var canDeleteTopic = false
     var allPostIds: [Int] = []
-    var chunkSize: Int?
     
     // MARK: Lifecycle
     init(topicID: Int, topicDetailDataManager: TopicDetailDataManager) {
@@ -48,16 +49,38 @@ class TopicDetailViewModel {
     
     // MARK: Public Functions
     func fetchMorePosts() {
-        guard let currentPostCount = posts?.count,
+        guard !isGettingMorePosts,
+              let currentPostCount = posts?.count,
               currentPostCount < allPostIds.count,
               let chunkSize = chunkSize else {
             return
         }
         
+        isGettingMorePosts = true
+        
         let from = currentPostCount
         let to = currentPostCount + chunkSize < allPostIds.count ? currentPostCount + chunkSize : allPostIds.count
-        let nextPostIds = allPostIds[from..<to]
-
+        let nextPostIds = Array(allPostIds[from..<to])
+        
+        topicDetailDataManager.fetchSpecificPosts(of: topicID, postIds: nextPostIds) { [weak self] result in
+            guard let self = self else { return }
+                    
+            switch result {
+            case .success(let postsResp):
+                guard let newPosts = postsResp?.posts else {
+                    return
+                }
+                
+                self.posts?.append(contentsOf: newPosts)
+                self.viewDelegate?.topicDetailFetched()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorFetchingTopicDetail()
+            }
+            
+            self.isGettingMorePosts = false
+        }
     }
     
     func deleteTopic() {

@@ -32,6 +32,10 @@ extension DiscourseClientDataManager: TopicDetailDataManager {
         remoteDataManager.fetchTopic(id: id, completion: completion)
     }
     
+    func fetchSpecificPosts(of topicId: Int, postIds: [Int], completion: @escaping (Result<SpecificPostsResponse?, Error>) -> ()) {
+        remoteDataManager.fetchSpecificPosts(of: topicId, postIds: postIds, completion: completion)
+    }
+    
     func deleteTopic(id: Int, completion: @escaping (Result<DeleteTopicResponse?, Error>) -> ()) {
         remoteDataManager.deleteTopic(id: id, completion: completion)
     }
