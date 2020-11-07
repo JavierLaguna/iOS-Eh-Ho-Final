@@ -13,7 +13,7 @@ extension UIFont {
     static let bigTitle = UIFont.systemFont(ofSize: 22, weight: .bold)
     static let title = UIFont.systemFont(ofSize: 17, weight: .semibold)
     static let paragraph = UIFont.systemFont(ofSize: 17, weight: .regular)
-    static let paragraph2 = UIFont.systemFont(ofSize: 17, weight: .regular)
+    static let paragraph2 = UIFont.systemFont(ofSize: 15, weight: .regular)
     static let paragraph3 = UIFont.systemFont(ofSize: 13, weight: .regular)
     static let paragraph4 = UIFont.systemFont(ofSize: 11, weight: .regular)
     static let cellDetail = UIFont.systemFont(ofSize: 14, weight: .regular)
