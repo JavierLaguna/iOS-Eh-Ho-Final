@@ -9,7 +9,7 @@
 import Foundation
 
 /// Implementación por defecto del protocolo remoto, en este caso usando SessionAPI
-class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
+final class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
     
     let session: SessionAPI
     
