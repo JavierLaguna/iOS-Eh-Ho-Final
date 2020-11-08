@@ -10,6 +10,7 @@ import Foundation
 
 /// Delegate que usaremos para comunicar eventos relativos a navegación, al coordinator correspondiente
 protocol TopicDetailCoordinatorDelegate: class {
+    func addPostButtonTapped(topic: Topic)
     func topicDetailBackButtonTapped()
     func topicDeleted()
 }
@@ -84,7 +85,9 @@ class TopicDetailViewModel {
     }
     
     func replyTopic() {
-        // TODO: 
+        guard let topic = topic else { return }
+        
+        coordinatorDelegate?.addPostButtonTapped(topic: topic)
     }
     
     func deleteTopic() {

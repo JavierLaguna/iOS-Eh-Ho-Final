@@ -36,7 +36,7 @@ class AppCoordinator: Coordinator {
     override func start() {
         let splashVc = SplashViewController()
         splashVc.splashDidFinish = startApp
-
+        
         window.rootViewController = splashVc
         window.makeKeyAndVisible()
     }
@@ -48,7 +48,8 @@ class AppCoordinator: Coordinator {
         let topicsCoordinator = TopicsCoordinator(presenter: topicsNavigationController,
                                                   topicsDataManager: dataManager,
                                                   topicDetailDataManager: dataManager,
-                                                  addTopicDataManager: dataManager)
+                                                  addTopicDataManager: dataManager,
+                                                  addPostDataManager: dataManager)
         addChildCoordinator(topicsCoordinator)
         topicsCoordinator.start()
         
@@ -77,7 +78,7 @@ class AppCoordinator: Coordinator {
         tabBarController.tabBar.items?[1].image = UIImage(named: "usuarios")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[2].image = UIImage(systemName: "paperplane.fill")
         tabBarController.tabBar.items?[3].image = UIImage(named: "ajustes")?.withRenderingMode(.alwaysTemplate)
-
+        
         window.rootViewController = tabBarController
     }
     

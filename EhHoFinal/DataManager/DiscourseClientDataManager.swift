@@ -21,12 +21,14 @@ class DiscourseClientDataManager {
     }
 }
 
+// MARK: TopicsDataManager
 extension DiscourseClientDataManager: TopicsDataManager {
     func fetchAllTopics(nextPage: String?, completion: @escaping (Result<LatestTopicsResponse?, Error>) -> ()) {
         remoteDataManager.fetchAllTopics(nextPage: nextPage, completion: completion)
     }
 }
 
+// MARK: TopicDetailDataManager
 extension DiscourseClientDataManager: TopicDetailDataManager {
     func fetchTopic(id: Int, completion: @escaping (Result<SingleTopicResponse?, Error>) -> ()) {
         remoteDataManager.fetchTopic(id: id, completion: completion)
@@ -41,24 +43,35 @@ extension DiscourseClientDataManager: TopicDetailDataManager {
     }
 }
 
+// MARK: AddTopicDataManager
 extension DiscourseClientDataManager: AddTopicDataManager {
     func addTopic(title: String, raw: String, createdAt: String, completion: @escaping (Result<AddNewTopicResponse?, Error>) -> ()) {
         remoteDataManager.addTopic(title: title, raw: raw, createdAt: createdAt, completion: completion)
     }
 }
 
+// MARK: AddPostDataManager
+extension DiscourseClientDataManager: AddPostDataManager {
+    func addPost(topicId: Int, content: String, completion: @escaping (Result<AddNewTopicResponse?, Error>) -> ()) {
+        // TODO
+    }
+}
+
+// MARK: CategoriesDataManager
 extension DiscourseClientDataManager: CategoriesDataManager {    
     func fetchAllCategories(completion: @escaping (Result<CategoriesResponse?, Error>) -> ()) {
         remoteDataManager.fetchCategories(completion: completion)
     }
 }
 
+// MARK: UsersDataManager
 extension DiscourseClientDataManager: UsersDataManager {
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ()) {
         remoteDataManager.fetchAllUsers(completion: completion)
     }
 }
 
+// MARK: UserDetailDataManager
 extension DiscourseClientDataManager: UserDetailDataManager {
     func fetchUser(username: String, completion: @escaping (Result<UserDetailResponse?, Error>) -> ()) {
         remoteDataManager.fetchUser(username: username, completion: completion)
