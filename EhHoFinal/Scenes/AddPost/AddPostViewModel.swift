@@ -23,7 +23,7 @@ final class AddPostViewModel {
     // MARK: Properties
     private let topic: Topic
     private let dataManager: AddPostDataManager
-    
+
     let topicTitleLabelText: String
     
     weak var viewDelegate: AddPostViewDelegate?
@@ -48,7 +48,7 @@ final class AddPostViewModel {
             
             switch result {
             case .success:
-                self.coordinatorDelegate?.postSuccessfullyAdded()()
+                self.coordinatorDelegate?.postSuccessfullyAdded()
                 
             case .failure(let error):
                 Log.error(error)
