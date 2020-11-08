@@ -10,23 +10,30 @@ import UIKit
 
 /// Coordinator que representa la pila de navegación del topics list.
 /// Tiene como hijo el AddTopicCoordinator
-class TopicsCoordinator: Coordinator {
-    let presenter: UINavigationController
-    let topicsDataManager: TopicsDataManager
-    let topicDetailDataManager: TopicDetailDataManager
-    let addTopicDataManager: AddTopicDataManager
-    var topicsViewModel: TopicsViewModel?
-
-    init(presenter: UINavigationController, topicsDataManager: TopicsDataManager,
+final class TopicsCoordinator: Coordinator {
+    
+    // MARK: Properties
+    private let presenter: UINavigationController
+    private let topicsDataManager: TopicsDataManager
+    private let topicDetailDataManager: TopicDetailDataManager
+    private let addTopicDataManager: AddTopicDataManager
+    private let addPostDataManager: AddPostDataManager
+    
+    private var topicsViewModel: TopicsViewModel?
+    
+    init(presenter: UINavigationController,
+         topicsDataManager: TopicsDataManager,
          topicDetailDataManager: TopicDetailDataManager,
-         addTopicDataManager: AddTopicDataManager) {
-
+         addTopicDataManager: AddTopicDataManager,
+         addPostDataManager: AddPostDataManager) {
+        
         self.presenter = presenter
         self.topicsDataManager = topicsDataManager
         self.topicDetailDataManager = topicDetailDataManager
         self.addTopicDataManager = addTopicDataManager
+        self.addPostDataManager = addPostDataManager
     }
-
+    
     override func start() {
         let topicsViewModel = TopicsViewModel(topicsDataManager: topicsDataManager)
         let topicsViewController = TopicsViewController(viewModel: topicsViewModel)
@@ -36,34 +43,37 @@ class TopicsCoordinator: Coordinator {
         self.topicsViewModel = topicsViewModel
         presenter.pushViewController(topicsViewController, animated: false)
     }
-
+    
     override func finish() {}
-}
-
-extension TopicsCoordinator: TopicsCoordinatorDelegate {
-    func didSelect(topic: Topic) {
-        let topicDetailViewModel = TopicDetailViewModel(topicID: topic.id, topicDetailDataManager: topicDetailDataManager)
-        let topicDetailViewController = TopicDetailViewController(viewModel: topicDetailViewModel)
-        topicDetailViewModel.coordinatorDelegate = self
-        topicDetailViewModel.viewDelegate = topicDetailViewController
-        presenter.pushViewController(topicDetailViewController, animated: true)
+    
+    private func startTopicDetail(of topic: Topic) {
+        let topicDetailCoordinator = TopicDetailCoordinator(presenter: presenter, topicDetailDataManager: topicDetailDataManager, addPostDataManager: addPostDataManager, topicId: topic.id)
+        
+        addChildCoordinator(topicDetailCoordinator)
+        topicDetailCoordinator.start()
+        
+        topicDetailCoordinator.topicDetailCoordinatorDidFinish = { [weak self] shouldUpdateTopics in
+            guard let self = self, shouldUpdateTopics else { return }
+            
+            self.topicsViewModel?.refreshTopics()
+        }
     }
-
-    func topicsPlusButtonTapped() {
+    
+    private func startAddTopic() {
         let addTopicCoordinator = AddTopicCoordinator(presenter: presenter, addTopicDataManager: addTopicDataManager)
         addChildCoordinator(addTopicCoordinator)
         addTopicCoordinator.start()
-
+        
         addTopicCoordinator.onCancelTapped = { [weak self] in
             guard let self = self else { return }
-
+            
             addTopicCoordinator.finish()
             self.removeChildCoordinator(addTopicCoordinator)
         }
-
+        
         addTopicCoordinator.onTopicCreated = { [weak self] in
             guard let self = self else { return }
-
+            
             addTopicCoordinator.finish()
             self.removeChildCoordinator(addTopicCoordinator)
             self.topicsViewModel?.newTopicWasCreated()
@@ -71,13 +81,15 @@ extension TopicsCoordinator: TopicsCoordinatorDelegate {
     }
 }
 
-extension TopicsCoordinator: TopicDetailCoordinatorDelegate {
-    func topicDetailBackButtonTapped() {
-        presenter.popViewController(animated: true)
+// MARK: TopicsCoordinatorDelegate
+extension TopicsCoordinator: TopicsCoordinatorDelegate {
+    func didSelect(topic: Topic) {
+        startTopicDetail(of: topic)
     }
     
-    func topicDeleted() {
-        presenter.popViewController(animated: true)
-        topicsViewModel?.refreshTopics()
+    func topicsPlusButtonTapped() {
+        startAddTopic()
     }
 }
+
+

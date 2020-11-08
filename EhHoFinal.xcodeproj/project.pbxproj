@@ -55,6 +55,13 @@
 		497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */; };
 		497C3DA92557166000B330A7 /* SpecificPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */; };
 		497C3DAC2557187500B330A7 /* SpecificPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */; };
+		497C3DB325573C7000B330A7 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DB125573C7000B330A7 /* AddPostViewController.swift */; };
+		497C3DB425573C7000B330A7 /* AddPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497C3DB225573C7000B330A7 /* AddPostViewController.xib */; };
+		497C3DB82557EB4800B330A7 /* TopicDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DB72557EB4800B330A7 /* TopicDetailCoordinator.swift */; };
+		497C3DBB2557F1D700B330A7 /* AddPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DBA2557F1D700B330A7 /* AddPostViewModel.swift */; };
+		497C3DBE255801B000B330A7 /* AddPostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DBD255801B000B330A7 /* AddPostDataManager.swift */; };
+		497C3DC125580B5C00B330A7 /* AddNewPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DC025580B5C00B330A7 /* AddNewPostResponse.swift */; };
+		497C3DC425580C2900B330A7 /* CreatePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3DC325580C2900B330A7 /* CreatePostRequest.swift */; };
 		498E58EB247474DF0070A767 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498E58EA247474DF0070A767 /* Colors.xcassets */; };
 		498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EC2474759B0070A767 /* UIColor+Extensions.swift */; };
 		498E58EF24747DE80070A767 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E58EE24747DE80070A767 /* UIFont+Extensions.swift */; };
@@ -152,6 +159,13 @@
 		497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellViewModel.swift; sourceTree = "<group>"; };
 		497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostsResponse.swift; sourceTree = "<group>"; };
 		497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostsRequest.swift; sourceTree = "<group>"; };
+		497C3DB125573C7000B330A7 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		497C3DB225573C7000B330A7 /* AddPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostViewController.xib; sourceTree = "<group>"; };
+		497C3DB72557EB4800B330A7 /* TopicDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailCoordinator.swift; sourceTree = "<group>"; };
+		497C3DBA2557F1D700B330A7 /* AddPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewModel.swift; sourceTree = "<group>"; };
+		497C3DBD255801B000B330A7 /* AddPostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostDataManager.swift; sourceTree = "<group>"; };
+		497C3DC025580B5C00B330A7 /* AddNewPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPostResponse.swift; sourceTree = "<group>"; };
+		497C3DC325580C2900B330A7 /* CreatePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRequest.swift; sourceTree = "<group>"; };
 		498E58EA247474DF0070A767 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		498E58EC2474759B0070A767 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		498E58EE24747DE80070A767 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -217,9 +231,10 @@
 		4929F08E247A89BF00C0E10D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				4929F08F247A8A3C00C0E10D /* Splash */,
+				497C3DB025573C4300B330A7 /* AddPost */,
 				62015CCC23EF1F4200673EBB /* AddTopic */,
 				62015CD923EF300200673EBB /* Categories */,
+				4929F08F247A8A3C00C0E10D /* Splash */,
 				62015CBE23EF0F6C00673EBB /* TopicDetail */,
 				627DC5C123E5FED6006D8615 /* Topics */,
 				496E7FF52435182F00019B20 /* UserDetail */,
@@ -291,6 +306,17 @@
 				497C3DA52556FFC900B330A7 /* PostCellViewModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		497C3DB025573C4300B330A7 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+				497C3DB125573C7000B330A7 /* AddPostViewController.swift */,
+				497C3DB225573C7000B330A7 /* AddPostViewController.xib */,
+				497C3DBA2557F1D700B330A7 /* AddPostViewModel.swift */,
+				497C3DBD255801B000B330A7 /* AddPostDataManager.swift */,
+			);
+			path = AddPost;
 			sourceTree = "<group>";
 		};
 		498E58E92474749B0070A767 /* Resources */ = {
@@ -407,6 +433,7 @@
 				62015CDE23EF30E600673EBB /* CategoriesCoordinator.swift */,
 				62015CBC23EF0C6700673EBB /* TopicsCoordinator.swift */,
 				496E7FEE24350E6C00019B20 /* UsersCoordinator.swift */,
+				497C3DB72557EB4800B330A7 /* TopicDetailCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -480,6 +507,7 @@
 				496E8009243520A500019B20 /* UserDetailRequest.swift */,
 				496E80072435207B00019B20 /* UsersRequest.swift */,
 				497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */,
+				497C3DC325580C2900B330A7 /* CreatePostRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -496,6 +524,7 @@
 				496E7FF82435189000019B20 /* UserDetailResponse.swift */,
 				496E7FF32435177B00019B20 /* UsersResponse.swift */,
 				497C3DA82557166000B330A7 /* SpecificPostsResponse.swift */,
+				497C3DC025580B5C00B330A7 /* AddNewPostResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -561,6 +590,7 @@
 				627DC5B523E5F581006D8615 /* LaunchScreen.storyboard in Resources */,
 				497C3D872554820800B330A7 /* UserDetailViewController.xib in Resources */,
 				627DC5B223E5F581006D8615 /* Assets.xcassets in Resources */,
+				497C3DB425573C7000B330A7 /* AddPostViewController.xib in Resources */,
 				497C3DA32556FD9000B330A7 /* PostCell.xib in Resources */,
 				497C3D932556C9D200B330A7 /* TopicDetailViewController.xib in Resources */,
 				49FB13732551D362000ECD34 /* AddTopicViewController.xib in Resources */,
@@ -595,10 +625,12 @@
 				62015CC023EF0F8100673EBB /* TopicDetailViewModel.swift in Sources */,
 				62015CC823EF162D00673EBB /* SingleTopicResponse.swift in Sources */,
 				496A987E242D2DBD007BE243 /* CategoriesResponse.swift in Sources */,
+				497C3DC125580B5C00B330A7 /* AddNewPostResponse.swift in Sources */,
 				497C3D972556CC7600B330A7 /* ParentPostCell.swift in Sources */,
 				496E7FF92435189000019B20 /* UserDetailResponse.swift in Sources */,
 				62015CC423EF14FC00673EBB /* TopicDetailDataManager.swift in Sources */,
 				4900D684247974D100BD7ECE /* UIView+NibLoadableView.swift in Sources */,
+				497C3DBE255801B000B330A7 /* AddPostDataManager.swift in Sources */,
 				49AC830E243A66BF00A7F79C /* UpdateNameUserResponse.swift in Sources */,
 				496A9871242AA0C0007BE243 /* Topic.swift in Sources */,
 				62015CDB23EF301300673EBB /* CategoriesViewModel.swift in Sources */,
@@ -641,6 +673,7 @@
 				49EE206524797C5200A43FA6 /* UserCell.swift in Sources */,
 				496E7FF72435185400019B20 /* UserDetailDataManager.swift in Sources */,
 				498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */,
+				497C3DB82557EB4800B330A7 /* TopicDetailCoordinator.swift in Sources */,
 				62A697A823E89E6700CCEA3E /* DiscourseClientLocalDataManagerImpl.swift in Sources */,
 				49AC8308243A45B800A7F79C /* UserDetailViewModel.swift in Sources */,
 				62015CD623EF21F600673EBB /* AddTopicDataManager.swift in Sources */,
@@ -652,10 +685,13 @@
 				496A9884242D3298007BE243 /* CategoryCellViewModel.swift in Sources */,
 				62015CB723EF04C200673EBB /* TopicPostCellViewModel.swift in Sources */,
 				497C3DA92557166000B330A7 /* SpecificPostsResponse.swift in Sources */,
+				497C3DB325573C7000B330A7 /* AddPostViewController.swift in Sources */,
+				497C3DC425580C2900B330A7 /* CreatePostRequest.swift in Sources */,
 				627DC5D823E60727006D8615 /* SessionAPI.swift in Sources */,
 				627DC5D123E604E7006D8615 /* DiscourseClientLocalDataManager.swift in Sources */,
 				627DC5AB23E5F580006D8615 /* SceneDelegate.swift in Sources */,
 				496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */,
+				497C3DBB2557F1D700B330A7 /* AddPostViewModel.swift in Sources */,
 				49AC830C243A663900A7F79C /* UpdateNameUserRequest.swift in Sources */,
 				627DC5CD23E6048A006D8615 /* DiscourseClientDataManager.swift in Sources */,
 				496A9880242D2E82007BE243 /* Category.swift in Sources */,

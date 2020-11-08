@@ -19,10 +19,13 @@ protocol AddTopicViewDelegate: class {
     func errorAddingTopic(text: String?)
 }
 
-class AddTopicViewModel {
+final class AddTopicViewModel {
+    
+    // MARK: Properties
+    private let dataManager: AddTopicDataManager
+
     weak var viewDelegate: AddTopicViewDelegate?
     weak var coordinatorDelegate: AddTopicCoordinatorDelegate?
-    let dataManager: AddTopicDataManager
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -32,10 +35,12 @@ class AddTopicViewModel {
         return formatter
     }
     
+    // MARK: Lifecycle
     init(dataManager: AddTopicDataManager) {
         self.dataManager = dataManager
     }
     
+    // MARK: Public Functions
     func cancelButtonTapped() {
         coordinatorDelegate?.addTopicCancelButtonTapped()
     }

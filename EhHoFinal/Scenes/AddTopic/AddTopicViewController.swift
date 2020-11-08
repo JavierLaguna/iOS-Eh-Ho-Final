@@ -17,7 +17,7 @@ final class AddTopicViewController: UIViewController {
     @IBOutlet weak private var bodyLabel: UILabel!
     @IBOutlet weak private var bodyTextView: UITextView!
     
-    // MARK: Constants
+    // MARK: Properties
     private let viewModel: AddTopicViewModel
     
     // MARK: Lifecycle

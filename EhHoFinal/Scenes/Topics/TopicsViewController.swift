@@ -85,6 +85,12 @@ class TopicsViewController: UIViewController {
         viewModel.viewWasLoaded()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     @objc func plusButtonTapped() {
         viewModel.plusButtonTapped()
     }
@@ -114,7 +120,6 @@ class TopicsViewController: UIViewController {
 
     private func configureNavigationBar() {
         
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.titleView = nil
 
         let addIcon = UIImage(named: "icoAdd")?.withRenderingMode(.alwaysTemplate)

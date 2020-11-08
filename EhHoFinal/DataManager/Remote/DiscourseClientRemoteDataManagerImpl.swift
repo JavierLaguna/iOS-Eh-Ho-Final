@@ -9,7 +9,7 @@
 import Foundation
 
 /// Implementación por defecto del protocolo remoto, en este caso usando SessionAPI
-class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
+final class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
     
     let session: SessionAPI
     
@@ -47,6 +47,13 @@ class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
     
     func deleteTopic(id: Int, completion: @escaping (Result<DeleteTopicResponse?, Error>) -> ()) {
         let request = DeleteTopicRequest(id: id)
+        session.send(request: request) { result in
+            completion(result)
+        }
+    }
+    
+    func addPost(topicId: Int, content: String, completion: @escaping (Result<AddNewPostResponse?, Error>) -> ()) {
+        let request = CreatePostRequest(topicId: topicId, content: content)
         session.send(request: request) { result in
             completion(result)
         }
