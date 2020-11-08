@@ -49,6 +49,10 @@ class TopicDetailViewModel {
     }
     
     // MARK: Public Functions
+    func refreshPosts() {
+        fetchTopicDetail()
+    }
+    
     func fetchMorePosts() {
         guard !isGettingMorePosts,
               let currentPostCount = posts?.count,
