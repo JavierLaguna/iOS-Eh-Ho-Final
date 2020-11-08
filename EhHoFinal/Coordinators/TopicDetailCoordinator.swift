@@ -16,6 +16,8 @@ final class TopicDetailCoordinator: Coordinator {
     private let addPostDataManager: AddPostDataManager
     private let topicId: Int
     
+    private var addPostNavigationController: UINavigationController?
+
     init(presenter: UINavigationController,
          topicDetailDataManager: TopicDetailDataManager,
          addPostDataManager: AddPostDataManager,
@@ -39,12 +41,14 @@ final class TopicDetailCoordinator: Coordinator {
     override func finish() {}
     
     private func startAddPost(topic: Topic) {
-        let addPostViewModel = AddPostViewModel(dataManager: addPostDataManager)
+        let addPostViewModel = AddPostViewModel(topic: topic, dataManager: addPostDataManager)
         let addPostViewController = AddPostViewController(viewModel: addPostViewModel)
         addPostViewModel.coordinatorDelegate = self
         addPostViewModel.viewDelegate = addPostViewController
         
-        presenter.present(addPostViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: addPostViewController)
+        addPostNavigationController = navigationController
+        presenter.present(navigationController, animated: true, completion: nil)
     }
 }
 
@@ -60,14 +64,15 @@ extension TopicDetailCoordinator: TopicDetailCoordinatorDelegate {
     
     func topicDeleted() {
         presenter.popViewController(animated: true)
-        //        topicsViewModel?.refreshTopics()
+        // TODO:        topicsViewModel?.refreshTopics()
     }
 }
 
 // MARK: AddPostCoordinatorDelegate
 extension TopicDetailCoordinator: AddPostCoordinatorDelegate {
     func addPostCancelButtonTapped() {
-     
+        addPostNavigationController?.popViewController(animated: true)
+        addPostNavigationController = nil
     }
     
     func postSuccessfullyAdded() {

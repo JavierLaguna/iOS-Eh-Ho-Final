@@ -21,18 +21,49 @@ protocol AddPostCoordinatorDelegate: class {
 final class AddPostViewModel {
     
     // MARK: Properties
+    private let topic: Topic
     private let dataManager: AddPostDataManager
+    
+    let topicTitleLabelText: String
     
     weak var viewDelegate: AddPostViewDelegate?
     weak var coordinatorDelegate: AddPostCoordinatorDelegate?
     
-    
     // MARK: Lifecycle
-
-    init(dataManager: AddPostDataManager) {
+    init(topic: Topic, dataManager: AddPostDataManager) {
+        self.topic = topic
         self.dataManager = dataManager
+        self.topicTitleLabelText = topic.title
+    }
+    
+    func viewDidLoad() {
+        viewDelegate?.loadTopic()
     }
     
     // MARK: Public Functions
+    func submitButtonTapped(body: String) {
+        
+        dataManager.addPost(topicId: topic.id, content: body) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success:
+                self.coordinatorDelegate?.postSuccessfullyAdded()()
+                
+            case .failure(let error):
+                Log.error(error)
+                
+                var errorMsg: String? = nil
+                if let sessionApiError = error as? SessionAPIError {
+                    errorMsg = sessionApiError.getFirstError()
+                }
+                
+                self.viewDelegate?.errorAddingPost(text: errorMsg)
+            }
+        }
+    }
     
+    func cancelButtonTapped() {
+        coordinatorDelegate?.addPostCancelButtonTapped()
+    }
 }

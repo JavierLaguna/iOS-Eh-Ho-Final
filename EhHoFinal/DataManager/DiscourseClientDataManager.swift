@@ -52,8 +52,8 @@ extension DiscourseClientDataManager: AddTopicDataManager {
 
 // MARK: AddPostDataManager
 extension DiscourseClientDataManager: AddPostDataManager {
-    func addPost(topicId: Int, content: String, completion: @escaping (Result<AddNewTopicResponse?, Error>) -> ()) {
-        // TODO
+    func addPost(topicId: Int, content: String, completion: @escaping (Result<AddNewPostResponse?, Error>) -> ()) {
+        remoteDataManager.addPost(topicId: topicId, content: content, completion: completion)
     }
 }
 

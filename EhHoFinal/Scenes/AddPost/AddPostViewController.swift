@@ -31,6 +31,8 @@ final class AddPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.viewDidLoad()
+    
         configureUI()
         localize()
         configureNavigationBar()
@@ -64,18 +66,22 @@ final class AddPostViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    private func showErrorAddingTopicAlert(text: String?) {
+    private func updateUI() {
+        titleTopicLabel.text = viewModel.topicTitleLabelText
+    }
+    
+    private func showErrorAddingPostAlert(text: String?) {
         showAlert(text ?? "addPost.defaultError".localized())
     }
     
     @objc private func cancelButtonTapped() {
-//        viewModel.cancelButtonTapped()
+        viewModel.cancelButtonTapped()
     }
     
     @objc private func submitButtonTapped() {
         guard let body = bodyTextView.text, !body.isEmpty else { return }
         
-//        viewModel.submitButtonTapped(title: title, body: body)
+        viewModel.submitButtonTapped(body: body)
     }
 }
 
@@ -83,10 +89,10 @@ final class AddPostViewController: UIViewController {
 extension AddPostViewController: AddPostViewDelegate {
     
     func loadTopic() {
-    
+        updateUI()
     }
     
     func errorAddingPost(text: String?) {
-    
+        showErrorAddingPostAlert(text: text)
     }
 }
