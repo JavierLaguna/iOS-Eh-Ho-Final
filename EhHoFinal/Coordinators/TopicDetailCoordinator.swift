@@ -18,7 +18,9 @@ final class TopicDetailCoordinator: Coordinator {
     
     private var addPostNavigationController: UINavigationController?
     private var topicDetailViewModel: TopicDetailViewModel?
-
+    private var shouldUpdateTopics = false
+    var topicDetailCoordinatorDidFinish: ((_ shouldUpdateTopics: Bool) -> Void)?
+    
     init(presenter: UINavigationController,
          topicDetailDataManager: TopicDetailDataManager,
          addPostDataManager: AddPostDataManager,
@@ -40,7 +42,11 @@ final class TopicDetailCoordinator: Coordinator {
         presenter.pushViewController(topicDetailViewController, animated: true)
     }
     
-    override func finish() {}
+    override func finish() {
+        presenter.popViewController(animated: true)
+        
+        topicDetailCoordinatorDidFinish?(shouldUpdateTopics)
+    }
     
     private func startAddPost(topic: Topic) {
         let addPostViewModel = AddPostViewModel(topic: topic, dataManager: addPostDataManager)
@@ -66,12 +72,12 @@ extension TopicDetailCoordinator: TopicDetailCoordinatorDelegate {
     }
     
     func topicDetailBackButtonTapped() {
-        presenter.popViewController(animated: true)
+        finish()
     }
     
     func topicDeleted() {
-        presenter.popViewController(animated: true)
-        // TODO:        topicsViewModel?.refreshTopics()
+        shouldUpdateTopics = true
+        finish()
     }
 }
 
