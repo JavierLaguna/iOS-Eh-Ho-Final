@@ -18,6 +18,8 @@
 		4940A147255FF393002498C4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A146255FF393002498C4 /* LoginViewModel.swift */; };
 		4940A14A255FF42D002498C4 /* LoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A149255FF42D002498C4 /* LoginDataManager.swift */; };
 		4940A14D255FFC09002498C4 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A14C255FFC09002498C4 /* LoginUserRequest.swift */; };
+		4940A150256009CF002498C4 /* UserLogged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A14F256009CF002498C4 /* UserLogged.swift */; };
+		4940A15325600CC3002498C4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15225600CC3002498C4 /* UserDefaultsManager.swift */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -129,6 +131,8 @@
 		4940A146255FF393002498C4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4940A149255FF42D002498C4 /* LoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataManager.swift; sourceTree = "<group>"; };
 		4940A14C255FFC09002498C4 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		4940A14F256009CF002498C4 /* UserLogged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogged.swift; sourceTree = "<group>"; };
+		4940A15225600CC3002498C4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				496A9879242BF15E007BE243 /* Log.swift */,
+				4940A15225600CC3002498C4 /* UserDefaultsManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				491B4E0D243658F400103501 /* Period.swift */,
 				491B4E0F2436594600103501 /* Order.swift */,
 				497C3D9A2556F26900B330A7 /* Post.swift */,
+				4940A14F256009CF002498C4 /* UserLogged.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 				4940A147255FF393002498C4 /* LoginViewModel.swift in Sources */,
 				4940A14D255FFC09002498C4 /* LoginUserRequest.swift in Sources */,
 				49EC1E17247729600017772A /* TopicCellViewModel.swift in Sources */,
+				4940A15325600CC3002498C4 /* UserDefaultsManager.swift in Sources */,
 				496E800A243520A500019B20 /* UserDetailRequest.swift in Sources */,
 				62015CC023EF0F8100673EBB /* TopicDetailViewModel.swift in Sources */,
 				62015CC823EF162D00673EBB /* SingleTopicResponse.swift in Sources */,
@@ -677,6 +684,7 @@
 				62015CBA23EF084C00673EBB /* TopicCell.swift in Sources */,
 				62015CCB23EF19F500673EBB /* UIViewController+Extensions.swift in Sources */,
 				62015CD823EF26C900673EBB /* AddTopicCoordinator.swift in Sources */,
+				4940A150256009CF002498C4 /* UserLogged.swift in Sources */,
 				62015CD423EF21A900673EBB /* AddNewTopicResponse.swift in Sources */,
 				62015CC623EF161E00673EBB /* SingleTopicRequest.swift in Sources */,
 				62015CCE23EF1F5200673EBB /* AddTopicViewModel.swift in Sources */,

@@ -84,7 +84,20 @@ extension DiscourseClientDataManager: UserDetailDataManager {
 
 // MARK: LoginDataManager
 extension DiscourseClientDataManager: LoginDataManager {
+    
     func loginUser(username: String, password: String, completion: @escaping (Result<UserDetailResponse?, Error>) -> ()) {
         remoteDataManager.loginUser(username: username, password: password, completion: completion)
+    }
+    
+    func saveUserLogged(user: UserLogged, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+    }
+    
+    func getUserLogged(completion: @escaping (Result<UserLogged?, Error>) -> ()) {
+        
+    }
+    
+    func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ()) {
+        
     }
 }
