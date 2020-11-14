@@ -29,5 +29,7 @@ final class DiscourseClientLocalDataManagerImpl: DiscourseClientLocalDataManager
     
     func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ()) {
         UserDefaultsManager.removeObject(forKey: UserDefaultKeys.UserLogged)
+        
+        completion(.success(true))
     }
 }

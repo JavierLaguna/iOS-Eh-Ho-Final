@@ -85,15 +85,18 @@ final class AppCoordinator: Coordinator {
         addChildCoordinator(categoriesCoordinator)
         categoriesCoordinator.start()
         
-        let settingsVC = UIViewController()
-        settingsVC.title = "Settings"
+        let settingsNavigationController = UINavigationController()
+        let settingsCoordinator = SettingsCoordinator(presenter: settingsNavigationController, loginDataManager: dataManager)
+        addChildCoordinator(settingsCoordinator)
+        settingsCoordinator.didFinish = startLogin
+        settingsCoordinator.start()
         
         tabBarController.tabBar.tintColor = .orangeKCTangerine
         tabBarController.tabBar.unselectedItemTintColor = .blackKC
         tabBarController.tabBar.backgroundColor = .whiteKCTabBar
         tabBarController.tabBar.alpha = 0.9
         
-        tabBarController.viewControllers = [topicsNavigationController, usersNavigationController, categoriesNavigationController, settingsVC]
+        tabBarController.viewControllers = [topicsNavigationController, usersNavigationController, categoriesNavigationController, settingsNavigationController]
         tabBarController.tabBar.items?.first?.image = UIImage(named: "inicio")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[1].image = UIImage(named: "usuarios")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[2].image = UIImage(systemName: "paperplane.fill")
