@@ -9,8 +9,20 @@
 import UIKit
 
 final class SettingsViewController: UIViewController {
+    
+    // MARK: Properties
+    private let viewModel: SettingsViewModel
 
     // MARK: Lifecycle
+    init(viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +40,6 @@ final class SettingsViewController: UIViewController {
     }
     
     @objc private func logout() {
-        
+        viewModel.logoutUser()
     }
 }

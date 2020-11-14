@@ -21,7 +21,7 @@ final class CategoriesViewController: UIViewController {
         return table
     }()
     
-    let viewModel: CategoriesViewModel
+    private let viewModel: CategoriesViewModel
     
     init(viewModel: CategoriesViewModel) {
         self.viewModel = viewModel

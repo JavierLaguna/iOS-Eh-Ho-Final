@@ -56,5 +56,8 @@
 "registerUser.notSamePassword.error" = "Passwords are not equals";
 "registerUser.default.error" = "Error on user register \nCheck your data and \nplease try again later";
 
+// Categories
+"categories.title" = "Categories";
+
 // Settings
 "settings.title" = "Settings";

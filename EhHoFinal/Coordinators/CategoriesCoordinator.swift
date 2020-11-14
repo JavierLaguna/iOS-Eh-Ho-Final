@@ -9,7 +9,7 @@
 import UIKit
 
 /// Coordinator que representa el tab del categories list
-class CategoriesCoordinator: Coordinator {
+final class CategoriesCoordinator: Coordinator {
     let presenter: UINavigationController
     let categoriesDataManager: CategoriesDataManager
 
@@ -21,7 +21,7 @@ class CategoriesCoordinator: Coordinator {
     override func start() {
         let categoriesViewModel = CategoriesViewModel(categoriesDataManager: categoriesDataManager)
         let categoriesViewController = CategoriesViewController(viewModel: categoriesViewModel)
-        categoriesViewController.title = NSLocalizedString("Categories", comment: "")
+        categoriesViewController.title = "categories.title".localized()
        
         categoriesViewModel.viewDelegate = categoriesViewController
         categoriesViewModel.coordinatorDelegate = self
