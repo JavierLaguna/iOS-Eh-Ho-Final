@@ -17,6 +17,7 @@
 		4940A144255FEE41002498C4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A143255FEE41002498C4 /* LoginCoordinator.swift */; };
 		4940A147255FF393002498C4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A146255FF393002498C4 /* LoginViewModel.swift */; };
 		4940A14A255FF42D002498C4 /* LoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A149255FF42D002498C4 /* LoginDataManager.swift */; };
+		4940A14D255FFC09002498C4 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A14C255FFC09002498C4 /* LoginUserRequest.swift */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -127,6 +128,7 @@
 		4940A143255FEE41002498C4 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		4940A146255FF393002498C4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4940A149255FF42D002498C4 /* LoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataManager.swift; sourceTree = "<group>"; };
+		4940A14C255FFC09002498C4 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				496E80072435207B00019B20 /* UsersRequest.swift */,
 				497C3DAB2557187500B330A7 /* SpecificPostsRequest.swift */,
 				497C3DC325580C2900B330A7 /* CreatePostRequest.swift */,
+				4940A14C255FFC09002498C4 /* LoginUserRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */,
 				627DC5C323E5FEE4006D8615 /* TopicsViewModel.swift in Sources */,
 				4940A147255FF393002498C4 /* LoginViewModel.swift in Sources */,
+				4940A14D255FFC09002498C4 /* LoginUserRequest.swift in Sources */,
 				49EC1E17247729600017772A /* TopicCellViewModel.swift in Sources */,
 				496E800A243520A500019B20 /* UserDetailRequest.swift in Sources */,
 				62015CC023EF0F8100673EBB /* TopicDetailViewModel.swift in Sources */,

@@ -10,4 +10,5 @@ import Foundation
 
 protocol LoginDataManager: class {
     
+    func loginUser(username: String, password: String, completion: @escaping (Result<UserDetailResponse?, Error>) -> ())
 }

@@ -26,7 +26,7 @@ final class LoginCoordinator: Coordinator {
         let viewModel = LoginViewModel(loginDataManager: loginDataManager)
         let viewController = LoginViewController(viewModel: viewModel)
         //        topicDetailViewModel.coordinatorDelegate = self
-        //        topicDetailViewModel.viewDelegate = topicDetailViewController
+        viewModel.viewDelegate = viewController
         
         presenter.setNavigationBarHidden(true, animated: true)
         presenter.pushViewController(viewController, animated: true)

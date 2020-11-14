@@ -8,12 +8,16 @@
 
 import Foundation
 
+protocol LoginViewDelegate: class {
+    func errorLoginUser(error: String)
+}
+
 final class LoginViewModel {
     
     // MARK: Properties
     private let loginDataManager: LoginDataManager
     
-    //    weak var viewDelegate: TopicDetailViewDelegate?
+    weak var viewDelegate: LoginViewDelegate?
     //    weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
     
     // MARK: Lifecycle
@@ -21,12 +25,24 @@ final class LoginViewModel {
         self.loginDataManager = loginDataManager
     }
     
-    func viewDidLoad() {
-        //        fetchTopicDetail()
-    }
-    
     // MARK: Public Functions
-    func refreshPosts() {
+    func loginUser(username: String, password: String) {
+        guard !username.isEmpty, !password.isEmpty else {
+            viewDelegate?.errorLoginUser(error: "login.emptyFields.error".localized())
+            return
+        }
         
+        loginDataManager.loginUser(username: username, password: password) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success:
+                print()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorLoginUser(error: "login.default.error".localized())
+            }
+        }
     }
 }

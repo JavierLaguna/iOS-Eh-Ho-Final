@@ -86,4 +86,12 @@ final class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManag
             completion(result)
         }
     }
+    
+    func loginUser(username: String, password: String, completion: @escaping (Result<UserDetailResponse?, Error>) -> ()) {
+        let request = LoginUserRequest(username: username)
+        session.send(request: request) { result in
+            completion(result)
+        }
+    }
+    
 }

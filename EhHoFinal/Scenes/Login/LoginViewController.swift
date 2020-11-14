@@ -50,4 +50,24 @@ final class LoginViewController: UIViewController {
         
         loginButton.setTitle("login.login.button".localized(), for: .normal)
     }
+    
+    private func showErrorAlert(text: String) {
+        showAlert(text)
+    }
+    
+    // MARK: IBActions
+    @IBAction private func onTapLoginButton(_ sender: Any) {
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        viewModel.loginUser(username: username, password: password)
+    }
+}
+
+// MARK: LoginViewDelegate
+extension LoginViewController: LoginViewDelegate {
+    
+    func errorLoginUser(error: String) {
+        showErrorAlert(text: error)
+    }
 }

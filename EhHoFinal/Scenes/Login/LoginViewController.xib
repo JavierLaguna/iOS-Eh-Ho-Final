@@ -60,6 +60,9 @@
                                     <state key="normal" title="Button">
                                         <color key="titleColor" name="WhiteKCBackground"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onTapLoginButton:" destination="-1" eventType="touchUpInside" id="9Qx-vo-eQM"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
