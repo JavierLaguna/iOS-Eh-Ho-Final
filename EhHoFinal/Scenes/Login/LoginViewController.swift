@@ -40,7 +40,7 @@ final class LoginViewController: UIViewController {
     private func configureUI() {
         usernameTextField.font = .paragraph
         passwordTextField.font = .paragraph
-
+        
         loginButton.titleLabel?.font = .paragraphBold
         registerButton.titleLabel?.font = .paragraph2
     }
@@ -67,7 +67,7 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func onTapRegisterButton(_ sender: Any) {
-        
+        viewModel.registerUser()
     }
 }
 

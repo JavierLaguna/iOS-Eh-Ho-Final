@@ -20,6 +20,8 @@
 		4940A14D255FFC09002498C4 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A14C255FFC09002498C4 /* LoginUserRequest.swift */; };
 		4940A150256009CF002498C4 /* UserLogged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A14F256009CF002498C4 /* UserLogged.swift */; };
 		4940A15325600CC3002498C4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15225600CC3002498C4 /* UserDefaultsManager.swift */; };
+		4940A15B25603CF6002498C4 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15925603CF6002498C4 /* RegisterUserViewController.swift */; };
+		4940A15C25603CF6002498C4 /* RegisterUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -133,6 +135,8 @@
 		4940A14C255FFC09002498C4 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		4940A14F256009CF002498C4 /* UserLogged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogged.swift; sourceTree = "<group>"; };
 		4940A15225600CC3002498C4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		4940A15925603CF6002498C4 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
+		4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterUserViewController.xib; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 		4929F08E247A89BF00C0E10D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4940A15825603CE0002498C4 /* RegisterUser */,
 				4940A13C255FE71A002498C4 /* Login */,
 				497C3DB025573C4300B330A7 /* AddPost */,
 				62015CCC23EF1F4200673EBB /* AddTopic */,
@@ -277,6 +282,15 @@
 				4940A149255FF42D002498C4 /* LoginDataManager.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4940A15825603CE0002498C4 /* RegisterUser */ = {
+			isa = PBXGroup;
+			children = (
+				4940A15925603CF6002498C4 /* RegisterUserViewController.swift */,
+				4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */,
+			);
+			path = RegisterUser;
 			sourceTree = "<group>";
 		};
 		496A9878242BF151007BE243 /* Utils */ = {
@@ -622,6 +636,7 @@
 				4940A140255FEB2D002498C4 /* LoginViewController.xib in Resources */,
 				627DC5B523E5F581006D8615 /* LaunchScreen.storyboard in Resources */,
 				497C3D872554820800B330A7 /* UserDetailViewController.xib in Resources */,
+				4940A15C25603CF6002498C4 /* RegisterUserViewController.xib in Resources */,
 				627DC5B223E5F581006D8615 /* Assets.xcassets in Resources */,
 				497C3DB425573C7000B330A7 /* AddPostViewController.xib in Resources */,
 				497C3DA32556FD9000B330A7 /* PostCell.xib in Resources */,
@@ -720,6 +735,7 @@
 				496A9877242BEACF007BE243 /* DeleteTopicResponse.swift in Sources */,
 				496E800224351E8000019B20 /* UsersViewController.swift in Sources */,
 				4929F091247A8A6200C0E10D /* SplashViewController.swift in Sources */,
+				4940A15B25603CF6002498C4 /* RegisterUserViewController.swift in Sources */,
 				627DC5A923E5F580006D8615 /* AppDelegate.swift in Sources */,
 				496A9884242D3298007BE243 /* CategoryCellViewModel.swift in Sources */,
 				62015CB723EF04C200673EBB /* TopicPostCellViewModel.swift in Sources */,

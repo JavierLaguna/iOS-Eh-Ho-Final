@@ -14,8 +14,8 @@ protocol LoginViewDelegate: class {
 
 protocol LoginCoordinatorDelegate: class {
     func userIsLogged()
+    func tapOnRegister()
 }
-
 
 final class LoginViewModel {
     
@@ -51,6 +51,11 @@ final class LoginViewModel {
         }
     }
     
+    func registerUser() {
+        coordinatorDelegate?.tapOnRegister()
+    }
+    
+    // MARK: Private Functions
     private func userIsLogged(username: String, password: String) {
         let userLogged = UserLogged(username: username)
         

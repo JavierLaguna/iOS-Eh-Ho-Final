@@ -38,6 +38,16 @@ final class LoginCoordinator: Coordinator {
     override func finish() {
         presenter.popViewController(animated: true)
     }
+    
+    private func goToRegister() {
+        let viewModel = LoginViewModel(loginDataManager: loginDataManager)
+        let viewController = RegisterUserViewController(viewModel: viewModel)
+        
+//        viewModel.coordinatorDelegate = self
+//        viewModel.viewDelegate = viewController
+        
+        presenter.present(viewController, animated: true)
+    }
 }
 
 // MARK: LoginCoordinatorDelegate
@@ -46,5 +56,9 @@ extension LoginCoordinator: LoginCoordinatorDelegate {
     func userIsLogged() {
         userDidLogged?()
         finish()
+    }
+    
+    func tapOnRegister() {
+        goToRegister()
     }
 }

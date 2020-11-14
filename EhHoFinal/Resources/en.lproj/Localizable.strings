@@ -44,3 +44,12 @@
 "login.register.button" = "CREATE NEW ACCOUNT";
 "login.emptyFields.error" = "Username or password is empty";
 "login.default.error" = "Invalid credentials";
+
+// Register User
+"registerUser.email.placeholder" = "Email";
+"registerUser.username.placeholder" = "Username";
+"registerUser.password.placeholder" = "Password";
+"registerUser.repeatPassword.placeholder" = "Confirm password";
+"registerUser.login.button" = "LOGIN";
+"registerUser.register.button" = "REGISTER";
+
