@@ -11,12 +11,15 @@ import Foundation
 /// Implementación por defecto del protocolo remoto, en este caso usando SessionAPI
 final class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
     
-    let session: SessionAPI
+    // MARK: Properties
+    private let session: SessionAPI
     
+    // MARK: Lifecycle
     init(session: SessionAPI) {
         self.session = session
     }
     
+    // MARK: Public Functions
     func fetchAllTopics(nextPage: String?, completion: @escaping (Result<LatestTopicsResponse?, Error>) -> ()) {
         let request = LatestTopicsRequest(nextPage: nextPage)
         session.send(request: request) { result in

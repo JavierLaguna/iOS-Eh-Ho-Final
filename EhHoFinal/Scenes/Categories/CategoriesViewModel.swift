@@ -8,20 +8,14 @@
 
 import Foundation
 
-
-protocol CategoriesCoordinatorDelegate: class {
-    
-}
-
-
 protocol CategoriesViewDelegate: class {
     func categoriesFetched()
     func errorFetchingCategories()
 }
 
 /// ViewModel representando un listado de categorías
-class CategoriesViewModel {
-    weak var coordinatorDelegate: CategoriesCoordinatorDelegate?
+final class CategoriesViewModel {
+
     weak var viewDelegate: CategoriesViewDelegate?
     let categoriesDataManager: CategoriesDataManager
     var categoriesViewModels: [CategoryCellViewModel] = []

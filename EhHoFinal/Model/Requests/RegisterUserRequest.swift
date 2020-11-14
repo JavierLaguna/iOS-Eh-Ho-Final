@@ -12,9 +12,9 @@ struct RegisterUserRequest: APIRequest {
     
     typealias Response = RegisterUserResponse
     
-    let email: String
-    let username: String
-    let password: String
+    private let email: String
+    private let username: String
+    private let password: String
     
     init(email: String, username: String, password: String) {
         self.email = email

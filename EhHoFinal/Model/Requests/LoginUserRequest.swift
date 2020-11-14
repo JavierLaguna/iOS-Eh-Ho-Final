@@ -12,7 +12,7 @@ struct LoginUserRequest: APIRequest {
     
     typealias Response = UserDetailResponse
     
-    let username: String
+    private let username: String
     
     init(username: String) {
         self.username = username

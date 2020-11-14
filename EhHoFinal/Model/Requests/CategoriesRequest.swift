@@ -32,5 +32,5 @@ struct CategoriesRequest: APIRequest {
     var headers: [String : String] {
         return [:]
     }
-
+    
 }
