@@ -41,5 +41,6 @@
 "login.username.placeholder" = "Username";
 "login.password.placeholder" = "Password";
 "login.login.button" = "LOGIN";
+"login.register.button" = "CREATE NEW ACCOUNT";
 "login.emptyFields.error" = "Username or password is empty";
 "login.default.error" = "Invalid credentials";

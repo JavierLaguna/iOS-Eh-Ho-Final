@@ -14,6 +14,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak private var usernameTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
     @IBOutlet weak private var loginButton: UIButton!
+    @IBOutlet weak private var registerButton: UIButton!
     
     // MARK: Properties
     private let viewModel: LoginViewModel
@@ -41,6 +42,7 @@ final class LoginViewController: UIViewController {
         passwordTextField.font = .paragraph
 
         loginButton.titleLabel?.font = .paragraphBold
+        registerButton.titleLabel?.font = .paragraph2
     }
     
     private func localize() {
@@ -49,6 +51,7 @@ final class LoginViewController: UIViewController {
         passwordTextField.placeholder = "login.password.placeholder".localized()
         
         loginButton.setTitle("login.login.button".localized(), for: .normal)
+        registerButton.setTitle("login.register.button".localized(), for: .normal)
     }
     
     private func showErrorAlert(text: String) {
@@ -61,6 +64,10 @@ final class LoginViewController: UIViewController {
         let password = passwordTextField.text ?? ""
         
         viewModel.loginUser(username: username, password: password)
+    }
+    
+    @IBAction func onTapRegisterButton(_ sender: Any) {
+        
     }
 }
 
