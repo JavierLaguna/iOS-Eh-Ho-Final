@@ -23,7 +23,7 @@ final class AddTopicViewModel {
     
     // MARK: Properties
     private let dataManager: AddTopicDataManager
-
+    
     weak var viewDelegate: AddTopicViewDelegate?
     weak var coordinatorDelegate: AddTopicCoordinatorDelegate?
     

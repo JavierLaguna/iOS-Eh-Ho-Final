@@ -60,7 +60,7 @@ struct User: Codable {
         muted = try container.decodeIfPresent(Bool.self, forKey: .muted)
         moderator = try container.decodeIfPresent(Bool.self, forKey: .moderator)
         profileViewCount = try container.decodeIfPresent(Int.self, forKey: .profileViewCount)
-
+        
         if let lastSeenAtString = try container.decodeIfPresent(String.self, forKey: .lastSeenAt) {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

@@ -24,6 +24,7 @@ final class SettingsViewModel {
         self.loginDataManager = loginDataManager
     }
     
+    // MARK: Public Functions
     func logoutUser() {
         loginDataManager.deleteUserLogged() { [weak self] result in
             guard let self = self else { return }

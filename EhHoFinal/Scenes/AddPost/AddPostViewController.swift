@@ -32,7 +32,7 @@ final class AddPostViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.viewDidLoad()
-    
+        
         configureUI()
         localize()
         configureNavigationBar()

@@ -9,5 +9,6 @@
 import Foundation
 
 protocol AddPostDataManager: class {
+    
     func addPost(topicId: Int, content: String, completion: @escaping (Result<AddNewPostResponse?, Error>) -> ())
 }

@@ -71,6 +71,7 @@
 
 // Categories
 "categories.title" = "Categories";
+"categories.default.error" = "Error fetching categories\nPlease try again later";
 
 // Settings
 "settings.title" = "Settings";

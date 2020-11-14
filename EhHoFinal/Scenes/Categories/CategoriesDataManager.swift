@@ -13,5 +13,6 @@ enum CategoriesDataManagerError: Error {
 }
 
 protocol CategoriesDataManager {
+    
     func fetchAllCategories(completion: @escaping (Result<CategoriesResponse?, Error>) -> ())
 }
