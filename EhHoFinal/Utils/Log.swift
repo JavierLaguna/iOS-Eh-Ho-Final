@@ -7,6 +7,7 @@
 //
 
 final class Log {
+    
     static func error(_ text: Any?, file: String = #file, line: Int = #line) {
         guard let text = text else { return }
         print("ERROR: \(text) \nat \(line): \(file)")

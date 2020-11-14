@@ -24,6 +24,7 @@
 
 // Users
 "users.title" = "Users";
+"users.defaultError" = "Error fetching users\nPlease try again later";
 
 // User Detail
 "userDetail.topics_created" = "created";
