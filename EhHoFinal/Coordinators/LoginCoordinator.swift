@@ -36,17 +36,22 @@ final class LoginCoordinator: Coordinator {
     }
     
     override func finish() {
+        userDidLogged?()
         presenter.popViewController(animated: true)
     }
     
-    private func goToRegister() {
-        let viewModel = LoginViewModel(loginDataManager: loginDataManager)
+    private func startRegisterUser() {
+        let viewModel = RegisterUserViewModel(loginDataManager: loginDataManager)
         let viewController = RegisterUserViewController(viewModel: viewModel)
         
-//        viewModel.coordinatorDelegate = self
-//        viewModel.viewDelegate = viewController
+        viewModel.coordinatorDelegate = self
+        viewModel.viewDelegate = viewController
         
         presenter.present(viewController, animated: true)
+    }
+    
+    private func finishRegisterUser() {
+        presenter.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -54,11 +59,18 @@ final class LoginCoordinator: Coordinator {
 extension LoginCoordinator: LoginCoordinatorDelegate {
     
     func userIsLogged() {
-        userDidLogged?()
         finish()
     }
     
     func tapOnRegister() {
-        goToRegister()
+        startRegisterUser()
+    }
+}
+
+// MARK: RegisterUserCoordinatorDelegate
+extension LoginCoordinator: RegisterUserCoordinatorDelegate {
+    
+    func backToLogin() {
+        finishRegisterUser()
     }
 }

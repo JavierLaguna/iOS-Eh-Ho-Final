@@ -79,6 +79,9 @@
                                     <state key="normal" title="Button">
                                         <color key="titleColor" name="WhiteKCBackground"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onTapRegisterButton:" destination="-1" eventType="touchUpInside" id="oHK-m7-AcY"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -97,6 +100,9 @@
                             <state key="normal" title="Button">
                                 <color key="titleColor" name="GrayKC"/>
                             </state>
+                            <connections>
+                                <action selector="onTapLoginButton:" destination="-1" eventType="touchUpInside" id="D6V-6G-z4P"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

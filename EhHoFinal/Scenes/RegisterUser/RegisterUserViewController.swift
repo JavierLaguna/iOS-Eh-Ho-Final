@@ -9,7 +9,7 @@
 import UIKit
 
 final class RegisterUserViewController: UIViewController {
-
+    
     // MARK: IBOutlets
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var usernameTextField: UITextField!
@@ -19,10 +19,10 @@ final class RegisterUserViewController: UIViewController {
     @IBOutlet weak private var loginButton: UIButton!
     
     // MARK: Properties
-    private let viewModel: LoginViewModel
+    private let viewModel: RegisterUserViewModel
     
     // MARK: Lifecycle
-    init(viewModel: LoginViewModel) {
+    init(viewModel: RegisterUserViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,7 +44,7 @@ final class RegisterUserViewController: UIViewController {
         usernameTextField.font = .paragraph
         passwordTextField.font = .paragraph
         repeatPasswordTextField.font = .paragraph
-
+        
         registerButton.titleLabel?.font = .paragraphBold
         loginButton.titleLabel?.font = .paragraph2
     }
@@ -54,9 +54,34 @@ final class RegisterUserViewController: UIViewController {
         usernameTextField.placeholder = "registerUser.username.placeholder".localized()
         passwordTextField.placeholder = "registerUser.password.placeholder".localized()
         repeatPasswordTextField.placeholder = "registerUser.repeatPassword.placeholder".localized()
-
+        
         registerButton.setTitle("registerUser.register.button".localized(), for: .normal)
         loginButton.setTitle("registerUser.login.button".localized(), for: .normal)
     }
+    
+    private func showErrorAlert(text: String) {
+        showAlert(text)
+    }
+    
+    // MARK: IBActions
+    @IBAction private func onTapRegisterButton(_ sender: Any) {
+        let email = emailTextField.text ?? ""
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let confirmPassword = repeatPasswordTextField.text ?? ""
+        
+        viewModel.registerUser(email: email, username: username, password: password, confirmPassword: confirmPassword)
+    }
+    
+    @IBAction private func onTapLoginButton(_ sender: Any) {
+        viewModel.login()
+    }
+}
 
+// MARK: RegisterUserViewDelegate
+extension RegisterUserViewController: RegisterUserViewDelegate {
+    
+    func errorOnRegisterUser(error: String) {
+        showErrorAlert(text: error)
+    }
 }

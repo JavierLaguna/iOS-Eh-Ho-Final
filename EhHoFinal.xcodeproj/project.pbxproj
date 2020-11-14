@@ -22,6 +22,7 @@
 		4940A15325600CC3002498C4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15225600CC3002498C4 /* UserDefaultsManager.swift */; };
 		4940A15B25603CF6002498C4 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15925603CF6002498C4 /* RegisterUserViewController.swift */; };
 		4940A15C25603CF6002498C4 /* RegisterUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */; };
+		4940A15F2560453E002498C4 /* RegisterUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A15E2560453E002498C4 /* RegisterUserViewModel.swift */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -137,6 +138,7 @@
 		4940A15225600CC3002498C4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		4940A15925603CF6002498C4 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
 		4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterUserViewController.xib; sourceTree = "<group>"; };
+		4940A15E2560453E002498C4 /* RegisterUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewModel.swift; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				4940A15925603CF6002498C4 /* RegisterUserViewController.swift */,
 				4940A15A25603CF6002498C4 /* RegisterUserViewController.xib */,
+				4940A15E2560453E002498C4 /* RegisterUserViewModel.swift */,
 			);
 			path = RegisterUser;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				497C3D572554682A00B330A7 /* String+Extensions.swift in Sources */,
 				496A987A242BF15E007BE243 /* Log.swift in Sources */,
 				496E7FEF24350E6C00019B20 /* UsersCoordinator.swift in Sources */,
+				4940A15F2560453E002498C4 /* RegisterUserViewModel.swift in Sources */,
 				4940A14A255FF42D002498C4 /* LoginDataManager.swift in Sources */,
 				497C3DA62556FFC900B330A7 /* PostCellViewModel.swift in Sources */,
 				627DC5C323E5FEE4006D8615 /* TopicsViewModel.swift in Sources */,

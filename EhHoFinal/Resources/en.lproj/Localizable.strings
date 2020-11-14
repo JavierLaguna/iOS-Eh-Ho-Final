@@ -52,4 +52,6 @@
 "registerUser.repeatPassword.placeholder" = "Confirm password";
 "registerUser.login.button" = "LOGIN";
 "registerUser.register.button" = "REGISTER";
+"registerUser.emptyFields.error" = "Any field is empty";
+"registerUser.notSamePassword.error" = "Passwords are not equals";
 
