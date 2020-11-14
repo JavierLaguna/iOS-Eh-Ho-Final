@@ -14,6 +14,7 @@
 		4929F091247A8A6200C0E10D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4929F090247A8A6200C0E10D /* SplashViewController.swift */; };
 		4940A13F255FEB2D002498C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A13D255FEB2D002498C4 /* LoginViewController.swift */; };
 		4940A140255FEB2D002498C4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940A13E255FEB2D002498C4 /* LoginViewController.xib */; };
+		4940A144255FEE41002498C4 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A143255FEE41002498C4 /* LoginCoordinator.swift */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -121,6 +122,7 @@
 		4929F090247A8A6200C0E10D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4940A13D255FEB2D002498C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4940A13E255FEB2D002498C4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4940A143255FEE41002498C4 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				62015CBC23EF0C6700673EBB /* TopicsCoordinator.swift */,
 				496E7FEE24350E6C00019B20 /* UsersCoordinator.swift */,
 				497C3DB72557EB4800B330A7 /* TopicDetailCoordinator.swift */,
+				4940A143255FEE41002498C4 /* LoginCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				496A987E242D2DBD007BE243 /* CategoriesResponse.swift in Sources */,
 				497C3DC125580B5C00B330A7 /* AddNewPostResponse.swift in Sources */,
 				497C3D972556CC7600B330A7 /* ParentPostCell.swift in Sources */,
+				4940A144255FEE41002498C4 /* LoginCoordinator.swift in Sources */,
 				496E7FF92435189000019B20 /* UserDetailResponse.swift in Sources */,
 				62015CC423EF14FC00673EBB /* TopicDetailDataManager.swift in Sources */,
 				4900D684247974D100BD7ECE /* UIView+NibLoadableView.swift in Sources */,

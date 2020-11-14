@@ -35,10 +35,22 @@ class AppCoordinator: Coordinator {
     
     override func start() {
         let splashVc = SplashViewController()
-        splashVc.splashDidFinish = startApp
+        //        splashVc.splashDidFinish = startApp
+        splashVc.splashDidFinish = startLogin
         
         window.rootViewController = splashVc
         window.makeKeyAndVisible()
+    }
+    
+    private func startLogin() {
+        let navigationController = UINavigationController()
+        let loginCoordinator = LoginCoordinator(presenter: navigationController, topicDetailDataManager: dataManager)
+        
+        addChildCoordinator(loginCoordinator)
+        
+        loginCoordinator.start()
+        
+        window.rootViewController = navigationController
     }
     
     private func startApp() {
