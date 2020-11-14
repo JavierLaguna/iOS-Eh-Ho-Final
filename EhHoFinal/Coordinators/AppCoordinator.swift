@@ -10,7 +10,7 @@ import UIKit
 
 /// Coordinator principal de la app. Encapsula todas las interacciones con la Window.
 /// Tiene dos hijos, el topic list, y el categories list (uno por cada tab)
-class AppCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
     let sessionAPI = SessionAPI()
     
     lazy var remoteDataManager: DiscourseClientRemoteDataManager = {
@@ -34,11 +34,31 @@ class AppCoordinator: Coordinator {
     }
     
     override func start() {
-        let splashVc = SplashViewController()
-        splashVc.splashDidFinish = startApp
+        let splashVc = SplashViewController(loginDataManager: dataManager)
+        splashVc.splashDidFinish = splashDidFinish
         
         window.rootViewController = splashVc
         window.makeKeyAndVisible()
+    }
+    
+    private func splashDidFinish(userIsLogged: Bool) {
+        if userIsLogged {
+            startApp()
+        } else {
+            startLogin()
+        }
+    }
+    
+    private func startLogin() {
+        let navigationController = UINavigationController()
+        let loginCoordinator = LoginCoordinator(presenter: navigationController, loginDataManager: dataManager)
+        
+        addChildCoordinator(loginCoordinator)
+        
+        loginCoordinator.start()
+        loginCoordinator.userDidLogged = startApp
+        
+        window.rootViewController = navigationController
     }
     
     private func startApp() {
