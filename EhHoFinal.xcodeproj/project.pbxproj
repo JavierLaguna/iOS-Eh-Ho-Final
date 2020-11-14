@@ -12,6 +12,8 @@
 		491B4E0E243658F400103501 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E0D243658F400103501 /* Period.swift */; };
 		491B4E102436594600103501 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B4E0F2436594600103501 /* Order.swift */; };
 		4929F091247A8A6200C0E10D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4929F090247A8A6200C0E10D /* SplashViewController.swift */; };
+		4940A13F255FEB2D002498C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940A13D255FEB2D002498C4 /* LoginViewController.swift */; };
+		4940A140255FEB2D002498C4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4940A13E255FEB2D002498C4 /* LoginViewController.xib */; };
 		496A9871242AA0C0007BE243 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9870242AA0C0007BE243 /* Topic.swift */; };
 		496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9872242AA0F0007BE243 /* TopicDetails.swift */; };
 		496A9875242BEA67007BE243 /* DeleteTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */; };
@@ -117,6 +119,8 @@
 		491B4E0D243658F400103501 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		491B4E0F2436594600103501 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		4929F090247A8A6200C0E10D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		4940A13D255FEB2D002498C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4940A13E255FEB2D002498C4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		496A9870242AA0C0007BE243 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		496A9872242AA0F0007BE243 /* TopicDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetails.swift; sourceTree = "<group>"; };
 		496A9874242BEA67007BE243 /* DeleteTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTopicRequest.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 		4929F08E247A89BF00C0E10D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4940A13C255FE71A002498C4 /* Login */,
 				497C3DB025573C4300B330A7 /* AddPost */,
 				62015CCC23EF1F4200673EBB /* AddTopic */,
 				62015CD923EF300200673EBB /* Categories */,
@@ -249,6 +254,15 @@
 				4929F090247A8A6200C0E10D /* SplashViewController.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		4940A13C255FE71A002498C4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4940A13D255FEB2D002498C4 /* LoginViewController.swift */,
+				4940A13E255FEB2D002498C4 /* LoginViewController.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		496A9878242BF151007BE243 /* Utils */ = {
@@ -587,6 +601,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4940A140255FEB2D002498C4 /* LoginViewController.xib in Resources */,
 				627DC5B523E5F581006D8615 /* LaunchScreen.storyboard in Resources */,
 				497C3D872554820800B330A7 /* UserDetailViewController.xib in Resources */,
 				627DC5B223E5F581006D8615 /* Assets.xcassets in Resources */,
@@ -688,6 +703,7 @@
 				497C3DB325573C7000B330A7 /* AddPostViewController.swift in Sources */,
 				497C3DC425580C2900B330A7 /* CreatePostRequest.swift in Sources */,
 				627DC5D823E60727006D8615 /* SessionAPI.swift in Sources */,
+				4940A13F255FEB2D002498C4 /* LoginViewController.swift in Sources */,
 				627DC5D123E604E7006D8615 /* DiscourseClientLocalDataManager.swift in Sources */,
 				627DC5AB23E5F580006D8615 /* SceneDelegate.swift in Sources */,
 				496A9873242AA0F0007BE243 /* TopicDetails.swift in Sources */,
