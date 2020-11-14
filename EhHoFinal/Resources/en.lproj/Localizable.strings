@@ -55,3 +55,6 @@
 "registerUser.emptyFields.error" = "Any field is empty";
 "registerUser.notSamePassword.error" = "Passwords are not equals";
 "registerUser.default.error" = "Error on user register \nCheck your data and \nplease try again later";
+
+// Settings
+"settings.title" = "Settings";

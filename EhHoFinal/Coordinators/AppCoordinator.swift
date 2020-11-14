@@ -85,8 +85,8 @@ final class AppCoordinator: Coordinator {
         addChildCoordinator(categoriesCoordinator)
         categoriesCoordinator.start()
         
-        let settingsVC = UIViewController()
-        settingsVC.title = "Settings"
+        let settingsVC = UINavigationController(rootViewController: SettingsViewController())
+        settingsVC.title = "settings.title".localized()
         
         tabBarController.tabBar.tintColor = .orangeKCTangerine
         tabBarController.tabBar.unselectedItemTintColor = .blackKC

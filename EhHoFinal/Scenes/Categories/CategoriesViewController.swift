@@ -9,7 +9,7 @@
 import UIKit
 
 /// ViewController para representar el listado de categorías
-class CategoriesViewController: UIViewController {
+final class CategoriesViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
