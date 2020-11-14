@@ -9,7 +9,7 @@
 import UIKit
 
 /// Celda que representa un topic en la lista
-class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
+final class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
     
     // MARK: IBOutlets
     @IBOutlet weak private var lastPosterImage: UIImageView!

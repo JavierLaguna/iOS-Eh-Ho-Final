@@ -13,7 +13,7 @@ final class SplashViewController: UIViewController {
     // MARK: Properties
     private let loginDataManager: LoginDataManager
     
-    lazy var ehLabel: UILabel = {
+    private lazy var ehLabel: UILabel = {
         let ehLabel = UILabel()
         ehLabel.translatesAutoresizingMaskIntoConstraints = false
         ehLabel.text = "eh"
@@ -22,7 +22,7 @@ final class SplashViewController: UIViewController {
         return ehLabel
     }()
     
-    lazy var ohLabel: UILabel = {
+    private lazy var ohLabel: UILabel = {
         let ohLabel = UILabel()
         ohLabel.translatesAutoresizingMaskIntoConstraints = false
         ohLabel.text = "oh"
@@ -31,14 +31,14 @@ final class SplashViewController: UIViewController {
         return ohLabel
     }()
     
-    lazy var logoImage: UIImageView = {
+    private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView(frame: CGRect(x: view.center.x - 50, y: 0, width: 100, height: 85))
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         logoImage.image = UIImage(named: "logoSmall")
         return logoImage
     }()
     
-    var animator: UIDynamicAnimator?
+    private var animator: UIDynamicAnimator?
     
     typealias SplashDidFinish = (_ userIsLogged: Bool) -> Void
     var splashDidFinish: SplashDidFinish?
@@ -61,6 +61,7 @@ final class SplashViewController: UIViewController {
         startAnimation()
     }
     
+    // MARK: Private Functions
     private func configureBackground() {
         view.backgroundColor = .blackKC
         
@@ -134,11 +135,10 @@ final class SplashViewController: UIViewController {
                 self.splashDidFinish?(false)
             }
         }
-        
-        
     }
 }
 
+// MARK: UIDynamicAnimatorDelegate
 extension SplashViewController: UIDynamicAnimatorDelegate {
     
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {

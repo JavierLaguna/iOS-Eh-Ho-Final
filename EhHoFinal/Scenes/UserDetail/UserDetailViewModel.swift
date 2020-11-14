@@ -27,11 +27,9 @@ final class UserDetailViewModel {
     
     // MARK: Properties
     static let imageSize = 185
+    
     private let userDetailDataManager: UserDetailDataManager
     let username: String
-    
-    weak var viewDelegate: UserDetailViewDelegate?
-    weak var coordinatorDelegate: UserDetailCoordinatorDelegate?
     
     var userModified = false
     var labelNickText: String?
@@ -44,6 +42,9 @@ final class UserDetailViewModel {
             viewDelegate?.userImageFetched()
         }
     }
+    
+    weak var viewDelegate: UserDetailViewDelegate?
+    weak var coordinatorDelegate: UserDetailCoordinatorDelegate?
     
     // MARK: Lifecycle
     init(username: String, userDetailDataManager: UserDetailDataManager) {

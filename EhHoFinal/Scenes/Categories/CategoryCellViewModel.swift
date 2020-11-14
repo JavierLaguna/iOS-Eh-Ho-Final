@@ -10,6 +10,7 @@ import Foundation
 
 /// ViewModel que representa una category en la lista
 class CategoryCellViewModel {
+    
     let category: Category
     var textLabelText: String?
     

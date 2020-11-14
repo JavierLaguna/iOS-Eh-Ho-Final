@@ -25,10 +25,6 @@ final class TopicsViewModel {
     
     // MARK: Properties
     private let topicsDataManager: TopicsDataManager
-    
-    weak var coordinatorDelegate: TopicsCoordinatorDelegate?
-    weak var viewDelegate: TopicsViewDelegate?
-    
     private var topicViewModels: [TopicCellViewModel] = []
     private var filteredTopics: [TopicCellViewModel] {
         guard let searchText = searchText, !searchText.isEmpty else { return topicViewModels }
@@ -41,6 +37,7 @@ final class TopicsViewModel {
             return topic.textLabelText?.lowercased().contains(searchText.lowercased()) ?? false
         }
     }
+    
     var nextPage: String?
     var searchText: String? {
         didSet {
@@ -49,6 +46,9 @@ final class TopicsViewModel {
             }
         }
     }
+    
+    weak var coordinatorDelegate: TopicsCoordinatorDelegate?
+    weak var viewDelegate: TopicsViewDelegate?
     
     // MARK: Lifecycle
     init(topicsDataManager: TopicsDataManager) {

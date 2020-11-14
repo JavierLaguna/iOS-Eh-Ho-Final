@@ -93,13 +93,14 @@ final class TopicDetailViewController: UIViewController {
         }
     }
     
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         viewModel.backButtonTapped()
     }
 }
 
 // MARK: TopicDetailViewDelegate
 extension TopicDetailViewController: TopicDetailViewDelegate {
+    
     func topicDetailFetched() {
         updateUI()
     }
@@ -145,5 +146,4 @@ extension TopicDetailViewController: UITableViewDataSource {
         
         return UITableViewCell()
     }
-    
 }

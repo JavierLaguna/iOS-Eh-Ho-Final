@@ -44,7 +44,6 @@ final class UserDetailViewController: UIViewController {
         fatalError()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,7 +112,7 @@ final class UserDetailViewController: UIViewController {
     private func updateAvatarUI() {
         avatarImage.alpha = 0
         avatarImage.image = viewModel.avatarImage
-
+        
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.avatarImage.alpha = 1
         }
@@ -126,6 +125,7 @@ final class UserDetailViewController: UIViewController {
 
 // MARK: UserDetailViewDelegate
 extension UserDetailViewController: UserDetailViewDelegate {
+    
     func userDetailFetched() {
         updateUI()
     }

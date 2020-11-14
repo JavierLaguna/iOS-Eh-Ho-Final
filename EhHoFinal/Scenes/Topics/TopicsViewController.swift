@@ -9,9 +9,26 @@
 import UIKit
 
 /// ViewController que representa un listado de topics
-class TopicsViewController: UIViewController {
+final class TopicsViewController: UIViewController {
     
-    lazy private var tableView: UITableView = {
+    // MARK: Properties
+    private let fetchNextPageOffset = 5
+    private let viewModel: TopicsViewModel
+    private let defaultFloatingButtonBottomSpace: CGFloat = -12
+    private var floatingButtonBottomConstraint: NSLayoutConstraint?
+    private var lastVelocityYSign = 0
+    private var refreshControl = UIRefreshControl()
+    private var showFloatingButton: Bool = true {
+        didSet {
+            if showFloatingButton != oldValue {
+                hideFloatingButton(showFloatingButton)
+            }
+        }
+    }
+    
+    private lazy var searchBar = UISearchBar()
+    
+    private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = self
@@ -21,7 +38,7 @@ class TopicsViewController: UIViewController {
         return table
     }()
     
-    lazy private var floatingButton: UIImageView = {
+    private lazy var floatingButton: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "icoNew")?.withRenderingMode(.alwaysOriginal))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
@@ -30,21 +47,7 @@ class TopicsViewController: UIViewController {
         return imageView
     }()
     
-    private let fetchNextPageOffset = 5
-    private let viewModel: TopicsViewModel
-    private let defaultFloatingButtonBottomSpace: CGFloat = -12
-    private var floatingButtonBottomConstraint: NSLayoutConstraint?
-    private var lastVelocityYSign = 0
-    private var showFloatingButton: Bool = true {
-        didSet {
-            if showFloatingButton != oldValue {
-                hideFloatingButton(showFloatingButton)
-            }
-        }
-    }
-    lazy private var searchBar = UISearchBar()
-    private var refreshControl = UIRefreshControl()
-
+    // MARK: Lifecycle
     init(viewModel: TopicsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -91,7 +94,8 @@ class TopicsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    @objc func plusButtonTapped() {
+    // MARK: Private Functions
+    @objc private func plusButtonTapped() {
         viewModel.plusButtonTapped()
     }
     
@@ -117,11 +121,11 @@ class TopicsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(fetchTopics), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
-
+    
     private func configureNavigationBar() {
         
         navigationItem.titleView = nil
-
+        
         let addIcon = UIImage(named: "icoAdd")?.withRenderingMode(.alwaysTemplate)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: addIcon, style: .plain, target: self, action: #selector(plusButtonTapped))
         leftBarButtonItem.tintColor = .orangeKCPumpkin
@@ -133,19 +137,18 @@ class TopicsViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    fileprivate func showErrorFetchingTopicsAlert() {
-        let alertMessage: String = NSLocalizedString("Error fetching topics\nPlease try again later", comment: "")
-        showAlert(alertMessage)
+    private func showErrorFetchingTopicsAlert() {
+        showAlert("topics.defaultError".localized())
     }
     
     private func hideFloatingButton(_ show: Bool) {
         let distanceToBottom = floatingButton.frame.maxY.distance(to: view.frame.maxY) + floatingButton.frame.height
         let bottomSpace: CGFloat = show ? defaultFloatingButtonBottomSpace : distanceToBottom
-
+        
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.35, animations: { [weak self] in
                 guard let self = self, let bottomConstraint = self.floatingButtonBottomConstraint else { return }
-
+                
                 bottomConstraint.constant = bottomSpace
                 self.view.layoutIfNeeded()
             })
@@ -174,12 +177,12 @@ extension TopicsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row + fetchNextPageOffset >= viewModel.numberOfRows(in: indexPath.section),
-        viewModel.nextPage != nil {
+           viewModel.nextPage != nil {
             viewModel.fetchMoreTopics()
         }
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: TopicCell.defaultReuseIdentifier, for: indexPath) as? TopicCell,
-            let cellViewModel = viewModel.viewModel(at: indexPath) as? TopicPostCellViewModel {
+           let cellViewModel = viewModel.viewModel(at: indexPath) as? TopicPostCellViewModel {
             cell.viewModel = cellViewModel
             return cell
         }

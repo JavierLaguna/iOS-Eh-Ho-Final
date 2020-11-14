@@ -27,16 +27,16 @@ final class TopicDetailViewModel {
     // MARK: Properties
     private let topicDetailDataManager: TopicDetailDataManager
     private let topicID: Int
-    
-    weak var viewDelegate: TopicDetailViewDelegate?
-    weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
-    
     private var chunkSize: Int?
     private var isGettingMorePosts = false
+    
     var topic: Topic?
     var posts: Posts?
     var canDeleteTopic = false
     var allPostIds: [Int] = []
+    
+    weak var viewDelegate: TopicDetailViewDelegate?
+    weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
     
     // MARK: Lifecycle
     init(topicID: Int, topicDetailDataManager: TopicDetailDataManager) {
@@ -69,7 +69,7 @@ final class TopicDetailViewModel {
         
         topicDetailDataManager.fetchSpecificPosts(of: topicID, postIds: nextPostIds) { [weak self] result in
             guard let self = self else { return }
-                    
+            
             switch result {
             case .success(let postsResp):
                 guard let newPosts = postsResp?.posts else {

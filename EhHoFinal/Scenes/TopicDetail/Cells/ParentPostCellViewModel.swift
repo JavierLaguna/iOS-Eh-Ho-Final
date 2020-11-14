@@ -11,15 +11,15 @@ import Foundation
 final class ParentPostCellViewModel {
     
     // MARK: Properties
-    let topic: Topic
-    let post: Post
-        
+    private let topic: Topic
+    private let post: Post
+    
     var titleLabelText: String?
     var bodyLabelText: String?
     var postsCount: String?
     var postersCount: String?
     var createPostDate: String?
-  
+    
     init(topic: Topic, post: Post) {
         self.topic = topic
         self.post = post
@@ -38,7 +38,5 @@ final class ParentPostCellViewModel {
             formatter.dateFormat = "MMM d"
             self.createPostDate = formatter.string(from: lastPostDate).capitalized
         }
-        
-       
     }
 }

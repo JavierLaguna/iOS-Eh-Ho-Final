@@ -37,7 +37,6 @@ final class ParentPostCell: UITableViewCell, NibLoadableView, ReusableView  {
         configureUI()
     }
     
-    
     // MARK: Private Functions
     private func configureUI() {
         titleLabel.font = .bigTitle

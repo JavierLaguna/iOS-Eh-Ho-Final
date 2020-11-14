@@ -37,6 +37,7 @@
 
 // Topics
 "topics.title" = "Topics";
+"topics.defaultError" = "Error fetching topics\nPlease try again later";
 
 // Topic Detail
 "topicDetail.fetchError" = "Error fetching topic detail\nPlease try again later";
