@@ -12,31 +12,27 @@ final class LoginCoordinator: Coordinator {
     
     // MARK: Properties
     private let presenter: UINavigationController
-    private let topicDetailDataManager: TopicDetailDataManager
+    private let loginDataManager: LoginDataManager
     
     
     init(presenter: UINavigationController,
-         topicDetailDataManager: TopicDetailDataManager) {
+         loginDataManager: LoginDataManager) {
         
         self.presenter = presenter
-        self.topicDetailDataManager = topicDetailDataManager
+        self.loginDataManager = loginDataManager
     }
     
     override func start() {
-//        let topicDetailViewModel = TopicDetailViewModel(topicID: topicId, topicDetailDataManager: topicDetailDataManager)
-//        self.topicDetailViewModel = topicDetailViewModel
-        let viewController = LoginViewController()
-//        topicDetailViewModel.coordinatorDelegate = self
-//        topicDetailViewModel.viewDelegate = topicDetailViewController
+        let viewModel = LoginViewModel(loginDataManager: loginDataManager)
+        let viewController = LoginViewController(viewModel: viewModel)
+        //        topicDetailViewModel.coordinatorDelegate = self
+        //        topicDetailViewModel.viewDelegate = topicDetailViewController
         
         presenter.setNavigationBarHidden(true, animated: true)
         presenter.pushViewController(viewController, animated: true)
     }
     
     override func finish() {
-//        presenter.popViewController(animated: true)
-        
-    
+        //        presenter.popViewController(animated: true)
     }
-    
 }

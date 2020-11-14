@@ -81,3 +81,8 @@ extension DiscourseClientDataManager: UserDetailDataManager {
         remoteDataManager.updateNameUser(username: username, name: name, completion: completion)
     }
 }
+
+// MARK: LoginDataManager
+extension DiscourseClientDataManager: LoginDataManager {
+    
+}

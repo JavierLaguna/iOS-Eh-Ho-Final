@@ -44,7 +44,7 @@ class AppCoordinator: Coordinator {
     
     private func startLogin() {
         let navigationController = UINavigationController()
-        let loginCoordinator = LoginCoordinator(presenter: navigationController, topicDetailDataManager: dataManager)
+        let loginCoordinator = LoginCoordinator(presenter: navigationController, loginDataManager: dataManager)
         
         addChildCoordinator(loginCoordinator)
         

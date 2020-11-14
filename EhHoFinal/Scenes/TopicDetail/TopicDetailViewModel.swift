@@ -22,7 +22,7 @@ protocol TopicDetailViewDelegate: class {
     func errorDeletingTopicDetail()
 }
 
-class TopicDetailViewModel {
+final class TopicDetailViewModel {
     
     // MARK: Properties
     private let topicDetailDataManager: TopicDetailDataManager

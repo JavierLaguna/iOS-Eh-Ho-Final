@@ -16,13 +16,38 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak private var loginButton: UIButton!
     
     // MARK: Properties
-    
+    private let viewModel: LoginViewModel
     
     // MARK: Lifecycle
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
+        localize()
     }
     
+    // MARK: Private functions
+    private func configureUI() {
+        usernameTextField.font = .paragraph
+        passwordTextField.font = .paragraph
+
+        loginButton.titleLabel?.font = .paragraphBold
+    }
     
+    private func localize() {
+        
+        usernameTextField.placeholder = "login.username.placeholder".localized()
+        passwordTextField.placeholder = "login.password.placeholder".localized()
+        
+        loginButton.setTitle("login.login.button".localized(), for: .normal)
+    }
 }

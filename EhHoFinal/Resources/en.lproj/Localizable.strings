@@ -1,10 +1,10 @@
 /* 
-  Localizable.strings
-  EhHoFinal
-
-  Created by Javier Laguna on 05/11/2020.
-  Copyright © 2020 Roberto Garrido. All rights reserved.
-*/
+ Localizable.strings
+ EhHoFinal
+ 
+ Created by Javier Laguna on 05/11/2020.
+ Copyright © 2020 Roberto Garrido. All rights reserved.
+ */
 
 // Add Topic
 "addTopic.title" = "Create New Topic";
@@ -36,3 +36,8 @@
 "addPost.create" = "Create";
 "addPost.body.label" = "Your reply";
 "addPost.defaultError" = "Error adding post\nPlease try again later";
+
+// Login
+"login.username.placeholder" = "Username";
+"login.password.placeholder" = "Password";
+"login.login.button" = "LOGIN";
