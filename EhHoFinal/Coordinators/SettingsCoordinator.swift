@@ -17,6 +17,7 @@ final class SettingsCoordinator: Coordinator {
     typealias SettingsCoordinatorDidFinish = () -> Void
     var didFinish: SettingsCoordinatorDidFinish?
     
+    // MARK: Lifecycle
     init(presenter: UINavigationController, loginDataManager: LoginDataManager) {
         self.presenter = presenter
         self.loginDataManager = loginDataManager
@@ -36,6 +37,7 @@ final class SettingsCoordinator: Coordinator {
     }
 }
 
+// MARK: SettingsCoordinatorDelegate
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
     
     func logout() {

@@ -66,7 +66,7 @@ final class LoginViewController: UIViewController {
         viewModel.loginUser(username: username, password: password)
     }
     
-    @IBAction func onTapRegisterButton(_ sender: Any) {
+    @IBAction private func onTapRegisterButton(_ sender: Any) {
         viewModel.registerUser()
     }
 }

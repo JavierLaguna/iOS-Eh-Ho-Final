@@ -20,10 +20,11 @@ protocol UsersViewDelegate: class {
 }
 
 /// ViewModel que representa un listado de users
-class UsersViewModel {
-    weak var coordinatorDelegate: UsersCoordinatorDelegate?
-    weak var viewDelegate: UsersViewDelegate?
-    let usersDataManager: UsersDataManager
+final class UsersViewModel {
+    
+    // MARK: Properties
+    private let usersDataManager: UsersDataManager
+    
     var usersViewModels: [UserCellViewModel] = []
     var searchText: String? {
         didSet {
@@ -40,6 +41,10 @@ class UsersViewModel {
         }
     }
     
+    weak var coordinatorDelegate: UsersCoordinatorDelegate?
+    weak var viewDelegate: UsersViewDelegate?
+    
+    // MARK: Lifecycle
     init(usersDataManager: UsersDataManager) {
         self.usersDataManager = usersDataManager
     }
@@ -48,26 +53,9 @@ class UsersViewModel {
         fetchUsers()
     }
     
+    // MARK: Public Functions
     func refreshUsers() {
         fetchUsers()
-    }
-    
-    private func fetchUsers() {
-        usersDataManager.fetchAllUsers { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let usersResp):
-                guard let users = usersResp?.users else { return }
-                self.usersViewModels = users.map { UserCellViewModel(user: $0) }
-                
-                self.viewDelegate?.usersFetched()
-                
-            case .failure(let error):
-                Log.error(error)
-                self.viewDelegate?.errorFetchingUsers()
-            }
-        }
     }
     
     func numberOfSections() -> Int {
@@ -86,5 +74,24 @@ class UsersViewModel {
     func didSelectRow(at indexPath: IndexPath) {
         guard indexPath.row < usersTopics.count else { return }
         coordinatorDelegate?.didSelect(user: usersTopics[indexPath.row].user)
+    }
+    
+    // MARK: Private Functions
+    private func fetchUsers() {
+        usersDataManager.fetchAllUsers { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let usersResp):
+                guard let users = usersResp?.users else { return }
+                self.usersViewModels = users.map { UserCellViewModel(user: $0) }
+                
+                self.viewDelegate?.usersFetched()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorFetchingUsers()
+            }
+        }
     }
 }

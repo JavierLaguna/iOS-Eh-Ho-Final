@@ -12,7 +12,7 @@ struct DeleteTopicRequest: APIRequest {
     
     typealias Response = DeleteTopicResponse
     
-    let id: Int
+    private let id: Int
     
     init(id: Int) {
         self.id = id

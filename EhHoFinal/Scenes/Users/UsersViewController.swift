@@ -9,8 +9,13 @@
 import UIKit
 
 /// ViewController que representa un listado de users
-class UsersViewController: UIViewController {
+final class UsersViewController: UIViewController {
     
+    // MARK: Properties
+    private var refreshControl = UIRefreshControl()
+    private let viewModel: UsersViewModel
+    
+    lazy private var searchBar = UISearchBar()
     lazy private var flowLayout: UICollectionViewFlowLayout = {
         let numberOfColumns: Int = 3
         let sectionInset: CGFloat = 24
@@ -37,10 +42,7 @@ class UsersViewController: UIViewController {
         return collectionView
     }()
     
-    lazy private var searchBar = UISearchBar()
-    private var refreshControl = UIRefreshControl()
-    private let viewModel: UsersViewModel
-    
+    // MARK: Lifecycle
     init(viewModel: UsersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -71,6 +73,7 @@ class UsersViewController: UIViewController {
         viewModel.viewWasLoaded()
     }
     
+    // MARK: Private Functions
     @objc private func enableSearchBar() {
         navigationItem.leftBarButtonItems = nil
         navigationItem.rightBarButtonItems = nil
@@ -105,9 +108,8 @@ class UsersViewController: UIViewController {
         collectionView.refreshControl = refreshControl
     }
     
-    fileprivate func showErrorFetchingUsersAlert() {
-        let alertMessage: String = NSLocalizedString("Error fetching users\nPlease try again later", comment: "")
-        showAlert(alertMessage)
+    private func showErrorFetchingUsersAlert() {
+        showAlert("users.defaultError".localized())
     }
     
     @objc private func fetchUsers() {

@@ -12,7 +12,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: Properties
     private let viewModel: SettingsViewModel
-
+    
     // MARK: Lifecycle
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
@@ -25,10 +25,10 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureNavigationBar()
     }
-
+    
     // MARK: Private functions
     private func configureNavigationBar() {
         title = "settings.title".localized()

@@ -12,8 +12,8 @@ struct CreatePostRequest: APIRequest {
     
     typealias Response = AddNewPostResponse
     
-    let topicId: Int
-    let content: String
+    private let topicId: Int
+    private let content: String
     
     init(topicId: Int,
          content: String) {

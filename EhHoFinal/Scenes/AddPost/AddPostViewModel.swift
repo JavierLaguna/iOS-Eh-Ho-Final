@@ -23,7 +23,7 @@ final class AddPostViewModel {
     // MARK: Properties
     private let topic: Topic
     private let dataManager: AddPostDataManager
-
+    
     let topicTitleLabelText: String
     
     weak var viewDelegate: AddPostViewDelegate?

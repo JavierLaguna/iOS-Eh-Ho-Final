@@ -17,6 +17,7 @@ final class LoginCoordinator: Coordinator {
     typealias UserDidLogged = () -> Void
     var userDidLogged: UserDidLogged?
     
+    // MARK: Lifecycle
     init(presenter: UINavigationController,
          loginDataManager: LoginDataManager) {
         
@@ -40,6 +41,7 @@ final class LoginCoordinator: Coordinator {
         presenter.popViewController(animated: true)
     }
     
+    // MARK: Private Functions
     private func startRegisterUser() {
         let viewModel = RegisterUserViewModel(loginDataManager: loginDataManager)
         let viewController = RegisterUserViewController(viewModel: viewModel)

@@ -12,8 +12,8 @@ struct UsersRequest: APIRequest {
     
     typealias Response = UsersResponse
     
-    let period: Period
-    let order: Order
+    private let period: Period
+    private let order: Order
     
     init(period: Period = .weekly, order: Order = .topicCount) {
         self.period = period
@@ -27,7 +27,7 @@ struct UsersRequest: APIRequest {
     var path: String {
         return "/directory_items.json"
     }
-        
+    
     var parameters: [String : String] {
         return [
             "period": period.rawValue,
@@ -42,5 +42,5 @@ struct UsersRequest: APIRequest {
     var headers: [String : String] {
         return [:]
     }
-
+    
 }

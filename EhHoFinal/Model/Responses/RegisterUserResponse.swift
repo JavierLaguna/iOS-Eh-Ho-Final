@@ -8,5 +8,4 @@
 
 import Foundation
 
-struct RegisterUserResponse: Decodable {
-}
+struct RegisterUserResponse: Decodable {}

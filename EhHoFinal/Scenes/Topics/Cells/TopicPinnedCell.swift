@@ -8,18 +8,20 @@
 
 import UIKit
 
-class TopicPinnedCell: UITableViewCell, NibLoadableView, ReusableView  {
+final class TopicPinnedCell: UITableViewCell, NibLoadableView, ReusableView  {
 
     @IBOutlet weak private var containerView: UIView!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var subtitleLabel: UILabel!
     
+    // MARK: Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureUI()
     }
     
+    // MARK: Private Functions
     private func configureUI() {
         containerView.layer.cornerRadius = 8
         titleLabel.font = UIFont.bigTitle

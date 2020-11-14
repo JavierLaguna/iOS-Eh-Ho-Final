@@ -19,8 +19,10 @@ final class TopicDetailCoordinator: Coordinator {
     private var addPostNavigationController: UINavigationController?
     private var topicDetailViewModel: TopicDetailViewModel?
     private var shouldUpdateTopics = false
+    
     var topicDetailCoordinatorDidFinish: ((_ shouldUpdateTopics: Bool) -> Void)?
     
+    // MARK: Lifecycle
     init(presenter: UINavigationController,
          topicDetailDataManager: TopicDetailDataManager,
          addPostDataManager: AddPostDataManager,
@@ -48,9 +50,11 @@ final class TopicDetailCoordinator: Coordinator {
         topicDetailCoordinatorDidFinish?(shouldUpdateTopics)
     }
     
+    // MARK: Private Functions
     private func startAddPost(topic: Topic) {
         let addPostViewModel = AddPostViewModel(topic: topic, dataManager: addPostDataManager)
         let addPostViewController = AddPostViewController(viewModel: addPostViewModel)
+        
         addPostViewModel.coordinatorDelegate = self
         addPostViewModel.viewDelegate = addPostViewController
         
@@ -67,6 +71,7 @@ final class TopicDetailCoordinator: Coordinator {
 
 // MARK: TopicDetailCoordinatorDelegate
 extension TopicDetailCoordinator: TopicDetailCoordinatorDelegate {
+    
     func addPostButtonTapped(topic: Topic) {
         startAddPost(topic: topic)
     }
@@ -83,6 +88,7 @@ extension TopicDetailCoordinator: TopicDetailCoordinatorDelegate {
 
 // MARK: AddPostCoordinatorDelegate
 extension TopicDetailCoordinator: AddPostCoordinatorDelegate {
+    
     func addPostCancelButtonTapped() {
         finishAddPost()
     }

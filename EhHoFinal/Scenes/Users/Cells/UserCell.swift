@@ -8,12 +8,13 @@
 
 import UIKit
 
-class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
+final class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
     
     // MARK: IBOutlets
     @IBOutlet weak private var avatarImage: UIImageView!
     @IBOutlet weak private var nameLabel: UILabel!
     
+    // MARK: Properties
     var viewModel: UserCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }

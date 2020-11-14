@@ -12,9 +12,9 @@ struct CreateTopicRequest: APIRequest {
     
     typealias Response = AddNewTopicResponse
     
-    let title: String
-    let raw: String
-    let createdAt: String
+    private let title: String
+    private let raw: String
+    private let createdAt: String
     
     init(title: String,
          raw: String,

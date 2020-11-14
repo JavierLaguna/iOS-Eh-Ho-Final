@@ -9,26 +9,30 @@
 import UIKit
 
 extension UIViewController {
+    
     /// Muestra un alertcontroller con una única acción
     /// - Parameters:
     ///   - alertMessage: Mensaje del alert
     ///   - alertTitle: Título del alert
     ///   - alertActionTitle: Título de la acción
     func showAlert(_ alertMessage: String,
-                               _ alertTitle: String = NSLocalizedString("Error", comment: ""),
-                               _ alertActionTitle: String = NSLocalizedString("OK", comment: "")) {
-
+                   _ alertTitle: String = "commons.error".localized(),
+                   _ alertActionTitle: String = "commons.ok".localized()) {
+        
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        
         alertController.addAction(UIAlertAction(title: alertActionTitle, style: .default, handler: nil))
+        
         present(alertController, animated: true, completion: nil)
     }
     
     func showDeleteAlert(title: String, onAccept: @escaping () -> Void) {
-        let yesAction = UIAlertAction(title: "Borrar", style: .destructive, handler: { _ in
+        let yesAction = UIAlertAction(title: "commons.delete".localized(), style: .destructive, handler: { _ in
             onAccept()
         })
-        let noAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        let alert = UIAlertController(title: title, message: "La acción no podrá deshacerse", preferredStyle: .alert)
+        let noAction = UIAlertAction(title: "commons.cancel".localized(), style: .cancel, handler: nil)
+        let alert = UIAlertController(title: title, message: "commons.actionCantUndo".localized(), preferredStyle: .alert)
+        
         alert.addAction(noAction)
         alert.addAction(yesAction)
         

@@ -49,7 +49,7 @@ struct Topic: Codable {
         case pinnedGlobally = "pinned_globally"
         case chunkSize = "chunk_size"
     }
-        
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)

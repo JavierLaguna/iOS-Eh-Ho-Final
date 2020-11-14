@@ -23,5 +23,4 @@ struct TopicDetails: Codable {
         case canReplyAsNewTopic = "can_reply_as_new_topic"
         case canFlagTopic = "can_flag_topic"
     }
-    
 }

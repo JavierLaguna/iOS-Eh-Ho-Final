@@ -11,24 +11,26 @@ import UIKit
 /// Coordinator principal de la app. Encapsula todas las interacciones con la Window.
 /// Tiene dos hijos, el topic list, y el categories list (uno por cada tab)
 final class AppCoordinator: Coordinator {
-    let sessionAPI = SessionAPI()
     
-    lazy var remoteDataManager: DiscourseClientRemoteDataManager = {
+    // MARK: Properties
+    private let window: UIWindow
+    private let sessionAPI = SessionAPI()
+    
+    private lazy var remoteDataManager: DiscourseClientRemoteDataManager = {
         let remoteDataManager = DiscourseClientRemoteDataManagerImpl(session: sessionAPI)
         return remoteDataManager
     }()
     
-    lazy var localDataManager: DiscourseClientLocalDataManager = {
+    private lazy var localDataManager: DiscourseClientLocalDataManager = {
         let localDataManager = DiscourseClientLocalDataManagerImpl()
         return localDataManager
     }()
     
-    lazy var dataManager: DiscourseClientDataManager = {
+    private lazy var dataManager: DiscourseClientDataManager = {
         let dataManager = DiscourseClientDataManager(localDataManager: self.localDataManager, remoteDataManager: self.remoteDataManager)
         return dataManager
     }()
     
-    let window: UIWindow
     init(window: UIWindow) {
         self.window = window
     }
@@ -41,6 +43,9 @@ final class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
     
+    override func finish() {}
+    
+    // MARK: Private Functions
     private func splashDidFinish(userIsLogged: Bool) {
         if userIsLogged {
             startApp()
@@ -97,6 +102,7 @@ final class AppCoordinator: Coordinator {
         tabBarController.tabBar.alpha = 0.9
         
         tabBarController.viewControllers = [topicsNavigationController, usersNavigationController, categoriesNavigationController, settingsNavigationController]
+        
         tabBarController.tabBar.items?.first?.image = UIImage(named: "inicio")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[1].image = UIImage(named: "usuarios")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[2].image = UIImage(systemName: "paperplane.fill")
@@ -104,6 +110,4 @@ final class AppCoordinator: Coordinator {
         
         window.rootViewController = tabBarController
     }
-    
-    override func finish() {}
 }

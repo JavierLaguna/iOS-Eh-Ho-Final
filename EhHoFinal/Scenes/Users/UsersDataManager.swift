@@ -15,5 +15,6 @@ enum UsersDataManagerError: Error {
 
 /// Data Manager con las opraciones necesarias de este módulo
 protocol UsersDataManager {
+    
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ())
 }

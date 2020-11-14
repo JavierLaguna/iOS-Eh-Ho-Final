@@ -12,8 +12,8 @@ struct SpecificPostsRequest: APIRequest {
     
     typealias Response = SpecificPostsResponse
     
-    let topicId: Int
-    let postIds: [Int]
+    private let topicId: Int
+    private let postIds: [Int]
     
     init(topicId: Int, postIds: [Int]) {
         self.topicId = topicId

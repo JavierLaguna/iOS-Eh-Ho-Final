@@ -8,5 +8,4 @@
 
 import Foundation
 
-struct AddNewPostResponse: Decodable {
-}
+struct AddNewPostResponse: Decodable {}

@@ -91,6 +91,7 @@ final class AddTopicViewController: UIViewController {
 
 // MARK: AddTopicViewDelegate
 extension AddTopicViewController: AddTopicViewDelegate {
+    
     func errorAddingTopic(text: String?) {
         showErrorAddingTopicAlert(text: text)
     }

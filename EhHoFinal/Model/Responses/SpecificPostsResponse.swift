@@ -19,7 +19,7 @@ struct SpecificPostsResponse: Decodable {
         case posts
         case postStream = "post_stream"
     }
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

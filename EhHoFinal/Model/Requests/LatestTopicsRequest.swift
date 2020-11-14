@@ -13,7 +13,7 @@ struct LatestTopicsRequest: APIRequest {
     
     typealias Response = LatestTopicsResponse
     
-    let nextPage: String?
+    private let nextPage: String?
     
     init(nextPage: String?) {
         self.nextPage = nextPage

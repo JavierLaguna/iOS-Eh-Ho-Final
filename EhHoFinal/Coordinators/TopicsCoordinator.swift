@@ -21,6 +21,7 @@ final class TopicsCoordinator: Coordinator {
     
     private var topicsViewModel: TopicsViewModel?
     
+    // MARK: Lifecycle
     init(presenter: UINavigationController,
          topicsDataManager: TopicsDataManager,
          topicDetailDataManager: TopicDetailDataManager,
@@ -37,10 +38,13 @@ final class TopicsCoordinator: Coordinator {
     override func start() {
         let topicsViewModel = TopicsViewModel(topicsDataManager: topicsDataManager)
         let topicsViewController = TopicsViewController(viewModel: topicsViewModel)
-        topicsViewController.title = NSLocalizedString("Topics", comment: "")
+        
+        self.topicsViewModel = topicsViewModel
+
+        topicsViewController.title = "topics.title".localized()
         topicsViewModel.viewDelegate = topicsViewController
         topicsViewModel.coordinatorDelegate = self
-        self.topicsViewModel = topicsViewModel
+        
         presenter.pushViewController(topicsViewController, animated: false)
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIFont {
+    
     static let logo = UIFont.systemFont(ofSize: 89, weight: .bold)
     
     static let bigTitle = UIFont.systemFont(ofSize: 22, weight: .bold)

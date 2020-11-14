@@ -9,7 +9,7 @@
 import UIKit
 
 /// Coordinator del módulo add topic.
-class AddTopicCoordinator: Coordinator {
+final class AddTopicCoordinator: Coordinator {
     
     // MARK: Properties
     private let presenter: UINavigationController
@@ -19,6 +19,7 @@ class AddTopicCoordinator: Coordinator {
     var onCancelTapped: (() -> Void)?
     var onTopicCreated: (() -> Void)?
     
+    // MARK: Lifecycle
     init(presenter: UINavigationController, addTopicDataManager: AddTopicDataManager) {
         self.presenter = presenter
         self.addTopicDataManager = addTopicDataManager
@@ -41,6 +42,7 @@ class AddTopicCoordinator: Coordinator {
     }
 }
 
+// MARK: AddTopicCoordinatorDelegate
 extension AddTopicCoordinator: AddTopicCoordinatorDelegate {
     func addTopicCancelButtonTapped() {
         onCancelTapped?()

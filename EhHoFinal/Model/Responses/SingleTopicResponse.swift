@@ -3,6 +3,7 @@ import Foundation
 // Puedes echar un vistazo en https://docs.discourse.org
 
 struct SingleTopicResponse: Decodable {
+    
     let topic: Topic
     let details: TopicDetails
     let posts: Posts
@@ -14,7 +15,7 @@ struct SingleTopicResponse: Decodable {
         case postStream = "post_stream"
         case allPostIds = "stream"
     }
-
+    
     init(from decoder: Decoder) throws {
         let rootObject = try decoder.singleValueContainer()
         topic = try rootObject.decode(Topic.self)

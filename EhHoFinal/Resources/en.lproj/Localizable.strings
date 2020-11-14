@@ -6,6 +6,13 @@
  Copyright © 2020 Roberto Garrido. All rights reserved.
  */
 
+// Commons
+"commons.error" = "Error";
+"commons.ok" = "OK";
+"commons.delete" = "Borrar";
+"commons.cancel" = "Cancelar";
+"commons.actionCantUndo" = "Action can not undo";
+
 // Add Topic
 "addTopic.title" = "Create New Topic";
 "addTopic.cancel" = "Cancel";
@@ -14,6 +21,10 @@
 "addTopic.title.placeholder" = "Insert topic title";
 "addTopic.body.label" = "Topic body";
 "addTopic.defaultError" = "Error adding topic\nPlease try again later";
+
+// Users
+"users.title" = "Users";
+"users.defaultError" = "Error fetching users\nPlease try again later";
 
 // User Detail
 "userDetail.topics_created" = "created";
@@ -24,6 +35,10 @@
 "userDetail.badge.mod" = "Moderator";
 "userDetail.badge.user" = "User";
 "userDetail.fetchError" = "Error fetching user detail\nPlease try again later";
+
+// Topics
+"topics.title" = "Topics";
+"topics.defaultError" = "Error fetching topics\nPlease try again later";
 
 // Topic Detail
 "topicDetail.fetchError" = "Error fetching topic detail\nPlease try again later";
@@ -58,6 +73,7 @@
 
 // Categories
 "categories.title" = "Categories";
+"categories.default.error" = "Error fetching categories\nPlease try again later";
 
 // Settings
 "settings.title" = "Settings";
