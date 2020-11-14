@@ -94,4 +94,11 @@ final class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManag
         }
     }
     
+    func registerUser(email: String, username: String, password: String, completion: @escaping (Result<RegisterUserResponse?, Error>) -> ()) {
+        let request = RegisterUserRequest(email:email, username: username, password: password)
+        session.send(request: request) { result in
+            completion(result)
+        }
+    }
+    
 }

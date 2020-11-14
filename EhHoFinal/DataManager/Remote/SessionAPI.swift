@@ -13,12 +13,14 @@ enum SessionAPIError: Error {
 
 /// Clase de utilidad para llamar al API. El método Send recibe una Request que implementa APIRequest y tiene un tipo Response asociado
 final class SessionAPI {
+    
     lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.default
         
         let session = URLSession(configuration: configuration)
         return session
     }()
+    
     func send<T: APIRequest>(request: T, completion: @escaping(Result<T.Response?, Error>) -> ()) {
         let request = request.requestWithBaseUrl()
         let task = session.dataTask(with: request) { data, response, error in

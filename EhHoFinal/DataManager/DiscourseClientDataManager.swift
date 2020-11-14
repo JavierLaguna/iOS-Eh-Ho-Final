@@ -100,4 +100,8 @@ extension DiscourseClientDataManager: LoginDataManager {
     func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ()) {
         localDataManager.deleteUserLogged(completion: completion)
     }
+    
+    func registerUser(email: String, username: String, password: String, completion: @escaping (Result<RegisterUserResponse?, Error>) -> ()) {
+        remoteDataManager.registerUser(email:email, username: username, password: password, completion: completion)
+    }
 }
