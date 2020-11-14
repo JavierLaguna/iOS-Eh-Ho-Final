@@ -33,19 +33,20 @@ final class RegisterUserViewModel {
     func registerUser(email: String,username: String, password: String, confirmPassword: String) {
         let formIsValid = validateFields(email: email, username: username, password: password, confirmPassword: confirmPassword)
         
+        guard formIsValid else { return }
         
-        //        loginDataManager.loginUser(username: username, password: password) { [weak self] result in
-        //            guard let self = self else { return }
-        //
-        //            switch result {
-        //            case .success:
-        //                self.userIsLogged(username: username, password: password)
-        //
-        //            case .failure(let error):
-        //                Log.error(error)
-        //                self.viewDelegate?.errorLoginUser(error: "login.default.error".localized())
-        //            }
-        //        }
+        loginDataManager.registerUser(email: email, username: username, password: password) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success:
+                self.coordinatorDelegate?.backToLogin()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorOnRegisterUser(error: "registerUser.default.error".localized())
+            }
+        }
     }
     
     func login() {

@@ -27,4 +27,5 @@ protocol DiscourseClientRemoteDataManager {
     func updateNameUser(username: String, name: String, completion: @escaping (Result<UpdateNameUserResponse?, Error>) -> ())
     
     func loginUser(username: String, password: String, completion: @escaping (Result<UserDetailResponse?, Error>) -> ())
+    func registerUser(email: String, username: String, password: String, completion: @escaping (Result<RegisterUserResponse?, Error>) -> ())
 }

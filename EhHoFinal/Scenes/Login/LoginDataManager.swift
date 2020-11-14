@@ -14,4 +14,5 @@ protocol LoginDataManager: class {
     func saveUserLogged(user: UserLogged, completion: @escaping (Result<Bool, Error>) -> ())
     func getUserLogged(completion: @escaping (Result<UserLogged?, Error>) -> ())
     func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ())
+    func registerUser(email: String, username: String, password: String, completion: @escaping (Result<RegisterUserResponse?, Error>) -> ())
 }
