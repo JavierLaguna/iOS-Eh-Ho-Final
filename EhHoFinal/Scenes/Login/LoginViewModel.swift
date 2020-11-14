@@ -12,13 +12,18 @@ protocol LoginViewDelegate: class {
     func errorLoginUser(error: String)
 }
 
+protocol LoginCoordinatorDelegate: class {
+    func userIsLogged()
+}
+
+
 final class LoginViewModel {
     
     // MARK: Properties
     private let loginDataManager: LoginDataManager
     
     weak var viewDelegate: LoginViewDelegate?
-    //    weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
+    weak var coordinatorDelegate: LoginCoordinatorDelegate?
     
     // MARK: Lifecycle
     init(loginDataManager: LoginDataManager) {
@@ -37,7 +42,24 @@ final class LoginViewModel {
             
             switch result {
             case .success:
-                print()
+                self.userIsLogged(username: username, password: password)
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorLoginUser(error: "login.default.error".localized())
+            }
+        }
+    }
+    
+    private func userIsLogged(username: String, password: String) {
+        let userLogged = UserLogged(username: username)
+        
+        loginDataManager.saveUserLogged(user: userLogged) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success:
+                self.coordinatorDelegate?.userIsLogged()
                 
             case .failure(let error):
                 Log.error(error)

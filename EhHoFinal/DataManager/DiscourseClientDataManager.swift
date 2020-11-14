@@ -90,14 +90,14 @@ extension DiscourseClientDataManager: LoginDataManager {
     }
     
     func saveUserLogged(user: UserLogged, completion: @escaping (Result<Bool, Error>) -> ()) {
-        
+        localDataManager.saveUserLogged(user: user, completion: completion)
     }
     
     func getUserLogged(completion: @escaping (Result<UserLogged?, Error>) -> ()) {
-        
+        localDataManager.getUserLogged(completion: completion)
     }
     
     func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ()) {
-        
+        localDataManager.deleteUserLogged(completion: completion)
     }
 }

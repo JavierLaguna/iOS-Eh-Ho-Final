@@ -49,6 +49,7 @@ class AppCoordinator: Coordinator {
         addChildCoordinator(loginCoordinator)
         
         loginCoordinator.start()
+        loginCoordinator.userDidLogged = startApp
         
         window.rootViewController = navigationController
     }
