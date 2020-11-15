@@ -1,12 +1,28 @@
-# Discourse Client - eh.ho
+# 📱 Eh-Ho
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-swift.svg)](https://forthebadge.com)
 
-> Discourse Client is a practice of 'concurrencia-red' and 'ui-avanzada-ios' for KeepCoding Mobile 10
+> 📝 Final iOS Practice for KeepCoding Mobile 10
+
+## 📷 Screenshots
 
 ![Splash](/captures/splash.png)
+![Login](/captures/login.png)
+![Register](/captures/register.png)
+
 ![Topics](/captures/topics.png)
+![Search Topic](/captures/search_topic.png)
+![Create Topic](/captures/create_topic.png)
+
+![Topic Detial](/captures/topic_detail.png)
+![Reply Topic](/captures/reply_topic.png)
+
 ![Users](/captures/users.png)
+![Search User](/captures/search_user.png)
+![User Detail](/captures/user_detail.png)
+
+![Categories](/captures/categories.png)
+![Settings](/captures/settings.png)
 
 ## Application Structure
 
