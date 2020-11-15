@@ -76,6 +76,6 @@ Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
 
 //
 
-## 👨🏻‍💻 Author
+## 👨‍💻 Author
 
 > Javier Laguna
