@@ -1,8 +1,12 @@
-# 📱 Eh-Ho
+# 📱 Eh-Ho iOS
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-swift.svg)](https://forthebadge.com)
 
-> 📝 Final iOS Practice for KeepCoding Mobile 10
+## 📝 Description
+
+Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
+
+> Final iOS Practice for KeepCoding Mobile 10
 
 ## 📷 Screenshots
 
@@ -24,27 +28,54 @@
 ![Categories](/captures/categories.png)
 ![Settings](/captures/settings.png)
 
-## Application Structure
+## 🚧 Application Architecture
 
-Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
+[Swift](https://developer.apple.com/swift/) app based on ([MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) + [Coordinators](https://blog.kulman.sk/architecting-ios-apps-coordinators/)) as main architecture.
 
-[Swift](https://developer.apple.com/swift/) app based on ([MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) + [Coordinators](https://blog.kulman.sk/architecting-ios-apps-coordinators/)) as main architecture. Base code from `Roberto Garrido` and `Ignacio Garcia Sainz`
+[URLSession](https://developer.apple.com/documentation/foundation/urlsession) as networking layer.
 
-App Features:
+[GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) as Git methodology.
 
-###### Topics
-   - List recent topic
-   - View topic detail
-   - Create new topic
-   - Delete topic
+## ✅ App Features
 
-###### Categories
-   - List all categories
-   
-###### Users
-   - List users
-   - View user detail
-   - Modify user name
-   
-##### Author
+##### Register
+
+- Register new users
+
+##### Login
+
+- Login for registered users
+
+##### Topics
+
+- Paginated list of recent topic
+- Search topics
+- Create new topic
+- Delete topic
+
+##### Posts
+
+- Topic detail with paginated list of posts
+- Reply topic using post
+
+##### Users
+
+- List users
+- Search users
+- User detail view
+
+##### Categories
+
+- List all categories
+
+##### Settings
+
+- User logout
+
+## 🛠 Work in progress
+
+//
+
+## 👨🏻‍💻 Author
+
 > Javier Laguna
