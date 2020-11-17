@@ -7,25 +7,31 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
 typealias Users = [User]
 
-struct User: Codable {
+final class User: Object, Codable {
     
-    let id: Int
-    let username: String
-    let name: String?
-    let avatarTemplate: String
-    let email: String?
-    let canEdit: Bool?
-    let canEditUsername: Bool?
-    let canEditEmail: Bool?
-    let canEditName: Bool?
-    let ignored: Bool?
-    let muted: Bool?
-    let lastSeenAt: Date?
-    let moderator: Bool?
-    let profileViewCount: Int?
+    @objc dynamic var id: Int = -1
+    @objc dynamic var username: String = ""
+    @objc dynamic var name: String?
+    @objc dynamic var avatarTemplate: String = ""
+    @objc dynamic var email: String?
+    @objc dynamic var canEdit: Bool = false
+    @objc dynamic var canEditUsername: Bool = false
+    @objc dynamic var canEditEmail: Bool = false
+    @objc dynamic var canEditName: Bool = false
+    @objc dynamic var ignored: Bool = false
+    @objc dynamic var muted: Bool = false
+    @objc dynamic var lastSeenAt: Date?
+    @objc dynamic var moderator: Bool = false
+    @objc dynamic var profileViewCount: Int = 0
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     enum CodingKeys: String, CodingKey {
         case userKey = "user"
@@ -40,6 +46,10 @@ struct User: Codable {
         case profileViewCount = "profile_view_count"
     }
     
+    required init() {
+        super.init()
+    }
+    
     init(from decoder: Decoder) throws {
         var container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -52,14 +62,14 @@ struct User: Codable {
         avatarTemplate = try container.decode(String.self, forKey: .avatarTemplate)
         email = try container.decodeIfPresent(String.self, forKey: .email)
         name = try container.decodeIfPresent(String.self, forKey: .name)
-        canEdit = try container.decodeIfPresent(Bool.self, forKey: .canEdit)
-        canEditUsername = try container.decodeIfPresent(Bool.self, forKey: .canEditUsername)
-        canEditEmail = try container.decodeIfPresent(Bool.self, forKey: .canEditEmail)
-        canEditName = try container.decodeIfPresent(Bool.self, forKey: .canEditName)
-        ignored = try container.decodeIfPresent(Bool.self, forKey: .ignored)
-        muted = try container.decodeIfPresent(Bool.self, forKey: .muted)
-        moderator = try container.decodeIfPresent(Bool.self, forKey: .moderator)
-        profileViewCount = try container.decodeIfPresent(Int.self, forKey: .profileViewCount)
+        canEdit = try container.decodeIfPresent(Bool.self, forKey: .canEdit) ?? false
+        canEditUsername = try container.decodeIfPresent(Bool.self, forKey: .canEditUsername) ?? false
+        canEditEmail = try container.decodeIfPresent(Bool.self, forKey: .canEditEmail) ?? false
+        canEditName = try container.decodeIfPresent(Bool.self, forKey: .canEditName) ?? false
+        ignored = try container.decodeIfPresent(Bool.self, forKey: .ignored) ?? false
+        muted = try container.decodeIfPresent(Bool.self, forKey: .muted) ?? false
+        moderator = try container.decodeIfPresent(Bool.self, forKey: .moderator) ?? false
+        profileViewCount = try container.decodeIfPresent(Int.self, forKey: .profileViewCount) ?? 0
         
         if let lastSeenAtString = try container.decodeIfPresent(String.self, forKey: .lastSeenAt) {
             let formatter = DateFormatter()
@@ -69,6 +79,7 @@ struct User: Codable {
             lastSeenAt = nil
         }
     }
+    
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

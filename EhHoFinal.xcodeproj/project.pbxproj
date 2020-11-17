@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,7 +55,7 @@
 		4978534224771B0D0014C5A8 /* TopicPinnedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978534024771B0D0014C5A8 /* TopicPinnedCell.swift */; };
 		4978534324771B0D0014C5A8 /* TopicPinnedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4978534124771B0D0014C5A8 /* TopicPinnedCell.xib */; };
 		497C3D572554682A00B330A7 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D562554682A00B330A7 /* String+Extensions.swift */; };
-		497C3D6925546A2D00B330A7 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		497C3D6925546A2D00B330A7 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		497C3D7A25546BE300B330A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 497C3D7C25546BE300B330A7 /* Localizable.strings */; };
 		497C3D7F25547B8F00B330A7 /* SessionAPIError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D7E25547B8F00B330A7 /* SessionAPIError+Extensions.swift */; };
 		497C3D862554820800B330A7 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C3D842554820800B330A7 /* UserDetailViewController.swift */; };
@@ -89,6 +89,7 @@
 		49EC1E192477299F0017772A /* TopicPinnedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC1E182477299F0017772A /* TopicPinnedCellViewModel.swift */; };
 		49EE206524797C5200A43FA6 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE206324797C5200A43FA6 /* UserCell.swift */; };
 		49EE206624797C5200A43FA6 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EE206424797C5200A43FA6 /* UserCell.xib */; };
+		49FA851D25645E2500EF529B /* RealmWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FA851C25645E2500EF529B /* RealmWorker.swift */; };
 		49FB13722551D362000ECD34 /* AddTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB13702551D361000ECD34 /* AddTopicViewController.swift */; };
 		49FB13732551D362000ECD34 /* AddTopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FB13712551D361000ECD34 /* AddTopicViewController.xib */; };
 		62015CB723EF04C200673EBB /* TopicPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB623EF04C200673EBB /* TopicPostCellViewModel.swift */; };
@@ -211,6 +212,7 @@
 		49EC1E182477299F0017772A /* TopicPinnedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPinnedCellViewModel.swift; sourceTree = "<group>"; };
 		49EE206324797C5200A43FA6 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		49EE206424797C5200A43FA6 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		49FA851C25645E2500EF529B /* RealmWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWorker.swift; sourceTree = "<group>"; };
 		49FB13702551D361000ECD34 /* AddTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTopicViewController.swift; sourceTree = "<group>"; };
 		49FB13712551D361000ECD34 /* AddTopicViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTopicViewController.xib; sourceTree = "<group>"; };
 		5B4B02932AFDA61398B5B7E7 /* Pods-EhHoFinal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EhHoFinal.release.xcconfig"; path = "Target Support Files/Pods-EhHoFinal/Pods-EhHoFinal.release.xcconfig"; sourceTree = "<group>"; };
@@ -419,7 +421,6 @@
 				F4DBD38B4B973312C5DCF8EA /* Pods-EhHoFinal.debug.xcconfig */,
 				5B4B02932AFDA61398B5B7E7 /* Pods-EhHoFinal.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -580,6 +581,7 @@
 			children = (
 				627DC5D023E604E7006D8615 /* DiscourseClientLocalDataManager.swift */,
 				62A697A723E89E6700CCEA3E /* DiscourseClientLocalDataManagerImpl.swift */,
+				49FA851C25645E2500EF529B /* RealmWorker.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -701,7 +703,7 @@
 				49FB13732551D362000ECD34 /* AddTopicViewController.xib in Resources */,
 				497C3D982556CC7600B330A7 /* ParentPostCell.xib in Resources */,
 				62015CBB23EF084C00673EBB /* TopicCell.xib in Resources */,
-				497C3D6925546A2D00B330A7 /* BuildFile in Resources */,
+				497C3D6925546A2D00B330A7 /* (null) in Resources */,
 				497C3D7A25546BE300B330A7 /* Localizable.strings in Resources */,
 				498E58EB247474DF0070A767 /* Colors.xcassets in Resources */,
 				496A9888242D3872007BE243 /* CategoryCell.xib in Resources */,
@@ -832,6 +834,7 @@
 				49EE206524797C5200A43FA6 /* UserCell.swift in Sources */,
 				496E7FF72435185400019B20 /* UserDetailDataManager.swift in Sources */,
 				498E58ED2474759B0070A767 /* UIColor+Extensions.swift in Sources */,
+				49FA851D25645E2500EF529B /* RealmWorker.swift in Sources */,
 				497C3DB82557EB4800B330A7 /* TopicDetailCoordinator.swift in Sources */,
 				62A697A823E89E6700CCEA3E /* DiscourseClientLocalDataManagerImpl.swift in Sources */,
 				49AC8308243A45B800A7F79C /* UserDetailViewModel.swift in Sources */,

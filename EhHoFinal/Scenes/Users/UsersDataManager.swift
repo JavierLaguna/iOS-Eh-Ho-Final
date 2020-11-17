@@ -17,4 +17,5 @@ enum UsersDataManagerError: Error {
 protocol UsersDataManager {
     
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ())
+    func saveUsers(users: Users, completion: ((Result<Bool, Error>) -> ())?)
 }

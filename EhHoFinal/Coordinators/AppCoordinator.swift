@@ -33,6 +33,9 @@ final class AppCoordinator: Coordinator {
     
     init(window: UIWindow) {
         self.window = window
+        
+        // Init Realm
+        RealmWorker.shared.setupRealm()
     }
     
     override func start() {

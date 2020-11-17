@@ -84,8 +84,10 @@ final class UsersViewModel {
             switch result {
             case .success(let usersResp):
                 guard let users = usersResp?.users else { return }
-                self.usersViewModels = users.map { UserCellViewModel(user: $0) }
                 
+                self.saveUsers(users: users)
+                
+                self.usersViewModels = users.map { UserCellViewModel(user: $0) }
                 self.viewDelegate?.usersFetched()
                 
             case .failure(let error):
@@ -93,5 +95,9 @@ final class UsersViewModel {
                 self.viewDelegate?.errorFetchingUsers()
             }
         }
+    }
+    
+    private func saveUsers(users: Users) {
+        usersDataManager.saveUsers(users: users, completion: nil)
     }
 }

@@ -89,16 +89,13 @@ final class UserDetailViewModel {
                 
                 self.labelNickText = user.username
                 self.labelNameText = user.name
-                self.isMod = user.moderator ?? false
+                self.isMod = user.moderator
+                self.labelLikesReceivedText = "\(user.profileViewCount)"
                 
                 if let lastSeenAt = user.lastSeenAt {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "E, d MMM yyyy HH:mm"
                     self.labelLastConnectionText = formatter.string(from: lastSeenAt)
-                }
-                
-                if let profileViewCount = user.profileViewCount {
-                    self.labelLikesReceivedText = "\(profileViewCount)"
                 }
                 
                 self.viewDelegate?.userDetailFetched()
