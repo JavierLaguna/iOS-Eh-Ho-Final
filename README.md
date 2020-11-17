@@ -28,6 +28,10 @@ Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
 ![Categories](/captures/categories.png)
 ![Settings](/captures/settings.png)
 
+## 🚩 Instructions
+
+//
+
 ## 🚧 Application Architecture
 
 [Swift](https://developer.apple.com/swift/) app based on ([MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) + [Coordinators](https://blog.kulman.sk/architecting-ios-apps-coordinators/)) as main architecture.
@@ -79,6 +83,7 @@ Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
 ## 🛠 Work in progress
 
 - Cache user objects on Realm database.
+  > Branch ➡️ feature/cacheUsers
 
 ## 👨‍💻 Author
 
