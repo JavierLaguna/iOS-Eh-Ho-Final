@@ -30,7 +30,11 @@ Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
 
 ## 🚩 Instructions
 
-//
+1. Install dependencies. Execute
+
+> \$ pod install
+
+2. Open `EhHoFinal.xcworkspace`
 
 ## 🚧 Application Architecture
 
