@@ -82,7 +82,7 @@ Little iOS client for consume `https://mdiscourse.keepcoding.io/` API
 
 ## 🛠 Work in progress
 
-- Cache user objects on Realm database, improve image cache and load with [Kingfisher](https://github.com/onevcat/Kingfisher).
+- Cache users objects on Realm database, improve image cache and load with [Kingfisher](https://github.com/onevcat/Kingfisher).
   > Branch ➡️ feature/cacheUsers
 
 ## 👨‍💻 Author
