@@ -7,5 +7,6 @@ target 'EhHoFinal' do
 
   # Pods for EhHoFinal
   pod 'RealmSwift'
+  pod 'Kingfisher', '~> 5.15'
 
 end

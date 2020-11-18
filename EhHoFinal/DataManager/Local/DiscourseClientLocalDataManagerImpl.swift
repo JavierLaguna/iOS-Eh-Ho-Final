@@ -85,17 +85,9 @@ extension DiscourseClientLocalDataManagerImpl {
                 return
             }
             
-            let _ = realm.objects(User.self).observe(on: .main) { changes in
-                switch changes {
-                case .initial(let users):
-                    completion(.success(Array(users)))
-                case .update(let users, _, _, _):
-                    completion(.success(Array(users)))
-                    break
-                case  .error(let error):
-                    completion(.failure(error))
-                    break
-                }
+            let users = Array(realm.objects(User.self).freeze())
+            DispatchQueue.main.async {
+                completion(.success(users))
             }
         }
     }

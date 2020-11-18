@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
     
@@ -19,8 +20,7 @@ final class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
         didSet {
             guard let viewModel = viewModel else { return }
             
-            viewModel.delegate = self
-            avatarImage.image = viewModel.avatarImage
+            avatarImage.kf.setImage(with: viewModel.avartarUrl, options: [.transition(.fade(1))])
             nameLabel.text = viewModel.textLabelText
         }
     }
@@ -44,24 +44,5 @@ final class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
         avatarImage.layer.masksToBounds = true
         
         nameLabel.font = UIFont.cellDetail
-    }
-    
-    private func showImage(_ image: UIImage?) {
-        avatarImage.alpha = 0
-        avatarImage.image = image
-        
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.avatarImage.alpha = 1
-        }
-    }
-}
-
-// MARK: UserCellViewModelDelegate
-extension UserCell: UserCellViewModelDelegate {
-    
-    func userImageFetched() {
-        guard let image = viewModel?.avatarImage else { return }
-        
-        showImage(image)
     }
 }
