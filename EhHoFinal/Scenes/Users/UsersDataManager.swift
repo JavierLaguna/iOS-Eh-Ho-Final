@@ -18,4 +18,5 @@ protocol UsersDataManager {
     
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ())
     func saveUsers(users: Users, completion: ((Result<Bool, Error>) -> ())?)
+    func getUsers(completion: @escaping (Result<Users, Error>) -> ())
 }

@@ -16,4 +16,5 @@ protocol DiscourseClientLocalDataManager {
     func deleteUserLogged(completion: @escaping (Result<Bool, Error>) -> ())
     
     func saveUsers(users: Users, completion: ((Result<Bool, Error>) -> ())?)
+    func getUsers(completion: @escaping (Result<Users, Error>) -> ())
 }

@@ -67,13 +67,17 @@ extension DiscourseClientDataManager: CategoriesDataManager {
 
 // MARK: UsersDataManager
 extension DiscourseClientDataManager: UsersDataManager {
-    
+       
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ()) {
         remoteDataManager.fetchAllUsers(completion: completion)
     }
     
     func saveUsers(users: Users, completion: ((Result<Bool, Error>) -> ())?) {
         localDataManager.saveUsers(users: users, completion: completion)
+    }
+    
+    func getUsers(completion: @escaping (Result<Users, Error>) -> ()) {
+        localDataManager.getUsers(completion: completion)
     }
 }
 

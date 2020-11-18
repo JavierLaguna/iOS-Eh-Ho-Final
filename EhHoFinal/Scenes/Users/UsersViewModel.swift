@@ -50,6 +50,7 @@ final class UsersViewModel {
     }
     
     func viewWasLoaded() {
+        getLocalUsers()
         fetchUsers()
     }
     
@@ -77,6 +78,24 @@ final class UsersViewModel {
     }
     
     // MARK: Private Functions
+    private func updateUsers(_ users: Users) {
+        usersViewModels = users.map { UserCellViewModel(user: $0) }
+        viewDelegate?.usersFetched()
+    }
+    
+    private func getLocalUsers() {
+        usersDataManager.getUsers() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let users):
+                self.updateUsers(users)
+            case .failure(let error):
+                Log.error(error)
+            }
+        }
+    }
+    
     private func fetchUsers() {
         usersDataManager.fetchAllUsers { [weak self] result in
             guard let self = self else { return }
@@ -85,10 +104,8 @@ final class UsersViewModel {
             case .success(let usersResp):
                 guard let users = usersResp?.users else { return }
                 
-                self.saveUsers(users: users)
-                
-                self.usersViewModels = users.map { UserCellViewModel(user: $0) }
-                self.viewDelegate?.usersFetched()
+                self.saveUsers(users)
+                self.updateUsers(users)
                 
             case .failure(let error):
                 Log.error(error)
@@ -97,7 +114,7 @@ final class UsersViewModel {
         }
     }
     
-    private func saveUsers(users: Users) {
+    private func saveUsers(_ users: Users) {
         usersDataManager.saveUsers(users: users, completion: nil)
     }
 }
