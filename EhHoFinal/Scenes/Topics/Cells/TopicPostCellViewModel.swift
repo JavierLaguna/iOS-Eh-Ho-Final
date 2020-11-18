@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol TopicPostCellViewModelDelegate: class {
-    func userImageFetched()
-}
-
 /// ViewModel que representa un topic en la lista
 final class TopicPostCellViewModel: TopicCellViewModel {
     
@@ -25,14 +21,8 @@ final class TopicPostCellViewModel: TopicCellViewModel {
     var postsCount: String?
     var postersCount: String?
     var lastPostDate: String?
-    var lastPosterImage: UIImage? {
-        didSet {
-            delegate?.userImageFetched()
-        }
-    }
-    
-    weak var delegate: TopicPostCellViewModelDelegate?
-    
+    var lastPosterImageUrl: URL?
+        
     // MARK: Lifecycle
     init(topic: Topic, lastPoster: User) {
         self.topic = topic
@@ -53,15 +43,6 @@ final class TopicPostCellViewModel: TopicCellViewModel {
         }
         
         let avatarUrl: String = lastPoster.avatarTemplate.replacingOccurrences(of: "{size}", with: "\(TopicPostCellViewModel.imageSize)")
-        if let imageUrl = URL(string: "\(apiURL)\(avatarUrl)") {
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let data = try? Data(contentsOf: imageUrl),
-                      let image = UIImage(data: data) else { return }
-                
-                DispatchQueue.main.async {
-                    self?.lastPosterImage = image
-                }
-            }
-        }
+        self.lastPosterImageUrl = URL(string: "\(apiURL)\(avatarUrl)")
     }
 }

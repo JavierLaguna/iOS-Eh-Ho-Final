@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 /// Celda que representa un topic en la lista
 final class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
@@ -22,13 +23,11 @@ final class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
         didSet {
             guard let viewModel = viewModel else { return }
             
+            lastPosterImage.kf.setImage(with: viewModel.lastPosterImageUrl, options: [.transition(.fade(1))])
             postTitleLabel.text = viewModel.textLabelText
             postCountLabel.text = viewModel.postsCount
             posterCountLabel.text = viewModel.postersCount
             lastPostLabel.text = viewModel.lastPostDate
-            lastPosterImage.image = viewModel.lastPosterImage
-            
-            viewModel.delegate = self
         }
     }
     
@@ -53,24 +52,5 @@ final class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
         postCountLabel.font = .cellDetail
         posterCountLabel.font = .cellDetail
         lastPostLabel.font = .cellDetailBold
-    }
-    
-    private func showImage(_ image: UIImage?) {
-        lastPosterImage.alpha = 0
-        lastPosterImage.image = image
-        
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.lastPosterImage.alpha = 1
-        }
-    }
-}
-
-// MARK: TopicCellViewModelDelegate
-extension TopicCell: TopicPostCellViewModelDelegate {
-    
-    func userImageFetched() {
-        guard let image = viewModel?.lastPosterImage else { return }
-        
-        showImage(image)
     }
 }
