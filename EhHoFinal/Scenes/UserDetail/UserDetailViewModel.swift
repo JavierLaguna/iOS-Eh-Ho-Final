@@ -17,7 +17,6 @@ protocol UserDetailCoordinatorDelegate: class {
 /// Delegate para comunicar a la vista cosas relacionadas con UI
 protocol UserDetailViewDelegate: class {
     func userDetailFetched()
-    func userImageFetched()
     func errorFetchingUserDetail()
     func errorModifingUserDetail()
     func successModifingUserDetail()
@@ -37,11 +36,7 @@ final class UserDetailViewModel {
     var labelLastConnectionText: String?
     var labelLikesReceivedText: String?
     var isMod = false
-    var avatarImage: UIImage? {
-        didSet {
-            viewDelegate?.userImageFetched()
-        }
-    }
+    var avatarImageUrl: URL?
     
     weak var viewDelegate: UserDetailViewDelegate?
     weak var coordinatorDelegate: UserDetailCoordinatorDelegate?
@@ -84,9 +79,7 @@ final class UserDetailViewModel {
             switch result {
             case .success(let userResp):
                 guard let user = userResp?.user else { return }
-                
-                self.fetchUserAvatar(avatarTemplate: user.avatarTemplate)
-                
+                                
                 self.labelNickText = user.username
                 self.labelNameText = user.name
                 self.isMod = user.moderator
@@ -98,25 +91,14 @@ final class UserDetailViewModel {
                     self.labelLastConnectionText = formatter.string(from: lastSeenAt)
                 }
                 
+                let avatarUrl: String = user.avatarTemplate.replacingOccurrences(of: "{size}", with: "\(UserDetailViewModel.imageSize)")
+                self.avatarImageUrl = URL(string: "\(apiURL)\(avatarUrl)")
+                
                 self.viewDelegate?.userDetailFetched()
                 
             case .failure(let error):
                 Log.error(error)
                 self.viewDelegate?.errorFetchingUserDetail()
-            }
-        }
-    }
-    
-    private func fetchUserAvatar(avatarTemplate: String) {
-        let avatarUrl: String = avatarTemplate.replacingOccurrences(of: "{size}", with: "\(UserDetailViewModel.imageSize)")
-        if let imageUrl = URL(string: "\(apiURL)\(avatarUrl)") {
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let data = try? Data(contentsOf: imageUrl),
-                      let image = UIImage(data: data) else { return }
-                
-                DispatchQueue.main.async {
-                    self?.avatarImage = image
-                }
             }
         }
     }

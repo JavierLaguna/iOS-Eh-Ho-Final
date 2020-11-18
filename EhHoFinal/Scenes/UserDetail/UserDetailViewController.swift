@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 /// ViewController que representa el detalle de un User
 final class UserDetailViewController: UIViewController {
@@ -100,6 +101,8 @@ final class UserDetailViewController: UIViewController {
     }
     
     private func updateUI() {
+        avatarImage.kf.setImage(with: viewModel.avatarImageUrl, options: [.transition(.fade(1))])
+        
         nickLabel.text = viewModel.labelNickText
         nameLabel.text = viewModel.labelNameText
         lastConnectionLabel.text = viewModel.labelLastConnectionText
@@ -107,15 +110,6 @@ final class UserDetailViewController: UIViewController {
         numMyLikesLabel.text = viewModel.labelLikesReceivedText
         
         modBadgeView.isHidden = !viewModel.isMod
-    }
-    
-    private func updateAvatarUI() {
-        avatarImage.alpha = 0
-        avatarImage.image = viewModel.avatarImage
-        
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.avatarImage.alpha = 1
-        }
     }
     
     private func showErrorFetchingUserDetailAlert() {
@@ -128,10 +122,6 @@ extension UserDetailViewController: UserDetailViewDelegate {
     
     func userDetailFetched() {
         updateUI()
-    }
-    
-    func userImageFetched() {
-        updateAvatarUI()
     }
     
     func errorFetchingUserDetail() {
