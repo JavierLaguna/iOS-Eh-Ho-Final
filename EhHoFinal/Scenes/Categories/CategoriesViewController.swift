@@ -9,9 +9,12 @@
 import UIKit
 
 /// ViewController para representar el listado de categorías
-class CategoriesViewController: UIViewController {
+final class CategoriesViewController: UIViewController {
     
-    lazy var tableView: UITableView = {
+    // MARK: Properties
+    private let viewModel: CategoriesViewModel
+    
+    private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = self
@@ -21,8 +24,7 @@ class CategoriesViewController: UIViewController {
         return table
     }()
     
-    let viewModel: CategoriesViewModel
-    
+    // MARK: Lifecycle
     init(viewModel: CategoriesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -50,13 +52,15 @@ class CategoriesViewController: UIViewController {
         viewModel.viewWasLoaded()
     }
     
-    fileprivate func showErrorFetchingCategoriesAlert() {
-        let alertMessage: String = NSLocalizedString("Error fetching categories\nPlease try again later", comment: "")
-        showAlert(alertMessage)
+    // MARK: Private Functions
+    private func showErrorFetchingCategoriesAlert() {
+        showAlert("categories.default.error".localized())
     }
 }
 
+// MARK: UITableViewDataSource
 extension CategoriesViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
@@ -67,7 +71,7 @@ extension CategoriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell,
-            let cellViewModel = viewModel.viewModel(at: indexPath) {
+           let cellViewModel = viewModel.viewModel(at: indexPath) {
             cell.viewModel = cellViewModel
             return cell
         }
@@ -76,7 +80,9 @@ extension CategoriesViewController: UITableViewDataSource {
     }
 }
 
+// MARK: CategoriesViewDelegate
 extension CategoriesViewController: CategoriesViewDelegate {
+    
     func categoriesFetched() {
         tableView.reloadData()
     }

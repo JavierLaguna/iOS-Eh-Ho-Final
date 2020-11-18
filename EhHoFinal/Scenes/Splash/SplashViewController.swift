@@ -8,10 +8,12 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
     
-    // MARK: Variables
-    lazy var ehLabel: UILabel = {
+    // MARK: Properties
+    private let loginDataManager: LoginDataManager
+    
+    private lazy var ehLabel: UILabel = {
         let ehLabel = UILabel()
         ehLabel.translatesAutoresizingMaskIntoConstraints = false
         ehLabel.text = "eh"
@@ -20,7 +22,7 @@ class SplashViewController: UIViewController {
         return ehLabel
     }()
     
-    lazy var ohLabel: UILabel = {
+    private lazy var ohLabel: UILabel = {
         let ohLabel = UILabel()
         ohLabel.translatesAutoresizingMaskIntoConstraints = false
         ohLabel.text = "oh"
@@ -29,19 +31,28 @@ class SplashViewController: UIViewController {
         return ohLabel
     }()
     
-    lazy var logoImage: UIImageView = {
+    private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView(frame: CGRect(x: view.center.x - 50, y: 0, width: 100, height: 85))
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         logoImage.image = UIImage(named: "logoSmall")
         return logoImage
     }()
     
-    var animator: UIDynamicAnimator?
+    private var animator: UIDynamicAnimator?
     
-    typealias SplashDidFinish = () -> Void
+    typealias SplashDidFinish = (_ userIsLogged: Bool) -> Void
     var splashDidFinish: SplashDidFinish?
-
+    
     // MARK: Lifecycle
+    init(loginDataManager: LoginDataManager) {
+        self.loginDataManager = loginDataManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +61,7 @@ class SplashViewController: UIViewController {
         startAnimation()
     }
     
+    // MARK: Private Functions
     private func configureBackground() {
         view.backgroundColor = .blackKC
         
@@ -104,17 +116,32 @@ class SplashViewController: UIViewController {
         let barrier = UIView(frame: CGRect(x: 16, y: view.frame.midY + 50, width: view.frame.width - 32, height: 8))
         barrier.backgroundColor = .white
         view.addSubview(barrier)
-                let rightEdge = CGPoint(x: barrier.frame.maxX, y: barrier.frame.maxY)
-                collisionBehavior.addBoundary(withIdentifier: "barrier" as NSCopying, from: barrier.frame.origin, to: rightEdge)
+        let rightEdge = CGPoint(x: barrier.frame.maxX, y: barrier.frame.maxY)
+        collisionBehavior.addBoundary(withIdentifier: "barrier" as NSCopying, from: barrier.frame.origin, to: rightEdge)
         
         animator?.addBehavior(collisionBehavior)
         animator?.delegate = self
     }
+    
+    private func checkUserIsLogged() {
+        loginDataManager.getUserLogged() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let user):
+                self.splashDidFinish?(user != nil)
+                
+            case .failure:
+                self.splashDidFinish?(false)
+            }
+        }
+    }
 }
 
+// MARK: UIDynamicAnimatorDelegate
 extension SplashViewController: UIDynamicAnimatorDelegate {
     
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
-        splashDidFinish?()
+        checkUserIsLogged()
     }
 }

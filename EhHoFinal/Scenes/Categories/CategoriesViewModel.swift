@@ -8,24 +8,21 @@
 
 import Foundation
 
-
-protocol CategoriesCoordinatorDelegate: class {
-    
-}
-
-
 protocol CategoriesViewDelegate: class {
     func categoriesFetched()
     func errorFetchingCategories()
 }
 
 /// ViewModel representando un listado de categorías
-class CategoriesViewModel {
-    weak var coordinatorDelegate: CategoriesCoordinatorDelegate?
-    weak var viewDelegate: CategoriesViewDelegate?
-    let categoriesDataManager: CategoriesDataManager
-    var categoriesViewModels: [CategoryCellViewModel] = []
+final class CategoriesViewModel {
     
+    // MARK: Properties
+    private let categoriesDataManager: CategoriesDataManager
+    private var categoriesViewModels: [CategoryCellViewModel] = []
+    
+    weak var viewDelegate: CategoriesViewDelegate?
+    
+    // MARK: Lifecycle
     init(categoriesDataManager: CategoriesDataManager) {
         self.categoriesDataManager = categoriesDataManager
     }
@@ -34,6 +31,21 @@ class CategoriesViewModel {
         fetchCategories()
     }
     
+    // MARK: Public Functions
+    func numberOfSections() -> Int {
+        return 1
+    }
+    
+    func numberOfRows(in section: Int) -> Int {
+        return categoriesViewModels.count
+    }
+    
+    func viewModel(at indexPath: IndexPath) -> CategoryCellViewModel? {
+        guard indexPath.row < categoriesViewModels.count else { return nil }
+        return categoriesViewModels[indexPath.row]
+    }
+    
+    // MARK: Private Functions
     private func fetchCategories() {
         categoriesDataManager.fetchAllCategories { [weak self] result in
             guard let self = self else { return}
@@ -50,18 +62,5 @@ class CategoriesViewModel {
                 self.viewDelegate?.errorFetchingCategories()
             }
         }
-    }
-    
-    func numberOfSections() -> Int {
-        return 1
-    }
-    
-    func numberOfRows(in section: Int) -> Int {
-        return categoriesViewModels.count
-    }
-    
-    func viewModel(at indexPath: IndexPath) -> CategoryCellViewModel? {
-        guard indexPath.row < categoriesViewModels.count else { return nil }
-        return categoriesViewModels[indexPath.row]
     }
 }

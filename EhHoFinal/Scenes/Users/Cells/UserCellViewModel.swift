@@ -12,14 +12,12 @@ protocol UserCellViewModelDelegate: class {
     func userImageFetched()
 }
 
-class UserCellViewModel {
+final class UserCellViewModel {
     
-    // MARK: Constants
+    // MARK: Properties
     static let imageSize = 100
     let user: User
     
-    // MARK: Variables
-    weak var delegate: UserCellViewModelDelegate?
     var textLabelText: String?
     var avatarImage: UIImage? {
         didSet {
@@ -27,6 +25,9 @@ class UserCellViewModel {
         }
     }
     
+    weak var delegate: UserCellViewModelDelegate?
+    
+    // MARK: Lifecycle
     init(user: User) {
         self.user = user
         self.textLabelText = user.name ?? user.username
@@ -35,7 +36,7 @@ class UserCellViewModel {
         if let imageUrl = URL(string: "\(apiURL)\(avatarUrl)") {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 guard let data = try? Data(contentsOf: imageUrl),
-                    let image = UIImage(data: data) else { return }
+                      let image = UIImage(data: data) else { return }
                 
                 DispatchQueue.main.async {
                     self?.avatarImage = image

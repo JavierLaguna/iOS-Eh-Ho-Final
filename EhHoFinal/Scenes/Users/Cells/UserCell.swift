@@ -8,12 +8,13 @@
 
 import UIKit
 
-class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
+final class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
     
     // MARK: IBOutlets
     @IBOutlet weak private var avatarImage: UIImageView!
     @IBOutlet weak private var nameLabel: UILabel!
     
+    // MARK: Properties
     var viewModel: UserCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -39,7 +40,7 @@ class UserCell: UICollectionViewCell, NibLoadableView, ReusableView {
     
     // MARK: Private Functions
     private func configureUI() {
-        avatarImage.layer.cornerRadius = avatarImage.frame.height / 2
+        avatarImage.asCircle()
         avatarImage.layer.masksToBounds = true
         
         nameLabel.font = UIFont.cellDetail

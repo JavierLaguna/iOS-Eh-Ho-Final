@@ -21,20 +21,12 @@ protocol TopicsViewDelegate: class {
 }
 
 /// ViewModel que representa un listado de topics
-class TopicsViewModel {
-    weak var coordinatorDelegate: TopicsCoordinatorDelegate?
-    weak var viewDelegate: TopicsViewDelegate?
-    var nextPage: String?
-    let topicsDataManager: TopicsDataManager
-    var topicViewModels: [TopicCellViewModel] = []
-    var searchText: String? {
-        didSet {
-            if searchText != oldValue {
-                viewDelegate?.topicsFetched()
-            }
-        }
-    }
-    var filteredTopics: [TopicCellViewModel] {
+final class TopicsViewModel {
+    
+    // MARK: Properties
+    private let topicsDataManager: TopicsDataManager
+    private var topicViewModels: [TopicCellViewModel] = []
+    private var filteredTopics: [TopicCellViewModel] {
         guard let searchText = searchText, !searchText.isEmpty else { return topicViewModels }
         
         return topicViewModels.filter { topic in
@@ -42,14 +34,28 @@ class TopicsViewModel {
                 return true
             }
             
-            return topic.textLabelText?.contains(searchText) ?? false
+            return topic.textLabelText?.lowercased().contains(searchText.lowercased()) ?? false
         }
     }
     
+    var nextPage: String?
+    var searchText: String? {
+        didSet {
+            if searchText != oldValue {
+                viewDelegate?.topicsFetched()
+            }
+        }
+    }
+    
+    weak var coordinatorDelegate: TopicsCoordinatorDelegate?
+    weak var viewDelegate: TopicsViewDelegate?
+    
+    // MARK: Lifecycle
     init(topicsDataManager: TopicsDataManager) {
         self.topicsDataManager = topicsDataManager
     }
     
+    // MARK: Public Functions
     func viewWasLoaded() {
         refreshTopics()
     }
@@ -64,35 +70,6 @@ class TopicsViewModel {
     func fetchMoreTopics() {
         fetchAllTopics()
         nextPage = nil
-    }
-    
-    private func fetchAllTopics() {
-        topicsDataManager.fetchAllTopics(nextPage: nextPage) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let topicsResp):
-                self.nextPage = topicsResp?.nextPage
-                
-                guard let topics = topicsResp?.topics,
-                    let users = topicsResp?.users else { return }
-                
-                let newTopics: [TopicCellViewModel] = topics.compactMap { topic in
-                    guard let lastPoster = users.first(where: {$0.username == topic.lastPosterUsername}) else {
-                        return nil
-                    }
-                    
-                    return TopicPostCellViewModel(topic: topic, lastPoster: lastPoster)
-                }
-                
-                self.topicViewModels.append(contentsOf: newTopics)
-                self.viewDelegate?.topicsFetched()
-                
-            case .failure(let error):
-                Log.error(error)
-                self.viewDelegate?.errorFetchingTopics()
-            }
-        }
     }
     
     func numberOfSections() -> Int {
@@ -122,5 +99,35 @@ class TopicsViewModel {
     
     func newTopicWasCreated() {
         refreshTopics()
+    }
+    
+    // MARK: Private Functions
+    private func fetchAllTopics() {
+        topicsDataManager.fetchAllTopics(nextPage: nextPage) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let topicsResp):
+                self.nextPage = topicsResp?.nextPage
+                
+                guard let topics = topicsResp?.topics,
+                      let users = topicsResp?.users else { return }
+                
+                let newTopics: [TopicCellViewModel] = topics.compactMap { topic in
+                    guard let lastPoster = users.first(where: {$0.username == topic.lastPosterUsername}) else {
+                        return nil
+                    }
+                    
+                    return TopicPostCellViewModel(topic: topic, lastPoster: lastPoster)
+                }
+                
+                self.topicViewModels.append(contentsOf: newTopics)
+                self.viewDelegate?.topicsFetched()
+                
+            case .failure(let error):
+                Log.error(error)
+                self.viewDelegate?.errorFetchingTopics()
+            }
+        }
     }
 }

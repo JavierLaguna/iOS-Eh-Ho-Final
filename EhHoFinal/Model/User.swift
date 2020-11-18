@@ -23,16 +23,21 @@ struct User: Codable {
     let canEditName: Bool?
     let ignored: Bool?
     let muted: Bool?
+    let lastSeenAt: Date?
+    let moderator: Bool?
+    let profileViewCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case userKey = "user"
         
-        case id, username, name, email, ignored, muted
+        case id, username, name, email, ignored, muted, moderator
         case avatarTemplate = "avatar_template"
         case canEdit = "can_edit"
         case canEditUsername = "can_edit_username"
         case canEditEmail = "can_edit_email"
         case canEditName = "can_edit_name"
+        case lastSeenAt = "last_seen_at"
+        case profileViewCount = "profile_view_count"
     }
     
     init(from decoder: Decoder) throws {
@@ -53,6 +58,16 @@ struct User: Codable {
         canEditName = try container.decodeIfPresent(Bool.self, forKey: .canEditName)
         ignored = try container.decodeIfPresent(Bool.self, forKey: .ignored)
         muted = try container.decodeIfPresent(Bool.self, forKey: .muted)
+        moderator = try container.decodeIfPresent(Bool.self, forKey: .moderator)
+        profileViewCount = try container.decodeIfPresent(Int.self, forKey: .profileViewCount)
+        
+        if let lastSeenAtString = try container.decodeIfPresent(String.self, forKey: .lastSeenAt) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            lastSeenAt = formatter.date(from: lastSeenAtString)
+        } else {
+            lastSeenAt = nil
+        }
     }
     
     func encode(to encoder: Encoder) throws {

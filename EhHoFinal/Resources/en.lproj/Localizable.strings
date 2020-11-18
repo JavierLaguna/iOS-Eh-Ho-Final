@@ -1,0 +1,79 @@
+/* 
+ Localizable.strings
+ EhHoFinal
+ 
+ Created by Javier Laguna on 05/11/2020.
+ Copyright © 2020 Roberto Garrido. All rights reserved.
+ */
+
+// Commons
+"commons.error" = "Error";
+"commons.ok" = "OK";
+"commons.delete" = "Borrar";
+"commons.cancel" = "Cancelar";
+"commons.actionCantUndo" = "Action can not undo";
+
+// Add Topic
+"addTopic.title" = "Create New Topic";
+"addTopic.cancel" = "Cancel";
+"addTopic.create" = "Create";
+"addTopic.title.label" = "Topic title";
+"addTopic.title.placeholder" = "Insert topic title";
+"addTopic.body.label" = "Topic body";
+"addTopic.defaultError" = "Error adding topic\nPlease try again later";
+
+// Users
+"users.title" = "Users";
+"users.defaultError" = "Error fetching users\nPlease try again later";
+
+// User Detail
+"userDetail.topics_created" = "created";
+"userDetail.replies" = "replies";
+"userDetail.likes" = "gived";
+"userDetail.my_likes" = "received";
+"userDetail.badge.title" = "Badges";
+"userDetail.badge.mod" = "Moderator";
+"userDetail.badge.user" = "User";
+"userDetail.fetchError" = "Error fetching user detail\nPlease try again later";
+
+// Topics
+"topics.title" = "Topics";
+"topics.defaultError" = "Error fetching topics\nPlease try again later";
+
+// Topic Detail
+"topicDetail.fetchError" = "Error fetching topic detail\nPlease try again later";
+"topicDetail.deleteError" = "Error deleting topic\nPlease try again later";
+"topicDetail.delete.title" = "Delete Topic";
+
+// Add Post
+"addPost.title" = "Reply topic";
+"addPost.cancel" = "Cancel";
+"addPost.create" = "Create";
+"addPost.body.label" = "Your reply";
+"addPost.defaultError" = "Error adding post\nPlease try again later";
+
+// Login
+"login.username.placeholder" = "Username";
+"login.password.placeholder" = "Password";
+"login.login.button" = "LOGIN";
+"login.register.button" = "CREATE NEW ACCOUNT";
+"login.emptyFields.error" = "Username or password is empty";
+"login.default.error" = "Invalid credentials";
+
+// Register User
+"registerUser.email.placeholder" = "Email";
+"registerUser.username.placeholder" = "Username";
+"registerUser.password.placeholder" = "Password";
+"registerUser.repeatPassword.placeholder" = "Confirm password";
+"registerUser.login.button" = "LOGIN";
+"registerUser.register.button" = "REGISTER";
+"registerUser.emptyFields.error" = "Any field is empty";
+"registerUser.notSamePassword.error" = "Passwords are not equals";
+"registerUser.default.error" = "Error on user register \nCheck your data and \nplease try again later";
+
+// Categories
+"categories.title" = "Categories";
+"categories.default.error" = "Error fetching categories\nPlease try again later";
+
+// Settings
+"settings.title" = "Settings";

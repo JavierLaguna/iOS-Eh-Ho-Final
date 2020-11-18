@@ -12,7 +12,7 @@ struct SingleTopicRequest: APIRequest {
     
     typealias Response = SingleTopicResponse
     
-    let id: Int
+    private let id: Int
     
     init(id: Int) {
         self.id = id

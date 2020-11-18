@@ -10,35 +10,60 @@ import UIKit
 
 /// Coordinator principal de la app. Encapsula todas las interacciones con la Window.
 /// Tiene dos hijos, el topic list, y el categories list (uno por cada tab)
-class AppCoordinator: Coordinator {
-    let sessionAPI = SessionAPI()
+final class AppCoordinator: Coordinator {
     
-    lazy var remoteDataManager: DiscourseClientRemoteDataManager = {
+    // MARK: Properties
+    private let window: UIWindow
+    private let sessionAPI = SessionAPI()
+    
+    private lazy var remoteDataManager: DiscourseClientRemoteDataManager = {
         let remoteDataManager = DiscourseClientRemoteDataManagerImpl(session: sessionAPI)
         return remoteDataManager
     }()
     
-    lazy var localDataManager: DiscourseClientLocalDataManager = {
+    private lazy var localDataManager: DiscourseClientLocalDataManager = {
         let localDataManager = DiscourseClientLocalDataManagerImpl()
         return localDataManager
     }()
     
-    lazy var dataManager: DiscourseClientDataManager = {
+    private lazy var dataManager: DiscourseClientDataManager = {
         let dataManager = DiscourseClientDataManager(localDataManager: self.localDataManager, remoteDataManager: self.remoteDataManager)
         return dataManager
     }()
     
-    let window: UIWindow
     init(window: UIWindow) {
         self.window = window
     }
     
     override func start() {
-        let splashVc = SplashViewController()
-        splashVc.splashDidFinish = startApp
-
+        let splashVc = SplashViewController(loginDataManager: dataManager)
+        splashVc.splashDidFinish = splashDidFinish
+        
         window.rootViewController = splashVc
         window.makeKeyAndVisible()
+    }
+    
+    override func finish() {}
+    
+    // MARK: Private Functions
+    private func splashDidFinish(userIsLogged: Bool) {
+        if userIsLogged {
+            startApp()
+        } else {
+            startLogin()
+        }
+    }
+    
+    private func startLogin() {
+        let navigationController = UINavigationController()
+        let loginCoordinator = LoginCoordinator(presenter: navigationController, loginDataManager: dataManager)
+        
+        addChildCoordinator(loginCoordinator)
+        
+        loginCoordinator.start()
+        loginCoordinator.userDidLogged = startApp
+        
+        window.rootViewController = navigationController
     }
     
     private func startApp() {
@@ -48,7 +73,8 @@ class AppCoordinator: Coordinator {
         let topicsCoordinator = TopicsCoordinator(presenter: topicsNavigationController,
                                                   topicsDataManager: dataManager,
                                                   topicDetailDataManager: dataManager,
-                                                  addTopicDataManager: dataManager)
+                                                  addTopicDataManager: dataManager,
+                                                  addPostDataManager: dataManager)
         addChildCoordinator(topicsCoordinator)
         topicsCoordinator.start()
         
@@ -64,22 +90,24 @@ class AppCoordinator: Coordinator {
         addChildCoordinator(categoriesCoordinator)
         categoriesCoordinator.start()
         
-        let settingsVC = UIViewController()
-        settingsVC.title = "Settings"
+        let settingsNavigationController = UINavigationController()
+        let settingsCoordinator = SettingsCoordinator(presenter: settingsNavigationController, loginDataManager: dataManager)
+        addChildCoordinator(settingsCoordinator)
+        settingsCoordinator.didFinish = startLogin
+        settingsCoordinator.start()
         
         tabBarController.tabBar.tintColor = .orangeKCTangerine
         tabBarController.tabBar.unselectedItemTintColor = .blackKC
         tabBarController.tabBar.backgroundColor = .whiteKCTabBar
         tabBarController.tabBar.alpha = 0.9
         
-        tabBarController.viewControllers = [topicsNavigationController, usersNavigationController, categoriesNavigationController, settingsVC]
+        tabBarController.viewControllers = [topicsNavigationController, usersNavigationController, categoriesNavigationController, settingsNavigationController]
+        
         tabBarController.tabBar.items?.first?.image = UIImage(named: "inicio")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[1].image = UIImage(named: "usuarios")?.withRenderingMode(.alwaysTemplate)
         tabBarController.tabBar.items?[2].image = UIImage(systemName: "paperplane.fill")
         tabBarController.tabBar.items?[3].image = UIImage(named: "ajustes")?.withRenderingMode(.alwaysTemplate)
-
+        
         window.rootViewController = tabBarController
     }
-    
-    override func finish() {}
 }

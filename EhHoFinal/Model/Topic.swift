@@ -18,7 +18,7 @@ struct Topic: Codable {
     let slug: String
     let postsCount: Int
     let replyCount: Int
-    let created_at: String
+    let createdAt: String
     let lastPostedAt: String
     let pinned: Bool
     let visible: Bool
@@ -32,6 +32,7 @@ struct Topic: Codable {
     let categoryId: Int
     let pinnedGlobally: Bool
     let posters: [Poster]?
+    let chunkSize: Int?
     
     enum CodingKeys: String, CodingKey {
         
@@ -39,15 +40,16 @@ struct Topic: Codable {
         case fancyTitle = "fancy_title"
         case postsCount = "posts_count"
         case replyCount = "reply_count"
-        case created_at = "created_at"
+        case createdAt = "created_at"
         case lastPostedAt = "last_posted_at"
         case likeCount = "like_count"
         case hasSummary = "has_summary"
         case lastPosterUsername = "last_poster_username"
         case categoryId = "category_id"
         case pinnedGlobally = "pinned_globally"
+        case chunkSize = "chunk_size"
     }
-        
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)

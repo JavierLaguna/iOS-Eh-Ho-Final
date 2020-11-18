@@ -13,15 +13,14 @@ protocol TopicPostCellViewModelDelegate: class {
 }
 
 /// ViewModel que representa un topic en la lista
-class TopicPostCellViewModel: TopicCellViewModel {
+final class TopicPostCellViewModel: TopicCellViewModel {
     
-    // MARK: Constants
+    // MARK: Properties
     static let imageSize = 100
-    let topic: Topic
-    let lastPoster: User
     
-    // MARK: Variables
-    weak var delegate: TopicPostCellViewModelDelegate?
+    private let lastPoster: User
+    let topic: Topic
+    
     var textLabelText: String?
     var postsCount: String?
     var postersCount: String?
@@ -32,6 +31,9 @@ class TopicPostCellViewModel: TopicCellViewModel {
         }
     }
     
+    weak var delegate: TopicPostCellViewModelDelegate?
+    
+    // MARK: Lifecycle
     init(topic: Topic, lastPoster: User) {
         self.topic = topic
         self.lastPoster = lastPoster
@@ -54,7 +56,7 @@ class TopicPostCellViewModel: TopicCellViewModel {
         if let imageUrl = URL(string: "\(apiURL)\(avatarUrl)") {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 guard let data = try? Data(contentsOf: imageUrl),
-                    let image = UIImage(data: data) else { return }
+                      let image = UIImage(data: data) else { return }
                 
                 DispatchQueue.main.async {
                     self?.lastPosterImage = image

@@ -9,7 +9,7 @@
 import UIKit
 
 /// Celda que representa un topic en la lista
-class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
+final class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
     
     // MARK: IBOutlets
     @IBOutlet weak private var lastPosterImage: UIImageView!
@@ -47,12 +47,12 @@ class TopicCell: UITableViewCell, NibLoadableView, ReusableView {
     
     // MARK: Private Functions
     private func configureUI() {
-        lastPosterImage.layer.cornerRadius = lastPosterImage.frame.height / 2
-        postTitleLabel.font = UIFont.title
+        lastPosterImage.asCircle()
+        postTitleLabel.font = .title
         
-        postCountLabel.font = UIFont.cellDetail
-        posterCountLabel.font = UIFont.cellDetail
-        lastPostLabel.font = UIFont.cellDetailBold
+        postCountLabel.font = .cellDetail
+        posterCountLabel.font = .cellDetail
+        lastPostLabel.font = .cellDetailBold
     }
     
     private func showImage(_ image: UIImage?) {

@@ -12,8 +12,8 @@ struct UpdateNameUserRequest: APIRequest {
     
     typealias Response = UpdateNameUserResponse
     
-    let username: String
-    let name: String
+    private let username: String
+    private let name: String
     
     init(username: String, name: String) {
         self.username = username

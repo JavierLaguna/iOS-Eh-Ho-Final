@@ -12,7 +12,7 @@ struct UserDetailRequest: APIRequest {
     
     typealias Response = UserDetailResponse
     
-    let username: String
+    private let username: String
     
     init(username: String) {
         self.username = username
@@ -37,5 +37,4 @@ struct UserDetailRequest: APIRequest {
     var headers: [String : String] {
         return [:]
     }
-
 }

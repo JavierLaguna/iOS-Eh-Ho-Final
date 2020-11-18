@@ -10,6 +10,7 @@ import UIKit
 
 /// Celda que representa una categoría  en la lista
 class CategoryCell: UITableViewCell {
+    
     var viewModel: CategoryCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
